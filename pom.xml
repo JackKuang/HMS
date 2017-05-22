@@ -29,6 +29,20 @@
 		
 		<!-- log4j日志 -->
 		
+		<!-- mysqlConnector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.38</version>
+		</dependency>
+		
+		<!-- c3p0连接池 -->
+		<dependency>
+		    <groupId>c3p0</groupId>
+		    <artifactId>c3p0</artifactId>
+		    <version>0.9.1.2</version>
+		</dependency>
+
 		
 		
 		<!-- Mybatis -->

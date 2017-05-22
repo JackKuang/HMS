@@ -43,7 +43,7 @@
 	<!-- 自动扫描出来的mapper的bean的id为mapper类名（首字母小写） -->
 	<!-- 扫描多个包用,分开 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.hurenjieee..dao" />
+		<property name="basePackage" value="com.hurenjieee.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
@@ -70,7 +70,6 @@
 
 	<!-- aop -->
 	<aop:config>
-		<aop:advisor advice-ref="txAdvice"
-			pointcut="execution(com.hurenjieee.service..*Impl.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.hurenjieee.service..*Impl.*(..))" />
 	</aop:config>
 </beans>
