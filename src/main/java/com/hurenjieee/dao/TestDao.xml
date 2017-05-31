@@ -11,4 +11,7 @@
 		#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{date,jdbcType=TIMESTAMP}
 		)
 	</insert>
+	<select id="select"  parameterType="com.hurenjieee.entity.TestEntity" resultMap="BaseResultMap">
+		select id,name,date from test_table
+	</select>
 </mapper>

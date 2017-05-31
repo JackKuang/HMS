@@ -7,6 +7,8 @@ public class TestEntity implements Serializable{
     private Integer id;
     private String name;
     private Date date;
+    private Integer pageNum;
+    private Integer pageSize;
     
     public Integer getId(){
         return id;
@@ -31,5 +33,25 @@ public class TestEntity implements Serializable{
     public void setDate(Date date){
         this.date = date;
     }
+    
+    public Integer getPageNum(){
+        return pageNum;
+    }
+
+    
+    public void setPageNum(Integer pageNum){
+        this.pageNum = pageNum;
+    }
+
+    
+    public Integer getPageSize(){
+        return pageSize;
+    }
+
+    
+    public void setPageSize(Integer pageSize){
+        this.pageSize = pageSize;
+    }
+    
     
 }

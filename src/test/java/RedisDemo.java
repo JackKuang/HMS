@@ -15,7 +15,7 @@ import java.util.Map;
  * Time: 下午 1:21.
  * Explain:Java操作Redis测试
  */
-public class TestRedis {
+public class RedisDemo {
 
     private Jedis jedis;
 

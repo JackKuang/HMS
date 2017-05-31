@@ -1,5 +1,7 @@
 package com.hurenjieee.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -16,5 +18,11 @@ public class TestServiceImpl implements TestService {
     
     public Integer insert(TestEntity testEntity){
         return testDao.insert(testEntity);
+    }
+
+    @Override
+    public List<TestEntity> select(TestEntity testEntity){
+        // TODO Auto-generated method stub
+        return testDao.select(testEntity);
     }
 }
