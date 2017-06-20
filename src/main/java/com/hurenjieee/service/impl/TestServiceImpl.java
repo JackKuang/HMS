@@ -17,7 +17,7 @@ public class TestServiceImpl implements TestService {
     TestDao testDao;
     
     public Integer insert(TestEntity testEntity){
-        return testDao.insert(testEntity);
+        return testDao.insertSelective(testEntity);
     }
 
     @Override
