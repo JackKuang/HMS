@@ -12,6 +12,6 @@
 		)
 	</insert>
 	<select id="select"  parameterType="com.hurenjieee.entity.TestEntity" resultMap="BaseResultMap">
-		select id,name,date from entity
+		select id,name,date from test_entity
 	</select>
 </mapper>

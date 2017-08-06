@@ -36,6 +36,8 @@ public class MybatisTest {
         TestEntity testEntity = new TestEntity();
         //testEntity.setPageNum(2);
         //testEntity.setPageSize(100);
+        
+      
         PageHelper.startPage(2,100);
         List<TestEntity> list = testService.select(testEntity);
         for(TestEntity t:list){
