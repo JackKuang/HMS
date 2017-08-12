@@ -1,10 +1,11 @@
 package com.hurenjieee.service;
 
-import java.util.List;
+import org.springframework.stereotype.Service;
 
+import com.hurenjieee.core.BaseService;
+import com.hurenjieee.dao.TestDao;
 import com.hurenjieee.entity.TestEntity;
 
-public interface TestService {
-    public Integer insert(TestEntity testEntity);
-    public List<TestEntity> select(TestEntity testEntity);
+@Service
+public class TestService extends BaseService<TestEntity,TestDao>{
 }
