@@ -2,21 +2,23 @@ package com.hurenjieee.core;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.persistence.Entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
 import com.hurenjieee.entity.TestEntity;
 
 import tk.mybatis.mapper.common.Mapper;
 
-@SuppressWarnings("unchecked")
+@Service
 public class BaseService<Entity, M extends Mapper> {
 
-    @Autowired
+    @Resource
     M mapper;
-
+    
     public M getMapper(){
         return mapper;
     }
