@@ -15,7 +15,7 @@ public class InsertInterceptor implements MethodInterceptor{
         Object[] args = arg0.getArguments();
         BaseEntity entity = (BaseEntity)args[0];
         entity.setUuid(UUID.randomUUID().toString());
-        entity.setCreateTime(new Date());
+        entity.setCreateDate(new Date());
         return null;
     }
 
