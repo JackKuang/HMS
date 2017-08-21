@@ -6,12 +6,4 @@
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="date" property="date" jdbcType="TIMESTAMP" />
 	</resultMap>
-	<insert id="insert" parameterType="com.hurenjieee.entity.TestEntity">
-		insert into test_entity(id,name,date) values(
-		#{id,jdbcType=INTEGER},'2333',#{date,jdbcType=TIMESTAMP}
-		)
-	</insert>
-	<select id="select"  parameterType="com.hurenjieee.entity.TestEntity" resultMap="BaseResultMap">
-		select id,name,date from test_entity
-	</select>
 </mapper>

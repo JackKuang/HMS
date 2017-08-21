@@ -15,5 +15,8 @@
     <context:component-scan base-package="com.hurenjieee" />
     <import resource="applicationRedis.xml" />
     <import resource="applicationMybatis.xml" />
-
+    
+    <aop:config>
+        <aop:pointcut expression="beforeInsert" id=""/>
+    </aop:config>
 </beans>

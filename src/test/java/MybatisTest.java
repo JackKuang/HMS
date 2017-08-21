@@ -1,5 +1,6 @@
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -16,6 +17,7 @@ import com.hurenjieee.service.TestService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")
 public class MybatisTest {
+   
     @Resource
     TestService testService;
     
@@ -24,9 +26,7 @@ public class MybatisTest {
         TestEntity testEntity = new TestEntity();
         for(int i = 0; i<1000;i++){
             System.out.println(i);
-            testEntity.setId(i);
             testEntity.setName("zhang"+i);
-            testEntity.setDate(new Date());
             testService.insert(testEntity);
         }
     }
@@ -41,6 +41,11 @@ public class MybatisTest {
         for(TestEntity t:list.getList()){
             System.out.println(t.getId());
         }
+    }
+    
+    @Test
+    public void testUuid(){
+        System.out.println(UUID.randomUUID().toString().replace("-","").toUpperCase());
     }
     
 }
