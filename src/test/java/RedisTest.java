@@ -19,11 +19,5 @@ public class RedisTest {
     @Test
     public void testRedis(){
         TestEntity testEntity = new TestEntity();
-        testEntity.setId(2);
-        testEntity.setName("zhang");
-        testEntity.setDate(new Date());
-        //redisCache.setCacheObject("test",testEntity);
-        TestEntity testEntity2 = redisCache.getCacheObject("test");
-        testEntity2.getDate();
     }
 }
