@@ -2,6 +2,8 @@ package com.hurenjieee.core;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import tk.mybatis.mapper.common.Mapper;
@@ -20,12 +22,16 @@ import com.github.pagehelper.PageInfo;
  */
 public class BaseServiceImpl<T extends BaseEntity, M extends Mapper<T>>  implements BaseService<T>{
 
-    @Autowired
+    @Resource
     M mapper;
 
     public M getMapper(){
         return mapper;
     }
+    
+    public void setMapper(M mapper){
+        this.mapper = mapper;
+    }    
 
     /****************增加开始**********************/
 

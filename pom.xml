@@ -203,9 +203,6 @@
 			<version>1.4.1.RELEASE</version>
 		</dependency>
 
-		<!-- SpringMVC -->
-
-
 		<!-- JSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

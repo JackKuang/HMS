@@ -12,8 +12,8 @@
          http://www.springframework.org/schema/aop/spring-aop.xsd">
          
     <context:annotation-config />
-    <context:component-scan base-package="com.hurenjieee.service" />
-    <import resource="applicationRedis.xml" />
+    <context:component-scan base-package="com.hurenjieee" />
     <import resource="applicationMybatis.xml" />
+    <import resource="applicationRedis.xml" />
     
 </beans>

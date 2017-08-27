@@ -18,6 +18,4 @@ public class InsertInterceptor implements MethodInterceptor{
         entity.setCreateDate(new Date());
         return null;
     }
-
-
 }
