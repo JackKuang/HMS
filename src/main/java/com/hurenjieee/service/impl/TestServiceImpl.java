@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
-import com.hurenjieee.core.BaseServiceImpl;
 import com.hurenjieee.dao.TestDao;
 import com.hurenjieee.entity.TestEntity;
 import com.hurenjieee.service.TestService;
@@ -24,7 +23,7 @@ public class TestServiceImpl implements TestService{
     
     public void setMapper(TestDao mapper){
         this.mapper = mapper;
-    }    
+    }
 
     /****************增加开始**********************/
 

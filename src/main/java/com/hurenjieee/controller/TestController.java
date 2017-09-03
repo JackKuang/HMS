@@ -1,7 +1,6 @@
 package com.hurenjieee.controller;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +14,9 @@ import com.hurenjieee.service.TestService;
 
 @Controller("testController")
 @Scope("prototype")
-@RequestMapping("test")
 public class TestController {
 
-    @Resource
+    @Autowired
     TestService testService;
     
     @RequestMapping("index2.action") 
@@ -27,7 +25,7 @@ public class TestController {
         TestEntity testEntity = new TestEntity();
         PageHelper.startPage(2,100);
         PageInfo<TestEntity> page = testService.selectPage(testEntity);
-        return page;
+        return null;
      }
 
     @RequestMapping("index.action") 
@@ -35,6 +33,6 @@ public class TestController {
         TestEntity testEntity = new TestEntity();
         PageHelper.startPage(2,100);
         PageInfo<TestEntity> page = testService.selectPage(testEntity);
-        return "/index.jsp";
+        return "index";
      }
 }

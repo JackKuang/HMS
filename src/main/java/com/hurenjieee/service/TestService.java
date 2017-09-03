@@ -4,7 +4,6 @@ package com.hurenjieee.service;
 import java.util.List;
 
 import com.github.pagehelper.PageInfo;
-import com.hurenjieee.core.BaseService;
 import com.hurenjieee.entity.TestEntity;
 
 public interface TestService{
