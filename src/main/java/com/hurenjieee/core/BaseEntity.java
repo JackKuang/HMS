@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
  * @Author: JackKuang
  * @Since: 2017年8月18日上午11:17:43  
  */
-public class BaseEntity {
+public class BaseEntity{
 
     private Long   id;
 

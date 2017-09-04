@@ -6,7 +6,6 @@ import com.hurenjieee.entity.TestEntity;
 
 import tk.mybatis.mapper.common.Mapper;
 
-@Repository
 public interface TestDao extends Mapper<TestEntity> {
 
 }
