@@ -14,6 +14,7 @@ import org.apache.ibatis.plugin.Signature;
 
 
 //Mybatis 只有update和query
+
 @Intercepts({  
         @Signature(type = Executor.class, method = "update", args = {  
                 MappedStatement.class, Object.class }) })  
@@ -35,8 +36,8 @@ public class InsertInterceptor implements Interceptor {
             Object parameter = arg0.getArgs()[1];  
             if(parameter instanceof BaseEntity) {
                 BaseEntity entity = (BaseEntity) parameter;
-                //insert，自动设置UUID
-                //update，
+                //(方法包含insert或save)insert，自动设置UUID和createDate
+                //(方法包含update)update，自动设置updatedate
                 if(methodNameModify.contains("INSERT") || methodNameModify.contains("SAVE")) {
                     entity.setUuid(UUID.randomUUID().toString().replaceAll("-","").toUpperCase());
                     entity.setCreateDate(new Date());
