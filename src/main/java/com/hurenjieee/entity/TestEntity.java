@@ -19,13 +19,15 @@ import com.hurenjieee.core.BaseEntity;
 @Table(name = "test_entity",catalog = "hms")
 public class TestEntity  extends BaseEntity{
 
+    @Column(name = "name")
     private String name;
     
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date",length = 19,insertable = false)
     private Date   date;
 
     public TestEntity() {}
 
-    @Column(name = "name")
     public String getName(){
         return this.name;
     }
@@ -34,8 +36,6 @@ public class TestEntity  extends BaseEntity{
         this.name = name;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "date",length = 19,insertable = false)
     public Date getDate(){
         return this.date;
     }

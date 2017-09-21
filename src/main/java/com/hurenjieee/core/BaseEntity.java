@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.apache.ibatis.annotations.Options;
+
 /**
  * @Description: 基本类，所有子类继承此类
  * @Author: JackKuang
@@ -14,16 +16,23 @@ import javax.persistence.TemporalType;
  */
 public class BaseEntity{
 
+    @Column(name = "id",unique = true,nullable = false)
     private Long   id;
 
+    @Id
+    @Column(name = "uuid")
     private String uuid;
 
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date",length = 19,insertable = false) 
     private Date   createDate;
 
-    private Date   updateDate;
 
-    @Id
-    @Column(name = "id",unique = true,nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_date",length = 19,insertable = false)
+    private Date   updateDate;
+    
     public Long getId(){
         return id;
     }
@@ -32,7 +41,6 @@ public class BaseEntity{
         this.id = id;
     }
 
-    @Column(name = "uuid")
     public String getUuid(){
         return uuid;
     }
@@ -41,20 +49,14 @@ public class BaseEntity{
         this.uuid = uuid;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date",length = 19,insertable = false)    
     public Date getCreateDate(){
         return createDate;
     }
 
-    
     public void setCreateDate(Date createDate){
         this.createDate = createDate;
     }
 
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "update_date",length = 19,insertable = false)
     public Date getUpdateDate(){
         return updateDate;
     }

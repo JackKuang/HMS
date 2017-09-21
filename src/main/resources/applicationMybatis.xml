@@ -46,6 +46,8 @@
 						</value>
 					</property>
 				</bean>
+				<!-- <bean class="com.hurenjieee.core.InsertInterceptor"> 
+				</bean>-->
 			</array>
 		</property>
 	</bean>
