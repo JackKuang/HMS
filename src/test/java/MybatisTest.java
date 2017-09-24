@@ -1,5 +1,3 @@
-import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -11,8 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hurenjieee.entity.TestEntity;
-import com.hurenjieee.service.TestService;
+import com.hurenjieee.test.entity.TestEntity;
+import com.hurenjieee.test.service.TestService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/applicationContext.xml")

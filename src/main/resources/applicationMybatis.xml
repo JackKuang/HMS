@@ -15,7 +15,6 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	
     <context:component-scan base-package="com.hurenjieee" />
 	
 	<context:property-placeholder location="classpath:db.properties" />
@@ -31,7 +30,7 @@
 		<!-- 数据源 -->
 		<property name="dataSource" ref="dataSource" />
 		<!-- <property name="configLocation" value="classpath:conf.xml" /> -->
-		<property name="typeAliasesPackage" value="com.hurenjieee.entity"></property>
+		<property name="typeAliasesPackage" value="com.hurenjieee.*.entity"></property>
 		<property name="plugins">
 			<array>
 				<bean class="com.github.pagehelper.PageInterceptor">
@@ -46,8 +45,8 @@
 						</value>
 					</property>
 				</bean>
-				<!-- <bean class="com.hurenjieee.core.InsertInterceptor"> 
-				</bean>-->
+				<bean class="com.hurenjieee.core.UpdateInterceptor"> 
+				</bean>
 			</array>
 		</property>
 	</bean>
@@ -55,7 +54,7 @@
 	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 使用tk.mybatis代替原生的mybatis -->
 		<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> -->
-		<property name="basePackage" value="com.hurenjieee.dao" />
+		<property name="basePackage" value="com.hurenjieee.*.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 		<property name="properties">
 			<value>
@@ -91,6 +90,6 @@
 	<!-- aop -->
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice"
-			pointcut="execution(* com.hurenjieee.service..*Impl.*(..))" />
+			pointcut="execution(* com.hurenjieee.service.*.*Impl.*(..))" />
 	</aop:config>
 </beans>

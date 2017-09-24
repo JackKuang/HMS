@@ -12,7 +12,8 @@
 
     <!-- 扫描这个路径下的Controller -->
     
-    <context:component-scan base-package="com.hurenjieee.controller" />
+    <context:component-scan base-package="com.hurenjieee.*.controller" />
+    
     
     <!-- JSON传输 -->
     <bean id="mappingJacksonHttpMessageConverter"

@@ -25,12 +25,12 @@ public class BaseEntity{
 
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date",length = 19,insertable = false) 
+    @Column(name = "create_date",length = 19) 
     private Date   createDate;
 
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "update_date",length = 19,insertable = false)
+    @Column(name = "update_date",length = 19)
     private Date   updateDate;
     
     public Long getId(){
