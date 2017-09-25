@@ -22,7 +22,7 @@ import com.github.pagehelper.PageInfo;
  */
 public class BaseServiceImpl<T extends BaseEntity, M extends Mapper<T>>  implements BaseService<T>{
 
-    @Resource
+    @Autowired
     M mapper;
 
     public M getMapper(){

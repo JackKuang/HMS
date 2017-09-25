@@ -7,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.apache.ibatis.annotations.Options;
-
 /**
  * @Description: 基本类，所有子类继承此类
  * @Author: JackKuang

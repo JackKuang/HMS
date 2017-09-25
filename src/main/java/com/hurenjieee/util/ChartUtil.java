@@ -9,8 +9,6 @@ import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 
 import org.jfree.chart.ChartFactory;

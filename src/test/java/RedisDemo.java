@@ -125,7 +125,6 @@ public class RedisDemo {
             System.out.println("user中元素的个数:"+jedis.scard("user"));   
         } catch (Exception e) {
             e.printStackTrace();
-            // TODO: handle exception
         }
     }
 
