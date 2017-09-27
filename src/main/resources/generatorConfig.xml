@@ -57,15 +57,21 @@
 			<property name="enableSubPackages" value="true"/>			
 			</javaClientGenerator>
 
-		<table tableName="test%" mapperName="{0}Dao">
+		<!-- 多表用 -->
+		<!-- <table tableName="test%" mapperName="{0}Dao">
 			<generatedKey column="id" sqlStatement="JDBC" />
-			<!-- Oracle -->
-			<!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from 
-				dual" identity="false" type="pre"/> -->
-			<!-- <ignoreColumn column="id"/>
+			Oracle
+			<generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from 
+				dual" identity="false" type="pre"/>
+			<ignoreColumn column="id"/>
 			<ignoreColumn column="uuid"/>
 			<ignoreColumn column="create"/>
-			<ignoreColumn column="update_date"/> -->
+			<ignoreColumn column="update_date"/>
+		</table> -->
+		<!-- 不推荐多表使用   -->
+		<table tableName="test_entity" mapperName="TestEntityDao">
+			<generatedKey column="id" sqlStatement="JDBC" />
 		</table>
+		
 	</context>
 </generatorConfiguration>
