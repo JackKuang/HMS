@@ -3,6 +3,7 @@ package com.hurenjieee.core;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,23 +14,23 @@ import javax.persistence.TemporalType;
  * @Since: 2017年8月18日上午11:17:43  
  */
 public class BaseEntity{
-
-    @Column(name = "id",unique = true,nullable = false)
-    private Long   id;
-
+    
     @Id
-    @Column(name = "uuid")
+    @Column(name = "`id`")
+    @GeneratedValue(generator = "JDBC")
+    private Long id;
+
+    @Column(name = "`date`")
+    private Date date;
+
+    @Column(name = "`uuid`")
     private String uuid;
 
+    @Column(name = "`create_date`")
+    private Date createDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date",length = 19) 
-    private Date   createDate;
-
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "update_date",length = 19)
-    private Date   updateDate;
+    @Column(name = "`update_date`")
+    private Date updateDate;
     
     public Long getId(){
         return id;

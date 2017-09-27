@@ -3,6 +3,7 @@ package com.hurenjieee.system.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
 import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemUserService;
@@ -14,10 +15,8 @@ public class LoginController {
     @Autowired
     SystemUserService systemUserService;
     
-    public void login(){
+    public void login(Model model,String userName,String password){
         try {
-            String username;
-            String password;
             SystemUser s = new SystemUser();
             s = systemUserService.selectOne(s);
         } catch (Exception e) {

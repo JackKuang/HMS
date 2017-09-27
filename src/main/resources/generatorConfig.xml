@@ -21,8 +21,7 @@
 
 <generatorConfiguration>
 
-	<context id="Mysql" targetRuntime="MyBatis3Simple"
-		defaultModelType="flat">
+	<context id="Mysql" defaultModelType="flat" targetRuntime="MyBatis3Simple">
 
 		<property name="javaFileEncoding" value="UTF-8" />
 
@@ -44,20 +43,29 @@
 		
 
 		<javaModelGenerator targetPackage="com.hurenjieee.system.entity"
-			targetProject="F:\" />
+			targetProject="src\main\java" >
+			<property name="enableSubPackages" value="true"/>  
+			</javaModelGenerator>
 
 		<sqlMapGenerator targetPackage="com.hurenjieee.system.dao"
-			targetProject="F:\" />
+			targetProject="src\main\java" >
+			<property name="enableSubPackages" value="true"/>  
+			</sqlMapGenerator>
 
 		<javaClientGenerator targetPackage="com.hurenjieee.system.dao"
-			targetProject="F:\" type="XMLMAPPER" />
+			targetProject="src\main\java" type="XMLMAPPER" >
+			<property name="enableSubPackages" value="true"/>			
+			</javaClientGenerator>
 
 		<table tableName="test%" mapperName="{0}Dao">
 			<generatedKey column="id" sqlStatement="JDBC" />
 			<!-- Oracle -->
 			<!-- <generatedKey column="id" sqlStatement="select SEQ_{1}.nextval from 
 				dual" identity="false" type="pre"/> -->
-
+			<!-- <ignoreColumn column="id"/>
+			<ignoreColumn column="uuid"/>
+			<ignoreColumn column="create"/>
+			<ignoreColumn column="update_date"/> -->
 		</table>
 	</context>
 </generatorConfiguration>
