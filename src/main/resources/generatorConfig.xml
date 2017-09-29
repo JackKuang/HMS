@@ -68,9 +68,9 @@
 			<ignoreColumn column="create"/>
 			<ignoreColumn column="update_date"/>
 		</table> -->
-		<!-- 不推荐多表使用   -->
-		<table tableName="test_entity" mapperName="TestEntityDao">
-			<generatedKey column="id" sqlStatement="JDBC" />
+		<!-- 不推荐多表使用，使用下面这个一个表一个表的建立   -->
+
+		<table tableName="system_user" mapperName="SystemUserDao">
 		</table>
 		
 	</context>

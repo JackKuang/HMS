@@ -1,12 +1,12 @@
+<%@ page language="java" isThreadSafe="true" pageEncoding="utf-8" %>  
+<%@ page contentType="text/html; charset=utf-8"%>  
+
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>HMD 后台管理平台</title>
-  
   <jsp:include page="WEB-INF/jsp/include/head.html" flush="true"/>
   <jsp:include page="WEB-INF/jsp/include/css.html" flush="true"/>
-  
 </head>
 
 <body class="external-page sb-l-c sb-r-c">
@@ -37,9 +37,8 @@
           <!-- Login Panel/Form -->
           <div class="panel mt30 mb25">
 
-            <form method="post" action="http://admindesigns.com/" id="contact">
+            <form method="post" action="login.action" id="contact" method="post">
               <div class="panel-body bg-light p25 pb15">
-
                 <!-- Username Input -->
                 <div class="section">
                   <label for="username" class="field-label text-muted fs18 mb10">用户名</label>

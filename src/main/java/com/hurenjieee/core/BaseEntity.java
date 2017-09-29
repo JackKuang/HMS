@@ -20,9 +20,6 @@ public class BaseEntity{
     @GeneratedValue(generator = "JDBC")
     private Long id;
 
-    @Column(name = "`date`")
-    private Date date;
-
     @Column(name = "`uuid`")
     private String uuid;
 

@@ -16,9 +16,10 @@ var Demo = function() {
       if ($('body.timeline-page').length || $('body.admin-validation-page').length) {
         return;
       }
-      e.preventDefault;
-      alert('Your form has submitted!');
-      return false;
+      //阻止元素发生默认的行为
+      //e.preventDefault;
+      //alert('Your form has submitted!');
+      return true;
     });
 
     // give file-upload preview onclick functionality
