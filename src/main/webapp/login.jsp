@@ -64,7 +64,7 @@
               </div>
 
               <div class="panel-footer clearfix">
-                <button type="submit" class="button btn-primary mr10 pull-right">Sign In</button>
+                <button type="button" class="button btn-primary mr10 pull-right" id="submitButton">Sign In</button>
                 <label class="switch ib switch-primary mt10">
                   <input type="checkbox" name="remember" id="remember" checked="">
                   <label for="remember" data-on="是" data-off="否"></label>
@@ -108,6 +108,7 @@
 
   <!-- CanvasBG Plugin(creates mousehover effect) -->
   <script src="vendor/plugins/canvasbg/canvasbg.js"></script>
+  <script src="vendor/plugins/sha/sha512.js"></script>
 
   <!-- Page Javascript -->
   <script type="text/javascript">
@@ -128,7 +129,15 @@
         y: window.innerHeight / 3.3
       },
     });
-
+    
+    var shaObj = new jsSHA("SHA-512", "TEXT");
+    
+    $("#submitButton").click(function(){
+      var password = $("password").val();
+      shaObj.update("This is a ");
+      var hash = shaObj.getHash("HEX")
+      alert(hash);
+    })
   });
   
   </script>
