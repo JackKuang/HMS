@@ -1,12 +1,19 @@
 <%@ page language="java" isThreadSafe="true" pageEncoding="utf-8" %>  
 <%@ page contentType="text/html; charset=utf-8"%>  
+<%
+	/* 项目使用绝对路径，basePath只在主JSP上定义，不再include里面定义，避免变量名定义冲突 */
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path;
+%>
 
 <!DOCTYPE html>
 <html>
 <head>
   <title>HMS 后台管理平台</title>
-  <%@ include file="../include/head.html" %>
-  <%@ include file="../include/css.html" %>
+  <%@ include file="../include/head.jsp" %>
+  <%@ include file="../include/css.jsp" %>
 </head>
 
 <body class="external-page sb-l-c sb-r-c">
@@ -37,7 +44,7 @@
           <!-- Login Panel/Form -->
           <div class="panel mt30 mb25">
 
-            <form method="post" action="login.action" id="contact" method="post">
+            <form method="post" action="<%=basePath %>/system/login " id="contact">
               <div class="panel-body bg-light p25 pb15">
                 <!-- Username Input -->
                 <div class="section">
@@ -104,12 +111,13 @@
 
   <!-- BEGIN: PAGE SCRIPTS -->
 
-  <%@ include file="../include/js.html" %>
+  <%@ include file="../include/js.jsp" %>
   
   
   <!-- CanvasBG Plugin(creates mousehover effect) -->
-  <script src="../vendor/plugins/canvasbg/canvasbg.js"></script>
-  <script src="../vendor/plugins/sha/sha512.js"></script>
+  <script src="<%=basePath %>/vendor/plugins/canvasbg/canvasbg.js"></script>
+  <script src="<%=basePath %>/vendor/plugins/sha/sha512.js"></script>
+  <script src="<%=basePath %>/vendor/plugins/jsencrypt/jsencrypt.min.js"></script>
 
   <!-- Page Javascript -->
   <script type="text/javascript">
@@ -137,7 +145,13 @@
       var password = $("password").val();
       shaObj.update("This is a ");
       var hash = shaObj.getHash("HEX")
-      alert(hash);
+      console.log(hash);
+      var encrypt = new JSEncrypt();
+      encrypt.setPublicKey("${publicKey }");
+      var encrypted = encrypt.encrypt(hash);
+      console.log(encrypted);
+      $('#password').val(encrypted);
+      $('#contact').submit();
     })
   });
   

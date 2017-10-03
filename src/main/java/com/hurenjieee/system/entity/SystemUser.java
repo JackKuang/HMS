@@ -5,24 +5,24 @@ import javax.persistence.*;
 
 import com.hurenjieee.core.BaseEntity;
 
-@Table(name = "`system_user`")
+@Table(name = "system_user")
 public class SystemUser extends BaseEntity{
-    @Column(name = "`user_id`")
+    @Column(name = "user_id")
     private String userId;
 
-    @Column(name = "`user_name`")
+    @Column(name = "user_name")
     private String userName;
 
-    @Column(name = "`user_password`")
+    @Column(name = "user_password")
     private String userPassword;
 
-    @Column(name = "`user_email`")
+    @Column(name = "user_email")
     private String userEmail;
 
-    @Column(name = "`user_telephone`")
+    @Column(name = "user_telephone")
     private String userTelephone;
 
-    @Column(name = "`user_sex`")
+    @Column(name = "user_sex")
     private Integer userSex;
 
     /**

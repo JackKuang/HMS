@@ -29,8 +29,10 @@
 			<property name="mappers" value="tk.mybatis.mapper.common.Mapper" />
 			<property name="caseSensitive" value="true" />
 			<property name="forceAnnotation" value="true" />
+			<!-- 增加`会导致Service从数据库中取出后无法转到实体类 -->
+			<!-- 
 			<property name="beginningDelimiter" value="`" />
-			<property name="endingDelimiter" value="`" />
+			<property name="endingDelimiter" value="`" /> -->
 		</plugin>
 <!-- 
 		<jdbcConnection driverClass="${jdbc.driver}"

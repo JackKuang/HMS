@@ -1,4 +1,4 @@
-package com.hurenjieee.test.entity;
+    package com.hurenjieee.test.entity;
 
 // Generated 2017-6-20 23:06:48 by Hibernate Tools 5.0.4.Final
 
