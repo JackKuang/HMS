@@ -14,7 +14,6 @@
     
     <context:component-scan base-package="com.hurenjieee.*.controller" />
     
-    
     <!-- JSON传输 -->
     <bean id="mappingJacksonHttpMessageConverter"
         class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -51,4 +50,4 @@
         内存中的最大值  
         <property name="maxInMemorySize" value="40960" />    
     </bean>  -->
-</beans>
+</beans>	

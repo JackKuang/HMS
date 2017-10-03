@@ -14,6 +14,7 @@ import com.hurenjieee.test.service.TestService;
 
 @Controller("testController")
 @Scope("prototype")
+@RequestMapping("/test")
 public class TestController {
 
     @Autowired
@@ -30,9 +31,10 @@ public class TestController {
 
     @RequestMapping("index.action") 
      public String index(Model model){
-        TestEntity testEntity = new TestEntity();
-        PageHelper.startPage(2,100);
-        PageInfo<TestEntity> page = testService.selectPage(testEntity);
         return "index";
      }
+    @RequestMapping("/test")
+    public String test(){
+        return "index";
+    }
 }
