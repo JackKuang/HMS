@@ -19,6 +19,20 @@ var Demo = function() {
       //阻止元素发生默认的行为
       //e.preventDefault;
       //alert('Your form has submitted!');
+
+      //hash加密
+      var shaObj = new jsSHA("SHA-512", "TEXT");
+      var password = $("password").val();
+      //salt
+      shaObj.update("HMS");
+      var hash = shaObj.getHash("HEX")
+      //RSA加密
+      var encrypt = new JSEncrypt();
+      encrypt.setPublicKey("${publicKey }");
+      var encrypted = encrypt.encrypt(hash);
+      $('#password').val(encrypted);
+      
+      
       return true;
     });
 

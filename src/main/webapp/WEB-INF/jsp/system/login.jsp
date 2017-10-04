@@ -46,7 +46,7 @@
 
             <form method="post" action="<%=basePath %>/system/login " id="contact">
               <div class="panel-body bg-light p25 pb15">
-                <!-- Username Input -->
+                <!-- UsernameInput -->
                 <div class="section">
                   <label for="username" class="field-label text-muted fs18 mb10">用户名</label>
                   <label for="username" class="field prepend-icon">
@@ -71,7 +71,7 @@
               </div>
 
               <div class="panel-footer clearfix">
-                <button type="button" class="button btn-primary mr10 pull-right" id="submitButton">Sign In</button>
+                <button type="submit" class="button btn-primary mr10 pull-right">登录</button>
                 <label class="switch ib switch-primary mt10">
                   <input type="checkbox" name="remember" id="remember" checked="">
                   <label for="remember" data-on="是" data-off="否"></label>
@@ -138,21 +138,6 @@
         y: window.innerHeight / 3.3
       },
     });
-    
-    var shaObj = new jsSHA("SHA-512", "TEXT");
-    
-    $("#submitButton").click(function(){
-      var password = $("password").val();
-      shaObj.update("This is a ");
-      var hash = shaObj.getHash("HEX")
-      console.log(hash);
-      var encrypt = new JSEncrypt();
-      encrypt.setPublicKey("${publicKey }");
-      var encrypted = encrypt.encrypt(hash);
-      console.log(encrypted);
-      $('#password').val(encrypted);
-      $('#contact').submit();
-    })
   });
   
   </script>
