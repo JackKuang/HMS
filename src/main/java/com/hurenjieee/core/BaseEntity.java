@@ -13,53 +13,22 @@ import javax.persistence.TemporalType;
  * @Author: JackKuang
  * @Since: 2017年8月18日上午11:17:43  
  */
-public class BaseEntity{
+public interface BaseEntity{
     
-    @Id
-    @Column(name = "`id`")
-    @GeneratedValue(generator = "JDBC")
-    private Long id;
+    public Long getId();
 
-    @Column(name = "`uuid`")
-    private String uuid;
+    public void setId(Long id);
 
-    @Column(name = "`create_date`")
-    private Date createDate;
+    public String getUuid();
 
-    @Column(name = "`update_date`")
-    private Date updateDate;
+    public void setUuid(String uuid);
+
+    public Date getCreateDate();
+
+    public void setCreateDate(Date createDate);
+
+    public Date getUpdateDate();
     
-    public Long getId(){
-        return id;
-    }
-
-    public void setId(Long id){
-        this.id = id;
-    }
-
-    public String getUuid(){
-        return uuid;
-    }
-
-    public void setUuid(String uuid){
-        this.uuid = uuid;
-    }
-
-    public Date getCreateDate(){
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate){
-        this.createDate = createDate;
-    }
-
-    public Date getUpdateDate(){
-        return updateDate;
-    }
-
-    
-    public void setUpdateDate(Date updateDate){
-        this.updateDate = updateDate;
-    }
+    public void setUpdateDate(Date updateDate);
     
 }

@@ -12,6 +12,7 @@
          http://www.springframework.org/schema/aop/spring-aop.xsd">
          
     <import resource="applicationMybatis.xml" />
+    <import resource="applicationShiro.xml" />
     <!-- <import resource="applicationRedis.xml" /> -->
     
 </beans>

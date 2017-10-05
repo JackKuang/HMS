@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hurenjieee.system.dao.SystemRolePermissionDao">
+  <resultMap id="BaseResultMap" type="com.hurenjieee.system.entity.SystemRolePermission">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="role_uuid" jdbcType="VARCHAR" property="roleUuid" />
+    <result column="permission_uuid" jdbcType="VARCHAR" property="permissionUuid" />
+  </resultMap>
+</mapper>

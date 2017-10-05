@@ -6,7 +6,18 @@ import javax.persistence.*;
 import com.hurenjieee.core.BaseEntity;
 
 @Table(name = "system_user")
-public class SystemUser extends BaseEntity{
+public class SystemUser implements BaseEntity {
+    @Id
+    private Long id;
+
+    private String uuid;
+
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @Column(name = "update_date")
+    private Date updateDate;
+
     @Column(name = "user_id")
     private String userId;
 
@@ -24,6 +35,68 @@ public class SystemUser extends BaseEntity{
 
     @Column(name = "user_sex")
     private Integer userSex;
+
+    @Column(name = "user_role_uuid")
+    private String userRoleUuid;
+
+    @Column(name = "user_is_defalut_role")
+    private Boolean userIsDefalutRole;
+
+    /**
+     * @return id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return uuid
+     */
+    public String getUuid() {
+        return uuid;
+    }
+
+    /**
+     * @param uuid
+     */
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    /**
+     * @return create_date
+     */
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    /**
+     * @param createDate
+     */
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    /**
+     * @return update_date
+     */
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    /**
+     * @param updateDate
+     */
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
 
     /**
      * @return user_id
@@ -107,5 +180,33 @@ public class SystemUser extends BaseEntity{
      */
     public void setUserSex(Integer userSex) {
         this.userSex = userSex;
+    }
+
+    /**
+     * @return user_role_uuid
+     */
+    public String getUserRoleUuid() {
+        return userRoleUuid;
+    }
+
+    /**
+     * @param userRoleUuid
+     */
+    public void setUserRoleUuid(String userRoleUuid) {
+        this.userRoleUuid = userRoleUuid;
+    }
+
+    /**
+     * @return user_is_defalut_role
+     */
+    public Boolean getUserIsDefalutRole() {
+        return userIsDefalutRole;
+    }
+
+    /**
+     * @param userIsDefalutRole
+     */
+    public void setUserIsDefalutRole(Boolean userIsDefalutRole) {
+        this.userIsDefalutRole = userIsDefalutRole;
     }
 }

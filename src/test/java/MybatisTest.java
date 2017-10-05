@@ -72,6 +72,7 @@ public class MybatisTest {
         systemUser.setUserId("admin");
         systemUser.setUserPassword("8ae4481e237793ddba7140c20be86e679826afce7412888c48198bb7a9a1a5857f2bca66830262e200467081f64db20080e3695987e6f5c29a88e6b445332e85");
         SystemUser systemUser2;
+        
         try {
             systemUser2 = systemUserService.selectOne(systemUser);
             System.out.println(systemUser2.getUserName());
@@ -79,5 +80,11 @@ public class MybatisTest {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }        
+    }
+    
+    @Test
+    public void selectByUsername(){
+        SystemUser systemUser = systemUserService.selectByUserId("admin");
+        System.out.println(systemUser.getUserPassword());
     }
 }

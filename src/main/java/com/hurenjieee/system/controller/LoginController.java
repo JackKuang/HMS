@@ -4,6 +4,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -41,6 +44,22 @@ public class LoginController {
             //获取密钥
             String privateKey = (String)session.getAttribute("privateKey");
             String passwordHashed = RSAUtil.decrypt(privateKey,password);
+            
+            Subject subject = SecurityUtils.getSubject() ;
+            UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+            
+            
+/*            try {
+                subject.login(token);
+                return "admin" ;
+            }catch (Exception e){
+                //这里将异常打印关闭是因为如果登录失败的话会自动抛异常
+//                e.printStackTrace();
+                model.addAttribute("error","用户名或密码错误") ;
+                return "../../login" ;
+            }
+*/
+            
             s.setUserId(username);
             s.setUserPassword(passwordHashed);
             SystemUser s2 = systemUserService.select(s).get(0);
