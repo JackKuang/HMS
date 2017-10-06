@@ -20,18 +20,9 @@ import com.github.pagehelper.PageInfo;
  * @param <T>
  * @param <M> 
  */
-public class BaseServiceImpl<T extends BaseEntity, M extends Mapper<T>>  implements BaseService<T>{
+public abstract class BaseServiceImpl<T extends BaseEntity>  implements BaseService<T>{
 
-    @Autowired
-    M mapper;
-
-    public M getMapper(){
-        return mapper;
-    }
-    
-    public void setMapper(M mapper){
-        this.mapper = mapper;
-    }    
+    public abstract Mapper<T> getMapper();
 
     /****************增加开始**********************/
 
