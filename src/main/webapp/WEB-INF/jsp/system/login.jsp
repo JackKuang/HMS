@@ -119,8 +119,14 @@
   <script src="<%=basePath %>/vendor/plugins/sha/sha512.js"></script>
   <script src="<%=basePath %>/vendor/plugins/jsencrypt/jsencrypt.min.js"></script>
 
+  <!-- Theme Javascript -->
+  <script src="<%=basePath %>/assets/js/utility/utility.js"></script>
+  <script src="<%=basePath %>/assets/js/demo/demo.js"></script>
+  <script src="<%=basePath %>/assets/js/main.js"></script>
+  
   <!-- Page Javascript -->
   <script type="text/javascript">
+  var publicKey = "${publicKey }";
   jQuery(document).ready(function() {
 
     "use strict";

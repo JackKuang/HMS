@@ -28,7 +28,7 @@ var Demo = function() {
       var hash = shaObj.getHash("HEX")
       //RSA加密
       var encrypt = new JSEncrypt();
-      encrypt.setPublicKey("${publicKey }");
+      encrypt.setPublicKey(publicKey);
       var encrypted = encrypt.encrypt(hash);
       $('#password').val(encrypted);
       

@@ -36,7 +36,7 @@
                 /user/admin*=authc
                 /user/student*/**=roles[teacher]
                 /user/teacher*/**=perms["user:create"]
-            </value>  
+            </value>  	
         </property>
     </bean>  
 

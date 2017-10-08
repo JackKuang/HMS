@@ -44,31 +44,25 @@ public class LoginController {
             //获取密钥
             String privateKey = (String)session.getAttribute("privateKey");
             String passwordHashed = RSAUtil.decrypt(privateKey,password);
-            
             Subject subject = SecurityUtils.getSubject() ;
-            UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-            
-            
-/*            try {
-                subject.login(token);
-                return "admin" ;
-            }catch (Exception e){
-                //这里将异常打印关闭是因为如果登录失败的话会自动抛异常
-//                e.printStackTrace();
-                model.addAttribute("error","用户名或密码错误") ;
-                return "../../login" ;
-            }
-*/
-            
-            s.setUserId(username);
-            s.setUserPassword(passwordHashed);
-            SystemUser s2 = systemUserService.select(s).get(0);
-            if(s2!=null)
-                return "index";
+            UsernamePasswordToken token = new UsernamePasswordToken(username,passwordHashed);
+            subject.login(token);
+            return "index";
         } catch (Exception e) {
+            // 这里将异常打印关闭是因为如果登录失败的话会自动抛异常
             e.printStackTrace();
+            model.addAttribute("error","用户名或密码错误");
+
+            Map<String, String> data = RSAUtil.generateKeyPair();
+            String privateKey = StringUtil.getStringNoBlank(data.get("privateKey").trim());
+            String publicKey = StringUtil.getStringNoBlank(data.get("publicKey").trim());
+            model.addAttribute("publicKey",publicKey);
+            session.setAttribute("privateKey",privateKey);
+            System.out.println(RSAUtil.encrypt(publicKey,"123456"));
+            session.setAttribute("publicKey",publicKey);
+            return "system/login";
         }
-        return "system/login";
+
     }
     
     /**

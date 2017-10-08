@@ -24,13 +24,15 @@
   </select>
   
   <select id="getRoles" parameterType="String" resultType="String">
-  	SELECT role.role_code FROM system_user user
+  	SELECT role.role_code
+  	FROM system_user user
   	LEFT JOIN system_role role ON role.uuid = user.user_role_uuid 
   	WHERE user_id = #{userId}
   </select>
   
   <select id="getPermissions" parameterType="String" resultType="String">
-  	SELECT permission FROM FROM system_user user
+  	SELECT permission.permission_code
+  	FROM system_user user
   	LEFT JOIN system_user_permission user_permission ON user_permission.user_uuid = user.uuid
   	LEFT JOIN system_permission permission ON user_permission.permission_uuid = permission.uuid
   	WHERE user_id = #{userId}
