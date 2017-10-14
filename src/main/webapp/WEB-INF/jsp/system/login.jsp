@@ -7,13 +7,17 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path;
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
   <title>HMS 后台管理平台</title>
   <%@ include file="../include/head.jsp" %>
   <%@ include file="../include/css.jsp" %>
+  
+  <!-- Admin Forms CSS -->
+  <link rel="stylesheet" type="text/css" href="<%=basePath %>/assets/admin-tools/admin-forms/css/admin-forms.css">
+  
 </head>
 
 <body class="external-page sb-l-c sb-r-c">
@@ -37,15 +41,21 @@
           <!-- Login Logo -->
           <div class="row table-layout">
             <a href="" title="">
-              <img src="../assets/img/logos/logo.png" title="AdminDesigns Logo" class="center-block img-responsive" style="max-width: 275px;">
+              <img src="../assets/img/logos/logo.png" title="HMS Logo" class="center-block img-responsive" style="max-width: 275px;">
             </a>
           </div>
 
           <!-- Login Panel/Form -->
           <div class="panel mt30 mb25">
-
             <form method="post" action="<%=basePath %>/system/login " id="contact">
               <div class="panel-body bg-light p25 pb15">
+              	<c:if test="${error != null }">
+	                <div class="section">
+	                	<div class="alert alert-danger alert-border-left alert-dismissable mv30">
+	                	  <b>${error }</b>
+	                	</div>
+	                </div>
+                </c:if>
                 <!-- UsernameInput -->
                 <div class="section">
                   <label for="username" class="field-label text-muted fs18 mb10">用户名</label>
@@ -118,11 +128,6 @@
   <script src="<%=basePath %>/vendor/plugins/canvasbg/canvasbg.js"></script>
   <script src="<%=basePath %>/vendor/plugins/sha/sha512.js"></script>
   <script src="<%=basePath %>/vendor/plugins/jsencrypt/jsencrypt.min.js"></script>
-
-  <!-- Theme Javascript -->
-  <script src="<%=basePath %>/assets/js/utility/utility.js"></script>
-  <script src="<%=basePath %>/assets/js/demo/demo.js"></script>
-  <script src="<%=basePath %>/assets/js/main.js"></script>
   
   <!-- Page Javascript -->
   <script type="text/javascript">

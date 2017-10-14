@@ -46,20 +46,16 @@ public class LoginController {
             String passwordHashed = RSAUtil.decrypt(privateKey,password);
             Subject subject = SecurityUtils.getSubject() ;
             UsernamePasswordToken token = new UsernamePasswordToken(username,passwordHashed);
+//            token.setRememberMe(true);记住我
             subject.login(token);
-            return "index";
+            return "redirect:/system/index";
         } catch (Exception e) {
             // 这里将异常打印关闭是因为如果登录失败的话会自动抛异常
             e.printStackTrace();
-            model.addAttribute("error","用户名或密码错误");
-
-            Map<String, String> data = RSAUtil.generateKeyPair();
-            String privateKey = StringUtil.getStringNoBlank(data.get("privateKey").trim());
-            String publicKey = StringUtil.getStringNoBlank(data.get("publicKey").trim());
+            model.addAttribute("error","用户名或密码错误！");
+            //配置RSA公钥密钥
+            String publicKey = setSessuibAttribute(session);
             model.addAttribute("publicKey",publicKey);
-            session.setAttribute("privateKey",privateKey);
-            System.out.println(RSAUtil.encrypt(publicKey,"123456"));
-            session.setAttribute("publicKey",publicKey);
             return "system/login";
         }
 
@@ -78,15 +74,28 @@ public class LoginController {
     @RequestMapping("/preLogin")
     public ModelAndView preLogin(Model model,String username,String password,HttpSession session){
         ModelAndView mv = new ModelAndView("system/login");
-        //获取公钥密钥
+        //配置RSA公钥密钥
+        Map<String, String> data = RSAUtil.generateKeyPair();
+        String publicKey = setSessuibAttribute(session);
+        mv.addObject("publicKey",publicKey);
+        return mv;
+    }
+    
+    /**
+     * @Description: 把RSA公钥密钥放入session中，返回公钥publicKey
+     * @Author: JackKuang
+     * @Since: 2017年10月12日上午10:54:01
+     * @param session
+     * @return publicKey
+     */
+    public String setSessuibAttribute(HttpSession session){
         Map<String, String> data = RSAUtil.generateKeyPair();
         String privateKey = StringUtil.getStringNoBlank(data.get("privateKey").trim());
         String publicKey = StringUtil.getStringNoBlank(data.get("publicKey").trim());
-        mv.addObject("publicKey",publicKey);
         session.setAttribute("privateKey",privateKey);
-        System.out.println(RSAUtil.encrypt(publicKey,"123456"));
         session.setAttribute("publicKey",publicKey);
-        return mv;
+        return publicKey;
     }
+    
 
 }

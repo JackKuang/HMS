@@ -4,9 +4,6 @@
   <!-- Theme CSS -->
   <link rel="stylesheet" type="text/css" href="<%=basePath %>/assets/skin/default_skin/css/theme.css">
 
-  <!-- Admin Forms CSS -->
-  <link rel="stylesheet" type="text/css" href="<%=basePath %>/assets/admin-tools/admin-forms/css/admin-forms.css">
-
   <!-- Favicon -->
   <link rel="shortcut icon" href="<%=basePath %>/assets/img/favicon.ico">
 

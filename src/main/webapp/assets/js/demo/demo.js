@@ -22,17 +22,19 @@ var Demo = function() {
 
       //hash加密
       var shaObj = new jsSHA("SHA-512", "TEXT");
-      var password = $("password").val();
+      var password = $("#password").val();
       //salt
-      shaObj.update("HMS");
+//      alert(password)
+      shaObj.update(password);
+//      shaObj.update("HMS");
       var hash = shaObj.getHash("HEX")
       //RSA加密
+//      alert(hash)
       var encrypt = new JSEncrypt();
+//      alert(publicKey)
       encrypt.setPublicKey(publicKey);
       var encrypted = encrypt.encrypt(hash);
       $('#password').val(encrypted);
-      
-      
       return true;
     });
 

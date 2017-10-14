@@ -178,7 +178,10 @@ var Core = function(options) {
          var sidebarH = $('#sidebar_left').outerHeight();
          var cHeight = (topbarH + navbarH + sidebarH);
 
-         Body.css('min-height', cHeight);
+//         Body.css('min-height', cHeight);	
+         Body.css('min-height', sidebarH-15);
+         //动态修改tab里面的高度
+         $('.iframeClass').height($(window).height() - 60 - 40 - 10);
       };  
 
       // Most CSS menu animations are set to 300ms. After this time

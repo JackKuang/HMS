@@ -4,6 +4,8 @@ package com.hurenjieee.system.service;
 import java.util.Set;
 
 import com.hurenjieee.core.BaseService;
+import com.hurenjieee.system.entity.SystemPermission;
+import com.hurenjieee.system.entity.SystemRole;
 import com.hurenjieee.system.entity.SystemUser;
 
 public interface SystemUserService extends BaseService<SystemUser>{
@@ -34,4 +36,5 @@ public interface SystemUserService extends BaseService<SystemUser>{
      * @return
      */
     public Set<String> getPermissions(String userId);
+    
 }
