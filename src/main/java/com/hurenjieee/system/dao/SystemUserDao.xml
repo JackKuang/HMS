@@ -23,19 +23,23 @@
   	SELECT * FROM system_user WHERE user_name = #{userId}
   </select>
   
-  <select id="getRoles" parameterType="String" resultType="String">
+  <select id="getRoleCode" parameterType="String" resultType="String">
   	SELECT role.role_code
   	FROM system_user user
-  	LEFT JOIN system_role role ON role.uuid = user.user_role_uuid 
+  	LEFT JOIN system_user_role user_role ON user_role.user_uuid = user.uuid
+  	LEFT JOIN system_role role ON role.uuid = user_role.role_uuid 
   	WHERE user_id = #{userId}
+  	ORDER BY id ASC
   </select>
   
-  <select id="getPermissions" parameterType="String" resultType="String">
+  <select id="getPermissionCode" parameterType="String" resultType="String">
   	SELECT permission.permission_code
   	FROM system_user user
-  	LEFT JOIN system_user_permission user_permission ON user_permission.user_uuid = user.uuid
-  	LEFT JOIN system_permission permission ON user_permission.permission_uuid = permission.uuid
-  	WHERE user_id = #{userId}
-  
+  	LEFT JOIN system_user_role user_role ON user_role.user_uuid = user.uuid
+  	LEFT JOIN system_role role ON role.uuid = user_role.role_uuid
+  	LEFT JOIN system_role_permission role_permission ON role_permission.role_uuid = role.uuid 
+  	LEFT JOIN system_permission permission ON role_permission.permission_uuid = permission.uuid
+  	WHERE user_id = #{userId} AND permission_state = 1
+    ORDER BY permission_code,permission_order ASC
   </select>
 </mapper>

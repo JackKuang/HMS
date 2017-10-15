@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -9,9 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.hurenjieee.system.entity.SystemUser;
+import com.hurenjieee.system.service.SystemPermissionService;
 import com.hurenjieee.system.service.SystemUserService;
 import com.hurenjieee.test.entity.TestEntity;
 import com.hurenjieee.test.service.TestService;
@@ -25,6 +25,10 @@ public class MybatisTest {
     
     @Autowired
     SystemUserService systemUserService;
+
+
+    @Autowired
+    SystemPermissionService systemPermissionService;
     
     @Test
     public void insert(){
@@ -76,7 +80,7 @@ public class MybatisTest {
         try {
             systemUser2 = systemUserService.selectOne(systemUser);
             System.out.println(systemUser2.getUserName());
-        } catch (Exception e) {
+        } catch (Exception e) { 
             // TODO Auto-generated catch block
             e.printStackTrace();
         }        
@@ -86,5 +90,10 @@ public class MybatisTest {
     public void selectByUsername(){
         SystemUser systemUser = systemUserService.selectByUserId("admin");
         System.out.println(systemUser.getUserPassword());
+    }
+    
+    @Test
+    public void selectPermissionsTest(){
+        List list = systemPermissionService.getPermission("admin");
     }
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ page contentType="text/html; charset=utf-8"%>  
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <%
 	/* 项目使用绝对路径，basePath只在主JSP上定义，不再include里面定义，避免变量名定义冲突 */
 	String path = request.getContextPath();
@@ -53,7 +54,7 @@
         </li> -->
         <!-- 全屏 -->
         <li class="hidden-xs">
-          <a class="request-fullscreen toggle-active" >
+          <a class="request-fullscreen toggle-active" href="#">
             <span class="ad ad-screen-full fs18"></span>
           </a>
         </li>
@@ -67,7 +68,7 @@
       <!-- 消息栏 -->
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" >
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <span class="ad ad-radio-tower fs18"></span>
           </a>
           <ul class="dropdown-menu media-list w350 animated animated-shorter fadeIn" role="menu">
@@ -115,29 +116,29 @@
         </li>
 
         <li class="dropdown">
-          <a  class="dropdown-toggle fw600 p15" data-toggle="dropdown">
-            <img src="<%=basePath %>/assets/img/avatars/1.jpg" alt="avatar" class="mw30 br64 mr15">超级管理员
+          <a  class="dropdown-toggle fw600 p15" data-toggle="dropdown" href="#">
+            <img src="<%=basePath %>/assets/img/avatars/1.jpg" alt="avatar" class="mw30 br64 mr15">${systemUser.userName }
             <span class="caret caret-tp hidden-xs"></span>
           </a>
           <ul class="dropdown-menu list-group dropdown-persist w250" role="menu">
             <li class="list-group-item">
-              <a  class="animated animated-short fadeInUp">
+              <a  class="animated animated-short fadeInUp" href="#">
                 <span class="fa fa-envelope"></span> 消息
                 <span class="label label-warning">2</span>
               </a>
             </li>
             <li class="list-group-item">
-              <a  class="animated animated-short fadeInUp">
+              <a  class="animated animated-short fadeInUp" href="#">
                 <span class="fa fa-user"></span> 朋友
                 <span class="label label-warning">6</span>
               </a>
             </li>
             <li class="list-group-item">
-              <a  class="animated animated-short fadeInUp">
+              <a  class="animated animated-short fadeInUp" href="#">
                 <span class="fa fa-gear"></span> 账户设置 </a>
             </li>
             <li class="list-group-item">
-              <a  class="animated animated-short fadeInUp">
+              <a  class="animated animated-short fadeInUp" href="#">
                 <span class="fa fa-power-off"></span> 退出登录 </a>
             </li>
           </ul>
@@ -222,112 +223,67 @@
         <!-- Start: Sidebar Left Menu -->
         <ul class="nav sidebar-menu" id="container">
           <li class="sidebar-label pt20">菜单</li>
-          <li>
-            <a onclick="addTab('sina','新浪','http://sina.com.cn')">
-              <span class="fa fa-calendar"></span>
-              <span class="sidebar-title">Calendar</span>
-            </a>
-          </li>
-          <li>
-            <a onclick="addTab('sina2','新浪2','http://sina.com.cn')">
-              <span class="fa fa-calendar"></span>
-              <span class="sidebar-title">Calendar</span>
-            </a>
-          </li>
-          <li>
-            <a onclick="addTab('sina3','新浪3','http://sina.com.cn')">
-              <span class="fa fa-calendar"></span>
-              <span class="sidebar-title">Calendar</span>
-            </a>
-          </li><li>
-            <a onclick="addTab('sina4','新浪4','http://sina.com.cn')">
-              <span class="fa fa-calendar"></span>
-              <span class="sidebar-title">Calendar</span>
-            </a>
-          </li>
-          <li>
-            <a class="accordion-toggle" href="#">
-              <span class="glyphicon glyphicon-duplicate"></span>
-              <span class="sidebar-title">Pages</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                <a class="accordion-toggle" href="#">
-                  <span class="fa fa-gears"></span> Utility
-                  <span class="caret"></span>
-                </a>
-                <ul class="nav sub-nav">
-                  <li>
-                    <a onclick="addTabTest();"> 500 Error </a>
-                  </li>
-                  <li>
-                    <a href="pages_404(alt).html"> 404 Error Alt </a>
-                  </li>
-                  <li>
-                    <a href="pages_500(alt).html"> 500 Error Alt </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a class="accordion-toggle" href="#">
-                  <span class="fa fa-desktop"></span> Basic
-                  <span class="caret"></span>
-                </a>
-                <ul class="nav sub-nav">
-                  <li>
-                    <a href="pages_search-results.html">Search Results
-                      <span class="label label-xs bg-primary">New</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="pages_profile.html"> Profile </a>
-                  </li>
-                  <li>
-                    <a href="pages_timeline.html"> Timeline Split </a>
-                  </li>
-                  <li>
-                    <a href="pages_timeline-single.html"> Timeline Single </a>
-                  </li>
-                  <li>
-                    <a href="pages_faq.html"> FAQ Page </a>
-                  </li>
-                  <li>
-                    <a href="pages_calendar.html"> Calendar </a>
-                  </li>
-                  <li>
-                    <a href="pages_messages.html"> Messages </a>
-                  </li>
-                  <li>
-                    <a href="pages_messages(alt).html"> Messages Alt </a>
-                  </li>
-                  <li>
-                    <a href="pages_gallery.html"> Gallery </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a class="accordion-toggle" href="#">
-                  <span class="fa fa-usd"></span> Misc
-                  <span class="caret"></span>
-                </a>
-                <ul class="nav sub-nav">
-                  <li>
-                    <a href="pages_invoice.html"> Printable Invoice </a>
-                  </li>
-                  <li>
-                    <a href="pages_blank.html"> Blank </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
+          <!-- 一级菜单循环开始  -->
+          <c:forEach items="${permissionList }"  var="item1">
+          	<c:if test="${item1.list == null }">
+          	  <li>
+          	    <a onclick="addTab('${item1.permissionCode }','${item1.permissionName }','${item1.permissionUrl }')" href="#">
+	              <span class="${item1.permissionStyle }"></span>
+	              <span class="sidebar-title">${item1.permissionName }</span>
+	            </a>
+          	  </li>
+          	</c:if>
+          	<c:if test="${item1.list != null }">
+	          <li>
+          	    <a class="accordion-toggle" href="#">
+	              <span class="${item1.permissionStyle }"></span>
+	              <span class="sidebar-title">${item1.permissionName }</span>
+	              <span class="caret"></span>
+	            </a>
+	            <ul class="nav sub-nav">
+		          <!-- 二级菜单循环开始  -->
+	              <c:forEach items="${item1.list }"  var="item2">
+		          	<c:if test="${item2.list == null }">
+		          	  <li>
+		          	    <a class="accordion-toggle" onclick="addTab('${item2.permissionCode }','${item2.permissionName }','${item1.permissionUrl }')" href="#">
+			              <span class="${item2.permissionStyle }"></span>
+			              <span class="sidebar-title">${item2.permissionName }</span>
+			            </a>
+		          	  </li>
+		          	</c:if>
+		          	<c:if test="${item2.list != null }">
+			          <li>
+		          	    <a class="accordion-toggle" href="#">
+			              <span class="${item2.permissionStyle }"></span>
+			              <span class="sidebar-title">${item2.permissionName }</span>
+			              <span class="caret"></span>
+			            </a>
+			            <ul class="nav sub-nav">
+			              <!-- 三级菜单循环开始  -->
+			              <c:forEach items="${item2.list }"  var="item3">
+			          	    <li>
+			          	      <a class="accordion-toggle" onclick="addTab('${item3.permissionCode }','${item3.permissionName }','${item1.permissionUrl }')" href="#">
+				                <span class="${item3.permissionStyle }"></span>
+				                <span class="sidebar-title">&nbsp;&nbsp;${item3.permissionName }</span>
+				              </a>
+			          	    </li>
+				          </c:forEach>
+				          <!-- 三级菜单循环结束  -->
+			            </ul>
+		          	  </li>
+			        </c:if>
+		          </c:forEach>
+		          <!-- 二级菜单循环结束  -->
+	            </ul>
+	          </li>
+	        </c:if>
+          </c:forEach>
+          <!-- 一级菜单循环结束  -->
         </ul>
         <!-- End: Sidebar Menu -->
-
-        <!-- Start: Sidebar Collapse Button -->
-        <div class="sidebar-toggle-mini">
-          <a href="#">
+		<!-- Start: Sidebar Collapse Button -->
+		<div class="sidebar-toggle-mini">
+		<a href="#">
             <span class="fa fa-sign-out"></span>
           </a>
         </div>
@@ -342,18 +298,16 @@
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
       <!-- Begin: Content -->
-        <div class="col-sm-12" style="padding:0px;">
+      <div class="col-sm-12" style="padding:0px;">
 	       <!-- Nav tabs -->
-           <ul class="nav nav-tabs" id="tabs1" role="tablist">
+	       <ul class="nav nav-tabs" id="tabs1" role="tablist">
           </ul>
           <div class="tab-content">
           </div>
       </section>
       <!-- End: Content -->
-
   </div>
   <!-- End: Main -->
-
 
   <!-- BEGIN: PAGE SCRIPTS -->
 
@@ -363,7 +317,6 @@
   
   <script type="text/javascript">
 
-  var tabHeight;
   jQuery(document).ready(function() {
 
     "use strict";
@@ -374,15 +327,13 @@
     // Init Demo JS  
     Demo.init();
 
-    setTabHeight();
-
   });
 
-  function setTabHeight(){
-	  tabHeight = $(window).height() - 60 - 40 - 10;
-  }
-
   function addTab(id,title,url){
+	  if(url.indexOf('http') == -1){
+		  url = ".."+url;
+      }
+	  var tabHeight = $(window).height() - 60 - 40 - 10;
 	  $.addtabs.add({
 		  id:id,
 	      title:title,

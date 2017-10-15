@@ -9,8 +9,8 @@ public interface SystemUserDao extends Mapper<SystemUser> {
     
     public SystemUser selectByUserId(String userId);
     
-    public Set<String> getRoles(String userId);
+    public Set<String> getRoleCode(String userId);
     
-    public Set<String> getPermissions(String userId);
+    public Set<String> getPermissionCode(String userId);
     
 }

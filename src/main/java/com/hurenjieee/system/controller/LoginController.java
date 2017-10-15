@@ -1,3 +1,4 @@
+
 package com.hurenjieee.system.controller;
 
 import java.util.Map;
@@ -46,8 +47,11 @@ public class LoginController {
             String passwordHashed = RSAUtil.decrypt(privateKey,password);
             Subject subject = SecurityUtils.getSubject() ;
             UsernamePasswordToken token = new UsernamePasswordToken(username,passwordHashed);
-//            token.setRememberMe(true);记住我
+//            token.setRememberMe(true);//记住我
             subject.login(token);
+            //登陆成功之后HttpSession中去除RSAkey
+            session.removeAttribute("privateKey");
+            session.removeAttribute("publicKey");
             return "redirect:/system/index";
         } catch (Exception e) {
             // 这里将异常打印关闭是因为如果登录失败的话会自动抛异常

@@ -2,6 +2,7 @@ package com.hurenjieee.realm;
 
 import javax.annotation.Resource;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -9,7 +10,9 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 
 import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemUserService;
@@ -25,8 +28,8 @@ public class MyRealm extends AuthorizingRealm {
             PrincipalCollection principals) {
         String userId = (String) principals.getPrimaryPrincipal(); //获取用户Id
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(systemUserService.getRoles(userId));
-        authorizationInfo.setStringPermissions(systemUserService.getPermissions(userId));
+        authorizationInfo.setRoles(systemUserService.getRoleCode(userId));
+        authorizationInfo.setStringPermissions(systemUserService.getPermissionCode(userId));
         return authorizationInfo;
     }
 
@@ -35,8 +38,12 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(
             AuthenticationToken token) throws AuthenticationException {
         String userId = (String) token.getPrincipal(); // 获取用户名
+        System.out.println(token.getCredentials());
         SystemUser systemUser = systemUserService.selectByUserId(userId);
         if(systemUser != null) {
+            Subject currentUser = SecurityUtils.getSubject(); 
+            Session session = currentUser.getSession();
+            session.setAttribute("systemUser",systemUser);
             AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(systemUser.getUserId(),systemUser.getUserPassword(), "myRealm");
             return authcInfo;
         } else {

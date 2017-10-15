@@ -75,13 +75,6 @@
 <!-- 		<table tableName="system_user" mapperName="SystemUserDao">
 		</table>
  -->
-		<table tableName="system_user" mapperName="SystemUserDao">
-		</table>
-		<table tableName="system_role" mapperName="SystemRoleDao">
-		</table>
-		<table tableName="system_role_permission" mapperName="SystemRolePermissionDao">
-		</table>
-		<table tableName="system_user_permission" mapperName="systemUserPermissionDao"></table>
 		<table tableName="system_permission" mapperName="systemPermissionDao"></table>
 	</context>
 </generatorConfiguration>

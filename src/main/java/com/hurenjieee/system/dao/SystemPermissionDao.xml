@@ -9,7 +9,28 @@
     <result column="uuid" jdbcType="VARCHAR" property="uuid" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
-    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
     <result column="permission_code" jdbcType="VARCHAR" property="permissionCode" />
+    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+    <result column="permission_style" jdbcType="VARCHAR" property="permissionStyle" />
+    <result column="permission_url" jdbcType="VARCHAR" property="permissionUrl" />
+    <result column="permission_par_code" jdbcType="VARCHAR" property="permissionParCode" />
+    <result column="permission_state" jdbcType="INTEGER" property="permissionState" />
+    <result column="permission_order" jdbcType="INTEGER" property="permissionOrder" />
   </resultMap>
+  
+  <select id="selectPermissionsByUserId" parameterType="String" resultType="map">
+  	SELECT
+  		permission.permission_code as permissionCode,
+  		permission.permission_style as permissionStyle,
+  		permission.permission_name as permissionName,
+  		permission.permission_url as permissionUrl,
+  		permission.permission_par_code as permissionParCode
+  	FROM system_user user
+  	LEFT JOIN system_user_role user_role ON user_role.user_uuid = user.uuid
+  	LEFT JOIN system_role role ON role.uuid = user_role.role_uuid
+  	LEFT JOIN system_role_permission role_permission ON role_permission.role_uuid = role.uuid 
+  	LEFT JOIN system_permission permission ON role_permission.permission_uuid = permission.uuid
+  	WHERE user_id = #{userId} AND permission_state = 1
+    ORDER BY permission_code,permission_order ASC
+  </select>
 </mapper>

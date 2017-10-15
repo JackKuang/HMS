@@ -19672,6 +19672,18 @@ body.sb-l-m .navbar-brand {
 .sidebar-menu > li > ul > li > a.menu-open > span:nth-child(1) {
   color: #4a89dc;
 }
+
+/* 一级菜单增加Active */
+.sidebar-menu > li.active > a {
+  color: #ffffff;
+  background-color: transparent;
+}
+.sidebar-menu > li.active > a > span:nth-child(1),
+.sidebar-menu > li > a.menu-open > span:nth-child(1) {
+  color: #4a89dc;
+}
+/* 一级菜单增加Active */
+
 /* Sub-Menu Active Item - Border Color */
 .sidebar-menu > li > ul > li.active > a:after,
 .sidebar-menu > li > ul > li > a.menu-open:after {
