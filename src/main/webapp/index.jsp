@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<META HTTP-EQUIV="Refresh" CONTENT="0;URL=system/preLogin">
+<META HTTP-EQUIV="Refresh" CONTENT="0;URL=system/index">
 <title>页面跳转中</title>
 </head>
 <body>

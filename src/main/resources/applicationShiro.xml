@@ -19,6 +19,7 @@
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
       <property name="realm" ref="myRealm"/>  
+      <property name="rememberMeManager" ref="rememberMeManager"/>
     </bean>  
 
     <!-- Shiro过滤器 -->
@@ -26,16 +27,16 @@
         <!-- Shiro的核心安全接口,这个属性是必须的 -->  
         <property name="securityManager" ref="securityManager"/>
         <!-- 身份认证失败，则跳转到登录页面的配置 -->  
-        <property name="loginUrl" value="/index.jsp"/>
+        <property name="loginUrl" value="/system/preLogin"/>
         <!-- 权限认证失败，则跳转到指定页面 -->  
-        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>  
+        <property name="unauthorizedUrl" value="/system/preLogin"/>  
         <!-- Shiro连接约束配置,即过滤链的定义 -->  
         <property name="filterChainDefinitions">  
             <value> 
             	<!-- 先配置，先生效 -->
                 /system/login=anon
                 /system/preLogin=anon
-                /system/**=authc
+                /system/**=user
             </value>  	
         </property>
     </bean>  
@@ -48,5 +49,19 @@
         <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">  
       <property name="securityManager" ref="securityManager"/>  
     </bean>  
-
+    
+    <!-- remenberMe配置 -->
+   <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+       <constructor-arg value="rememberMe" />
+       <property name="httpOnly" value="true" />
+       <!-- 默认记住7天（单位：秒） -->
+       <property name="maxAge" value="604800" />
+   </bean>
+   
+   <!-- rememberMe管理器 -->
+   <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+       <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}" />
+       <property name="cookie" ref="rememberMeCookie" />
+   </bean>
+   	
 </beans>

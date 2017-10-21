@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,13 @@ public class IndexController {
 
     @RequestMapping("index")
     public String login(Model model,HttpSession session){
-        SystemUser systemUser = (SystemUser)session.getAttribute("systemUser");
+        Subject subject = SecurityUtils.getSubject(); 
+        SystemUser systemUser;
+        if(subject.isRemembered()){
+            systemUser = (SystemUser) subject.getSession().getAttribute("systemUser");
+        }else{
+            systemUser = (SystemUser) session.getAttribute("systemUser");
+        }
         List list = systemPermissionService.getPermission("admin");
         model.addAttribute("permissionList",list);
         return "system/index";

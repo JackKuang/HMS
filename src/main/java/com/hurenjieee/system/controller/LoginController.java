@@ -39,15 +39,14 @@ public class LoginController {
      * @return
      */
     @RequestMapping("login")
-    public String login(Model model,String username,String password,HttpSession session){
+    public String login(Model model,String username,String password,boolean remember,HttpSession session){
         try {
             SystemUser s = new SystemUser();
             //获取密钥
             String privateKey = (String)session.getAttribute("privateKey");
             String passwordHashed = RSAUtil.decrypt(privateKey,password);
-            Subject subject = SecurityUtils.getSubject() ;
-            UsernamePasswordToken token = new UsernamePasswordToken(username,passwordHashed);
-//            token.setRememberMe(true);//记住我
+            Subject subject = SecurityUtils.getSubject();
+            UsernamePasswordToken token = new UsernamePasswordToken(username,passwordHashed,remember);
             subject.login(token);
             //登陆成功之后HttpSession中去除RSAkey
             session.removeAttribute("privateKey");

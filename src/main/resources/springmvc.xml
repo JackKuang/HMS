@@ -11,7 +11,6 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 扫描这个路径下的Controller -->
-    
     <context:component-scan base-package="com.hurenjieee.*.controller" />
     
     <!-- JSON传输 -->

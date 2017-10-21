@@ -7,6 +7,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -41,8 +42,8 @@ public class MyRealm extends AuthorizingRealm {
         System.out.println(token.getCredentials());
         SystemUser systemUser = systemUserService.selectByUserId(userId);
         if(systemUser != null) {
-            Subject currentUser = SecurityUtils.getSubject(); 
-            Session session = currentUser.getSession();
+            Subject subject = SecurityUtils.getSubject(); 
+            Session session = subject.getSession();
             session.setAttribute("systemUser",systemUser);
             AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(systemUser.getUserId(),systemUser.getUserPassword(), "myRealm");
             return authcInfo;
