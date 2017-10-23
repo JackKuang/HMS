@@ -3,7 +3,7 @@ package com.hurenjieee.system.service;
 
 import java.util.Set;
 
-import com.hurenjieee.core.BaseService;
+import com.hurenjieee.core.service.BaseService;
 import com.hurenjieee.system.entity.SystemPermission;
 import com.hurenjieee.system.entity.SystemRole;
 import com.hurenjieee.system.entity.SystemUser;

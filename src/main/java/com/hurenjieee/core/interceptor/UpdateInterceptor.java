@@ -1,4 +1,4 @@
-package com.hurenjieee.core;
+package com.hurenjieee.core.interceptor;
 
 import java.util.Date;
 import java.util.Properties;
@@ -11,6 +11,8 @@ import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
+
+import com.hurenjieee.core.entity.BaseEntity;
 
 
 //Mybatis 只有update和query

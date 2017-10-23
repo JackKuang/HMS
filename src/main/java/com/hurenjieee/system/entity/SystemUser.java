@@ -3,7 +3,7 @@ package com.hurenjieee.system.entity;
 import java.util.Date;
 import javax.persistence.*;
 
-import com.hurenjieee.core.BaseEntity;
+import com.hurenjieee.core.entity.BaseEntity;
 
 @Table(name = "system_user")
 public class SystemUser implements BaseEntity {

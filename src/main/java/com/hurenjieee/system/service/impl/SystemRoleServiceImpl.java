@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
-import com.hurenjieee.core.BaseServiceImpl;
+import com.hurenjieee.core.service.impl.BaseServiceImpl;
 import com.hurenjieee.system.dao.SystemRoleDao;
 import com.hurenjieee.system.entity.SystemRole;
 import com.hurenjieee.system.service.SystemRoleService;

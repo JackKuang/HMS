@@ -20,7 +20,6 @@
   
   <!-- addTabs CSS -->
   <link rel="stylesheet" type="text/css" href="<%=basePath %>/vendor/plugins/addtabs/bootstrap.addtabs.css">
-  
 
 </head>
 <body class="">

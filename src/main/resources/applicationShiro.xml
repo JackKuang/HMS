@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">    
 
     <!-- 自定义Realm -->
-    <bean id="myRealm" class="com.hurenjieee.realm.MyRealm"/>  
+    <bean id="myRealm" class="com.hurenjieee.core.realm.MyRealm"/>  
 
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">  
@@ -47,7 +47,7 @@
     <!-- 开启Shiro注解 -->
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>  
         <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">  
-      <property name="securityManager" ref="securityManager"/>  
+      	<property name="securityManager" ref="securityManager"/>  
     </bean>  
     
     <!-- remenberMe配置 -->

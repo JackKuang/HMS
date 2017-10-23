@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hurenjieee.core.BaseServiceImpl;
+import com.hurenjieee.core.service.impl.BaseServiceImpl;
 import com.hurenjieee.system.dao.SystemPermissionDao;
 import com.hurenjieee.system.entity.SystemPermission;
 import com.hurenjieee.system.service.SystemPermissionService;

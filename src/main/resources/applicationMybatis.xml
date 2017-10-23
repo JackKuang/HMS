@@ -45,7 +45,7 @@
 						</value>
 					</property>
 				</bean>
-				<bean class="com.hurenjieee.core.UpdateInterceptor"> 
+				<bean class="com.hurenjieee.core.interceptor.UpdateInterceptor"> 
 				</bean>
 			</array>
 		</property>

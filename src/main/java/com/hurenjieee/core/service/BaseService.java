@@ -1,28 +1,20 @@
-package com.hurenjieee.core;
+package com.hurenjieee.core.service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import tk.mybatis.mapper.common.Mapper;
+import javax.persistence.Entity;
 
 import com.github.pagehelper.PageInfo;
-
-
+import com.hurenjieee.core.entity.BaseEntity;
 
 
 /**
- * @Description: 通用Service实现类
+ * @Description: 通用Service接口
  * @Author: JackKuang
- * @Since: 2017年8月18日上午11:23:46 
- * @param <T>
- * @param <M> 
+ * @Since: 2017年8月18日上午11:23:14 
+ * @param <Entity> 
  */
-public abstract class BaseServiceImpl<T extends BaseEntity>  implements BaseService<T>{
-
-    public abstract Mapper<T> getMapper();
+public interface BaseService<T extends BaseEntity> {
 
     /****************增加开始**********************/
 
@@ -30,25 +22,19 @@ public abstract class BaseServiceImpl<T extends BaseEntity>  implements BaseServ
      * @Description: 保存一个实体，null的属性不会保存，会使用数据库默认值
      * @Author: JackKuang
      * @Since: 2017年8月17日下午10:58:48
-     * @param t
+     * @param entity
      * @return
      */
-    @Override
-    public Integer insertSelective(T t){
-        return getMapper().insertSelective(t);
-    }
+    public Integer insertSelective(T t);
 
     /**
      * @Description: 保存一个实体，null的属性也会保存，不会使用数据库默认值
      * @Author: JackKuang
      * @Since: 2017年8月17日下午10:36:27
-     * @param baseT
+     * @param baseEntity
      * @return
      */
-    @Override
-    public Integer insert(T t){
-        return getMapper().insert(t);
-    }
+    public Integer insert(T t);
 
     /****************增加开始**********************/
 
@@ -58,25 +44,19 @@ public abstract class BaseServiceImpl<T extends BaseEntity>  implements BaseServ
      * @Description: 根据主键更新属性不为null的值
      * @Author: JackKuang
      * @Since: 2017年8月17日下午11:08:17
-     * @param t
+     * @param entity
      * @return
      */
-    @Override
-    public Integer updateByKeySelective(T t){
-        return getMapper().updateByPrimaryKeySelective(t);
-    }
+    public Integer updateByKeySelective(T t);
 
     /**
      * @Description: 根据主键更新实体全部字段，null值会被更新
      * @Author: JackKuang
      * @Since: 2017年8月17日下午11:08:45
-     * @param t
+     * @param entity
      * @return
      */
-    @Override
-    public Integer updateByKey(T t){
-        return getMapper().updateByPrimaryKey(t);
-    }
+    public Integer updateByKey(T t);
 
     /****************更新结束**********************/
     
@@ -89,22 +69,16 @@ public abstract class BaseServiceImpl<T extends BaseEntity>  implements BaseServ
      * @param id
      * @return
      */
-    @Override
-    public Integer deleteByKey(Long id){
-        return getMapper().deleteByPrimaryKey(id);
-    }
+    public Integer deleteByKey(Long id);
 
     /**
      * @Description: 根据实体属性作为条件进行删除，查询条件使用等号
      * @Author: JackKuang
      * @Since: 2017年8月17日下午11:17:18
-     * @param t
+     * @param entity
      * @return
      */
-    @Override
-    public Integer delete(T t){
-        return getMapper().delete(t);
-    }
+    public Integer delete(T t);
 
     /****************删除结束**********************/
 
@@ -114,50 +88,38 @@ public abstract class BaseServiceImpl<T extends BaseEntity>  implements BaseServ
      * @Description: 根据实体中的属性进行查询，只能有一个返回值，有多个结果是抛出异常，查询条件使用等号
      * @Author: JackKuang
      * @Since: 2017年8月17日下午11:23:28
-     * @param t
+     * @param entity
      * @return
      */
-    @Override
-    public T selectOne(T t) throws Exception{
-        return (T) getMapper().selectOne(t);
-    }
+    public T selectOne(T t) throws Exception;
 
     /**
      * @Description: 根据主键字段进行查询，方法参数必须包含完整的主键属性，查询条件使用等号
      * @Author: JackKuang
      * @Since: 2017年8月17日下午11:24:16
-     * @param t
+     * @param entity
      * @return
      * @throws Exception
      */
-    @Override
-    public T selectByKey(T t) throws Exception{
-        return (T) getMapper().selectByPrimaryKey(t);
-    }
+    public T selectByKey(T t) throws Exception;
 
     /**
      * @Description: 根据实体中的属性值进行查询，查询条件使用等号 
      * @Author: JackKuang
      * @Since: 2017年8月17日下午11:22:21
-     * @param t
+     * @param entity
      * @return
      */
-    @Override
-    public List<T> select(T t){
-        return getMapper().select(t);
-    }
+    public List<T> select(T t);
 
     /**
      * @Description: 根据实体中的属性查询总数，查询条件使用等号
      * @Author: JackKuang 
      * @Since: 2017年8月17日下午11:57:12
-     * @param t
+     * @param entity
      * @return
      */
-    @Override
-    public Integer selectCount(T t){
-        return getMapper().selectCount(t);
-    }
+    public Integer selectCount(T t);
 
     /****************查找结束**********************/
 
@@ -167,15 +129,10 @@ public abstract class BaseServiceImpl<T extends BaseEntity>  implements BaseServ
      * @Description: 根据实体中的属性值进行查询，查询条件使用等号——》分页
      * @Author: JackKuang
      * @Since: 2017年8月18日上午9:54:35
-     * @param t
+     * @param entity
      * @return
      */
-    @Override
-    public PageInfo<T> selectPage(T t){
-        List<T> list = getMapper().select(t);
-        PageInfo<T> pageInfo = new PageInfo<T>(list);
-        return pageInfo;
-    }
+    public PageInfo<T> selectPage(T t);
 
     /****************分页查找结束**********************/
 }

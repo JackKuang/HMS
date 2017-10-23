@@ -82,7 +82,8 @@
 
               <div class="panel-footer clearfix">
                 <button type="submit" class="button btn-primary mr10 pull-right">登录</button>
-                <label class="switch ib switch-primary mt10">
+                <!-- 涉及权限问题，cookie被盗 -->
+                  <label class="switch ib switch-primary mt10">
                   <input type="checkbox" name="remember" id="remember" checked="">
                   <label for="remember" data-on="是" data-off="否"></label>
                   <span>记住我</span>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework. web.bind.annotation.RequestMapping;
 
+import com.hurenjieee.core.constant.WebConstant;
 import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemPermissionService;
 import com.hurenjieee.system.service.SystemUserService;
@@ -34,9 +35,9 @@ public class IndexController {
         if(subject.isRemembered()){
             String userId = subject.getPrincipal().toString();
             systemUser = systemUserService.selectByUserId(userId);
-            session.setAttribute("systemUser",systemUser);
+            session.setAttribute(WebConstant.HTTP_SESSION_SYSTEM_USER,systemUser);
         }else{
-            systemUser = (SystemUser) session.getAttribute("systemUser");
+            systemUser = (SystemUser) session.getAttribute(WebConstant.HTTP_SESSION_SYSTEM_USER);
         }
         List list = systemPermissionService.getPermission(systemUser.getUserId());
         model.addAttribute("permissionList",list);

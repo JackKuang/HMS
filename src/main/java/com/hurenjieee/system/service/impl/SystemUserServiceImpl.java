@@ -5,7 +5,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hurenjieee.core.BaseServiceImpl;
+import com.hurenjieee.core.service.impl.BaseServiceImpl;
 import com.hurenjieee.system.dao.SystemUserDao;
 import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemUserService;
