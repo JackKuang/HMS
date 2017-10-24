@@ -64,6 +64,7 @@
             'aria-url': e.attr('aria-url'),
             'aria-ajax': e.attr('aria-ajax')
         }).append(refresh).append(remove).append(_createMenu('remove-circle', 'glyphicon-remove-circle', settings.local.closeOtherLabel)).append(left).append(right);
+        
         popHtml.css({
             'top': mouse.pageY,
             'left': mouse.pageX
@@ -74,11 +75,13 @@
             var id = $(this).parent('ul').attr("aria-controls").substring(4);
             var url = $(this).parent('ul').attr('aria-url');
             var ajax = $(this).parent('ul').attr('aria-ajax');
+      	  	var tabHeight = $(window).height() - 60 - 40 - 20;
             $.addtabs.add({
                 'id': id,
                 'url': url,
                 'refresh': true,
-                'ajax': ajax
+                'ajax': ajax,
+      	      	'iframeHeight': tabHeight
             });
         });
         //关闭自身

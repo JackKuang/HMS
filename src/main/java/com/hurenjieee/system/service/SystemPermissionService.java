@@ -8,6 +8,8 @@ import com.hurenjieee.system.entity.SystemPermission;
 
 public interface SystemPermissionService extends BaseService<SystemPermission> {
 
-    public List<Map> getPermission(String userId);
+    public List<Map> listPermissionsMenuByUserId(String userId);
+
+    public List<Map> listPermissionsByUserId(String userId);
     
 }

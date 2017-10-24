@@ -7,10 +7,10 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface SystemUserDao extends Mapper<SystemUser> {
     
-    public SystemUser selectByUserId(String userId);
+    public SystemUser getUserByUserId(String userId);
     
-    public Set<String> getRoleCode(String userId);
+    public Set<String> listRolesCode(String userId);
     
-    public Set<String> getPermissionCode(String userId);
+    public Set<String> listPermissionsCode(String userId);
     
 }

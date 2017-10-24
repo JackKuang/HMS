@@ -11305,6 +11305,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .tab-content > .tab-pane {
   display: none;
+  margin: 5px 5px 5px 10px;
 }
 .tab-content > .active {
   display: block;
@@ -17174,7 +17175,7 @@ html {
 body {
   width: 100%;
   height: 100%;
-  min-height: 900px;
+/*   min-height: 900px; */
   margin: 0;
   padding: 0;
   background: #e9e9e9;
@@ -24704,4 +24705,8 @@ body.timeline-page .panel-clone {
     overflow: hidden !important;
     min-width: 0 !important;
   }
+}
+/* tab页面保持距离 */
+.tab{
+	
 }

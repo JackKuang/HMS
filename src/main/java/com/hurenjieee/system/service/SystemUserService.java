@@ -17,7 +17,7 @@ public interface SystemUserService extends BaseService<SystemUser>{
      * @param username
      * @return
      */
-    public SystemUser selectByUserId(String userId);
+    public SystemUser getUserByUserId(String userId);
     
     /**
      * @Description: 根据userId获取角色
@@ -26,7 +26,7 @@ public interface SystemUserService extends BaseService<SystemUser>{
      * @param userId
      * @return
      */
-    public Set<String> getRoleCode(String userId);
+    public Set<String> listRolesCode(String userId);
     
     /**
      * @Description: 根据userId获取权限
@@ -35,6 +35,6 @@ public interface SystemUserService extends BaseService<SystemUser>{
      * @param userId
      * @return
      */
-    public Set<String> getPermissionCode(String userId);
+    public Set<String> listPermissionsCode(String userId);
     
 }

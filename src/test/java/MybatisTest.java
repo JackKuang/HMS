@@ -88,12 +88,12 @@ public class MybatisTest {
     
     @Test
     public void selectByUsername(){
-        SystemUser systemUser = systemUserService.selectByUserId("admin");
+        SystemUser systemUser = systemUserService.getUserByUserId("admin");
         System.out.println(systemUser.getUserPassword());
     }
     
     @Test
     public void selectPermissionsTest(){
-        List list = systemPermissionService.getPermission("admin");
+        List list = systemPermissionService.getPermissionsMapByUserId("admin");
     }
 }

@@ -18,7 +18,7 @@
     <result column="permission_order" jdbcType="INTEGER" property="permissionOrder" />
   </resultMap>
   
-  <select id="selectPermissionsByUserId" parameterType="String" resultType="map">
+  <select id="listPermissionsByUserId" parameterType="String" resultType="map">
   	SELECT
   		permission.permission_code as permissionCode,
   		permission.permission_style as permissionStyle,

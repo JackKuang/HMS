@@ -27,9 +27,14 @@ public class SystemPermissionServiceImpl extends BaseServiceImpl<SystemPermissio
     }
 
     @Override
-    public List<Map> getPermission(String userId){
-        List<Map> permissions = systemPermissionDao.selectPermissionsByUserId(userId);
+    public List<Map> listPermissionsMenuByUserId(String userId){
+        List<Map> permissions = systemPermissionDao.listPermissionsByUserId(userId);
         return TreeUtil.listToTree(permissions,"permissionCode","permissionParCode","permissionOrder");
+    }
+
+    @Override
+    public List<Map> listPermissionsByUserId(String userId){
+        return systemPermissionDao.listPermissionsByUserId(userId);
     }
 
 

@@ -8,5 +8,5 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface SystemPermissionDao extends Mapper<SystemPermission> {
 
-    List<Map> selectPermissionsByUserId(String userId);    
+    List<Map> listPermissionsByUserId(String userId);    
 }

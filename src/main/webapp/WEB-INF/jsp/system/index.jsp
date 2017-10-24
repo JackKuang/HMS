@@ -220,7 +220,7 @@
         <!-- End: Sidebar Header -->
 
         <!-- Start: Sidebar Left Menu -->
-        <ul class="nav sidebar-menu" id="container">
+        <ul class="nav sidebar-menu">
           <li class="sidebar-label pt20">菜单</li>
           <!-- 一级菜单循环开始  -->
           <c:forEach items="${permissionList }"  var="item1">
@@ -246,7 +246,7 @@
 		          	  <li>
 		          	    <a class="accordion-toggle" onclick="addTab('${item2.permissionCode }','${item2.permissionName }','${item1.permissionUrl }')" href="#">
 			              <span class="${item2.permissionStyle }"></span>
-			              <span class="sidebar-title">${item2.permissionName }</span>
+			              ${item2.permissionName }
 			            </a>
 		          	  </li>
 		          	</c:if>
@@ -254,7 +254,7 @@
 			          <li>
 		          	    <a class="accordion-toggle" href="#">
 			              <span class="${item2.permissionStyle }"></span>
-			              <span class="sidebar-title">${item2.permissionName }</span>
+			              ${item2.permissionName }
 			              <span class="caret"></span>
 			            </a>
 			            <ul class="nav sub-nav">
@@ -262,8 +262,8 @@
 			              <c:forEach items="${item2.list }"  var="item3">
 			          	    <li>
 			          	      <a class="accordion-toggle" onclick="addTab('${item3.permissionCode }','${item3.permissionName }','${item1.permissionUrl }')" href="#">
-				                <span class="${item3.permissionStyle }"></span>
-				                <span class="sidebar-title">&nbsp;&nbsp;${item3.permissionName }</span>
+				               <%--  <span class="${item3.permissionStyle }"></span> --%>
+				                ${item3.permissionName }
 				              </a>
 			          	    </li>
 				          </c:forEach>
@@ -332,7 +332,7 @@
 	  if(url.indexOf('http') == -1){
 		  url = ".."+url;
       }
-	  var tabHeight = $(window).height() - 60 - 40 - 10;
+	  var tabHeight = $(window).height() - 60 - 40 - 20;
 	  $.addtabs.add({
 		  id:id,
 	      title:title,

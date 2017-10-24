@@ -34,12 +34,12 @@ public class IndexController {
         SystemUser systemUser;
         if(subject.isRemembered()){
             String userId = subject.getPrincipal().toString();
-            systemUser = systemUserService.selectByUserId(userId);
+            systemUser = systemUserService.getUserByUserId(userId);
             session.setAttribute(WebConstant.HTTP_SESSION_SYSTEM_USER,systemUser);
         }else{
             systemUser = (SystemUser) session.getAttribute(WebConstant.HTTP_SESSION_SYSTEM_USER);
         }
-        List list = systemPermissionService.getPermission(systemUser.getUserId());
+        List list = systemPermissionService.listPermissionsMenuByUserId(systemUser.getUserId());
         model.addAttribute("permissionList",list);
         return "system/index";
     }

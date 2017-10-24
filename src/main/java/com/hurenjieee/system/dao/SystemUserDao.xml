@@ -19,11 +19,11 @@
     <result column="user_is_defalut_role" jdbcType="BIT" property="userIsDefalutRole" />
   </resultMap>
   
-  <select id="selectByUserId" parameterType="String" resultMap="BaseResultMap">
+  <select id="getUserByUserId" parameterType="String" resultMap="BaseResultMap">
   	SELECT * FROM system_user WHERE user_name = #{userId}
   </select>
   
-  <select id="getRoleCode" parameterType="String" resultType="String">
+  <select id="listRolesCode" parameterType="String" resultType="String">
   	SELECT role.role_code
   	FROM system_user user
   	LEFT JOIN system_user_role user_role ON user_role.user_uuid = user.uuid
@@ -32,7 +32,7 @@
   	ORDER BY id ASC
   </select>
   
-  <select id="getPermissionCode" parameterType="String" resultType="String">
+  <select id="listPermissionsCode" parameterType="String" resultType="String">
   	SELECT permission.permission_code
   	FROM system_user user
   	LEFT JOIN system_user_role user_role ON user_role.user_uuid = user.uuid
