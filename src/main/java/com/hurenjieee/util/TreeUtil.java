@@ -10,6 +10,7 @@ import java.util.TreeMap;
 public class TreeUtil {
 
     public static List<Map> listToTree(List<Map> maps,String code,String parCode,String order){
+        Long startTime = System.currentTimeMillis();
         //result 结果集
         List<Map> result = new ArrayList<Map>();
         //List转Map临时存储
@@ -57,7 +58,7 @@ public class TreeUtil {
                     return 0;
                 }
             }});
-        
+        System.out.println("排序执行了"+(System.currentTimeMillis()-startTime)+"ms;");
         return result;
     }
 

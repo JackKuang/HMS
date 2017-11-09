@@ -20,12 +20,16 @@
   
   <!-- addTabs CSS -->
   <link rel="stylesheet" type="text/css" href="<%=basePath %>/vendor/plugins/addtabs/bootstrap.addtabs.css">
-
+  <style type="text/css">
+	body {
+	  overflow-y:hidden;  
+	}  
+  </style>
 </head>
 <body class="">
 
   <!-- Start: Main -->
-  <div id="main">
+  <div id="main" >
 
     <!-- Start: Header -->
     <header class="navbar navbar-fixed-top bg-dark">
@@ -332,7 +336,7 @@
 	  if(url.indexOf('http') == -1){
 		  url = ".."+url;
       }
-	  var tabHeight = $(window).height() - 60 - 40 - 20;
+	  var tabHeight = $(window).height() - 100;
 	  $.addtabs.add({
 		  id:id,
 	      title:title,

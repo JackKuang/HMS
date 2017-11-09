@@ -97,7 +97,7 @@ public class SystemRole implements BaseEntity {
     /**
      * @return role_code
      */
-    public String getRoleCode() {
+    public String getRoleCode() { 
         return roleCode;
     }
 

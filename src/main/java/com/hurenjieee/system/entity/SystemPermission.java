@@ -39,6 +39,9 @@ public class SystemPermission implements BaseEntity{
     @Column(name = "permission_order")
     private Integer permissionOrder;
 
+    @Column(name = "permission_desc")
+    private String permissionDesc;
+    
     /**
      * @return id
      */
@@ -187,13 +190,29 @@ public class SystemPermission implements BaseEntity{
         return permissionStyle;
     }
 
-
     /**
      * @param permissionStyle
      */
     public void setPermissionStyle(Integer permissionStyle){
         this.permissionStyle = permissionStyle;
     }
+    
+
+    /**
+     * @return permission_desc
+     */    
+    public String getPermissionDesc(){
+        return permissionDesc;
+    }
+
+    /**
+     * @param permissionDesc
+     */
+    public void setPermissionDesc(String permissionDesc){
+        this.permissionDesc = permissionDesc;
+    }
+    
+    
     
     
 }

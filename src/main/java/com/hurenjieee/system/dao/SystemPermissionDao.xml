@@ -14,18 +14,21 @@
     <result column="permission_style" jdbcType="VARCHAR" property="permissionStyle" />
     <result column="permission_url" jdbcType="VARCHAR" property="permissionUrl" />
     <result column="permission_par_code" jdbcType="VARCHAR" property="permissionParCode" />
+    <result column="permission_desc" jdbcType="VARCHAR" property="permissionDesc" />
     <result column="permission_state" jdbcType="INTEGER" property="permissionState" />
     <result column="permission_order" jdbcType="INTEGER" property="permissionOrder" />
   </resultMap>
   
   <select id="listPermissionsByUserId" parameterType="String" resultType="map">
   	SELECT
+  		permission.uuid as permissionUuid,
   		permission.permission_code as permissionCode,
   		permission.permission_style as permissionStyle,
   		permission.permission_name as permissionName,
 		permission.permission_order AS permissionOrder,
   		permission.permission_url as permissionUrl,
-  		permission.permission_par_code as permissionParCode
+  		permission.permission_par_code as permissionParCode,
+  		permission.permission_desc as permissionDesc
   	FROM system_user user
   	LEFT JOIN system_user_role user_role ON user_role.user_uuid = user.uuid
   	LEFT JOIN system_role role ON role.uuid = user_role.role_uuid

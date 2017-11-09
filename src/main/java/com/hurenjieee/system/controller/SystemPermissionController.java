@@ -29,7 +29,7 @@ public class SystemPermissionController {
     @Autowired
     SystemPermissionService systemPermissionService;
     
-    @RequestMapping("permission")
+    @RequestMapping("permissionIndex")
     public String index(Model model,HttpSession session){
         return "system/permission_index";
     }
@@ -73,7 +73,7 @@ public class SystemPermissionController {
         }
     }
 
-    @RequestMapping(value="permissions/${uuid}",method=RequestMethod.DELETE)
+   /* @RequestMapping(value="permissions/${uuid}",method=RequestMethod.DELETE)
     @ResponseBody
     public Map delete(@PathVariable String uuid){
         try {
@@ -87,5 +87,5 @@ public class SystemPermissionController {
             return MapUtil.getResult(false,"系统出错！");
         }
     }
-
+*/
 }

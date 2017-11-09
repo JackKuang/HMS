@@ -62,7 +62,8 @@
             'class': 'rightMenu list-group',
             id: 'popMenu',
             'aria-url': e.attr('aria-url'),
-            'aria-ajax': e.attr('aria-ajax')
+            'aria-ajax': e.attr('aria-ajax'),
+            'aria-height': e.attr('aria-height')
         }).append(refresh).append(remove).append(_createMenu('remove-circle', 'glyphicon-remove-circle', settings.local.closeOtherLabel)).append(left).append(right);
         
         popHtml.css({
@@ -75,7 +76,7 @@
             var id = $(this).parent('ul').attr("aria-controls").substring(4);
             var url = $(this).parent('ul').attr('aria-url');
             var ajax = $(this).parent('ul').attr('aria-ajax');
-      	  	var tabHeight = $(window).height() - 60 - 40 - 20;
+            var tabHeight = $(this).parent('ul').attr('aria-height');
             $.addtabs.add({
                 'id': id,
                 'url': url,
@@ -214,7 +215,8 @@
                 'role': 'presentation',
                 'id': 'tab_' + id,
                 'aria-url': opts.url,
-                'aria-ajax': opts.ajax ? true : false
+                'aria-ajax': opts.ajax ? true : false,
+                'aria-height': opts.iframeHeight
             }).append($('<a>', {
                 'href': '#' + id,
                 'aria-controls': id,
@@ -244,7 +246,7 @@
             content = $('#' + id);
             content.html('');
         }
-        console.log(opts);
+        //console.log(opts);
         if (opts.content) {
             content.append(opts.content);
         } else if (settings.iframe == true && (opts.ajax == 'false' || !opts.ajax)) { //没有内容，使用IFRAME打开链接

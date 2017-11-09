@@ -182,7 +182,7 @@ var Core = function(options) {
         //不需要修改body里面的高度
          Body.css('min-height', sidebarH-15);
          //动态修改tab里面的高度
-         $('.iframeClass').height($(window).height() - 60 - 40 - 10);
+         $('.iframeClass').height($(window).height() - 100);
       };  
 
       // Most CSS menu animations are set to 300ms. After this time
