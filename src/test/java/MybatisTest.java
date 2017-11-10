@@ -94,6 +94,6 @@ public class MybatisTest {
     
     @Test
     public void selectPermissionsTest(){
-        List list = systemPermissionService.getPermissionsMapByUserId("admin");
+        //List list = systemPermissionService.getPermissionsMapByUserId("admin");
     }
 }

@@ -15,8 +15,28 @@
 
 <head>
   <title>HMS 后台管理平台</title>
-  <%@ include file="../include/head.jsp" %>
-  <%@ include file="../include/css.jsp" %>
+  
+  <meta charset="utf-8">
+  <meta name="keywords" content="HMS" />
+  <meta name="description" content="HMS - Hu's Management System">
+  <meta name="author" content="JackKuang">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Font CSS (Via CDN) -->
+  <!-- <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'> -->
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" type="text/css" href="<%=basePath %>/assets/skin/default_skin/css/theme.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="<%=basePath %>/assets/img/favicon.ico">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+  
   
   <!-- addTabs CSS -->
   <link rel="stylesheet" type="text/css" href="<%=basePath %>/vendor/plugins/addtabs/bootstrap.addtabs.css">
@@ -25,6 +45,7 @@
 	  overflow-y:hidden;  
 	}  
   </style>
+  
 </head>
 <body class="">
 
@@ -314,8 +335,15 @@
 
   <!-- BEGIN: PAGE SCRIPTS -->
 
-  <%@ include file="../include/js.jsp" %>
-  
+  <!-- jQuery -->
+  <script src="<%=basePath %>/vendor/jquery/jquery-1.11.1.min.js"></script>
+  <script src="<%=basePath %>/vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+    
+  <!-- Theme Javascript -->
+  <script src="<%=basePath %>/assets/js/utility/utility.js"></script>
+  <script src="<%=basePath %>/assets/js/demo/demo.js"></script>
+  <script src="<%=basePath %>/assets/js/main.js"></script>
+
   <script src="<%=basePath %>/vendor/plugins/addtabs/bootstrap.addtabs.js"></script>
   
   <script type="text/javascript">

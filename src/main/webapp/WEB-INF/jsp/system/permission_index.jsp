@@ -15,8 +15,20 @@
 
 <head>
   <title>菜单管理</title>
-  <%@ include file="../include/head.jsp" %>
-  <%@ include file="../include/css.jsp" %>
+  <meta charset="utf-8">
+  <meta name="keywords" content="HMS" />
+  <meta name="description" content="HMS - Hu's Management System">
+  <meta name="author" content="JackKuang">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Font CSS (Via CDN) -->
+  <!-- <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'> -->
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" type="text/css" href="<%=basePath %>/assets/skin/default_skin/css/theme.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="<%=basePath %>/assets/img/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="<%=basePath %>/vendor/plugins/treegrid/css/jquery.treegrid.css">
   
@@ -32,7 +44,7 @@
   <!-- Start: Main -->
   <div class="row text-center">
     <div class="col-xs-2">
-      <button type="button" class="btn btn-primary btn-block" onclick="addPermission()">添加父菜单</button>
+      <button type="button" class="btn btn-primary btn-block" onclick="showPermission()">添加父菜单</button>
     </div>
     <div class="col-xs-2">
       <button type="button" class="btn btn-info btn-block">刷新</button>
@@ -49,40 +61,44 @@
           <i class="fa fa-bookmark"></i><span id="permissionTitle"></span></span>
       </div>
       <!-- end .panel-heading section -->
-      <div class="panel-body">
-        <form class="form-horizontal" role="form" id="permissionForm">
-          <div class="form-group">
-            <label for="inputStandard" class="col-lg-3 control-label">功能名称</label>
-            <div class="col-lg-8">
-              <input type="text" id="permissionTitle_input" class="form-control" placeholder="菜单名称，例如：功能管理"
-                data-bv-notempty-message="菜单名称不能为空" aria-required="true" aria-invalid="true">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputStandard" class="col-lg-3 control-label">功能路径</label>
-            <div class="col-lg-8">
-              <input type="text" id="permissionUrl_input" class="form-control" placeholder="功能路径，例如：/system/permissionIndex">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputStandard" class="col-lg-3 control-label">风格</label>
-            <div class="col-lg-8">
-              <input type="text" id="permissionStyle_input" class="form-control" placeholder="风格，例如：fa fa-calendar">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label" for="textArea1">功能描述</label>
-            <div class="col-lg-8">
-              <textarea class="form-control textarea-grow" id="permissionDesc_input" rows="4" placeholder="功能描述，例如：用户登录系统所有功能管理"></textarea>
-            </div>
-          </div>
+      	<form class="form-horizontal" role="form" data-toggle="validator" id="permissionForm">
+	      <div class="panel-body">
+	         <div class="form-group">
+	            <label for="permissionTitleInput" class="col-lg-3 control-label">功能名称</label>
+	            <div class="col-lg-8">
+	              <input type="text" id="permissionTitleInput" class="form-control" placeholder="菜单名称，例如：功能管理" required="124414">
+  				  <div class="help-block with-errors"></div>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label for="permissionUrlInput" class="col-lg-3 control-label">功能路径</label>
+	            <div class="col-lg-8">
+	              <input type="text" id="permissionUrlInput"  pattern="^[_A-z0-9]{1,}$" class="form-control" placeholder="功能路径，例如：/system/permissionIndex"
+	              required>
+  				  <div class="help-block with-errors"></div>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label for="permissionStyleInput" class="col-lg-3 control-label">风格</label>
+	            <div class="col-lg-8">
+	              <input type="text" id="permissionStyleInput" class="form-control" placeholder="风格，例如：fa fa-calendar" >
+  				  <div class="help-block with-errors"></div>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	            <label class="col-lg-3 control-label" for="permissionDescInput">功能描述</label>
+	            <div class="col-lg-8">
+	              <textarea class="form-control textarea-grow" id="permissionDescInput" rows="4" placeholder="功能描述，例如：用户登录系统所有功能管理"></textarea>
+  				  <div class="help-block with-errors"></div>
+	            </div>
+	          </div>
+	        </div>
+		    <!-- .end: panel-body  -->
+	        <div class="panel-footer text-right">
+	          <button type="submit" class="button btn-primary" onclick="savePermission()">提交</button>
+	          <button type="button" class="button btn-default" onclick="closePermission()">取消</button>
+	        </div>
         </form>
-      </div>
-	  <!-- .end: panel-body  -->
-      <div class="panel-footer text-right">
-        <button type="button" class="button btn-primary">提交</button>
-        <button type="button" class="button btn-default">取消</button>
-      </div>
     </div>
     <!-- end: .panel -->
   </div>
@@ -91,7 +107,14 @@
   
   <!-- BEGIN: PAGE SCRIPTS -->
 
-  <%@ include file="../include/js.jsp" %>
+  <!-- jQuery -->
+  <script src="<%=basePath %>/vendor/jquery/jquery-1.11.1.min.js"></script>
+  <script src="<%=basePath %>/vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+    
+  <!-- Theme Javascript -->
+  <script src="<%=basePath %>/assets/js/utility/utility.js"></script>
+  <script src="<%=basePath %>/assets/js/demo/demo.js"></script>
+  <script src="<%=basePath %>/assets/js/main.js"></script>
   
   <script src="<%=basePath %>/vendor/plugins/treegrid/js/jquery.treegrid.js"></script>
   <script src="<%=basePath %>/vendor/plugins/treegrid/js/jquery.treegrid.bootstrap3.js"></script>
@@ -100,6 +123,7 @@
   
   <!-- Page Plugins -->
   <script src="<%=basePath %>/vendor/plugins/magnific/jquery.magnific-popup.js"></script>
+  <script src="<%=basePath %>/vendor/plugins/validator/bootstrap-validator.js"></script>
 
   <script type="text/javascript">
 
@@ -165,6 +189,14 @@
             ]
         });
     });
+    $('#permissionForm').validator().on('submit', function (e) {
+		  if (e.isDefaultPrevented()) {
+			  //输入出错
+		  } else {
+			  //校验成功,取消默认的事件，手动处理
+			  return false;
+		  }
+	  })
   });
   
   function style_formatter(index,value,row){
@@ -173,7 +205,7 @@
 
   function code_formatter(index,value,row){
 	  var btn = '<div class="btn-group">';
-	  btn += '<button type="button" class="btn btn-primary" onclick="addPermission(\''+row.permissionUuid+'\')">添加子菜单</button>';
+	  btn += '<button type="button" class="btn btn-primary" onclick="showPermission(\''+row.permissionUuid+'\')">添加子菜单</button>';
 	  btn += '<button type="button" class="btn btn-warning">修改</button>';
 	  btn += '<button type="button" class="btn btn-danger">删除</button>';
 	  btn += '<button type="button" class="btn btn-info">上移</button>';
@@ -181,8 +213,8 @@
 	  btn += '</div>';
 	  return btn;
   }
-
-  function addPermission(uuid){
+  //弹窗，新增修改
+  function showPermission(uuid){
 	  $('#permissionForm')[0].reset();
 	  if(uuid == null){
 		  $('#permissionTitle').text('添加父菜单');
@@ -195,10 +227,16 @@
 		  },
 		  type: 'inline',
 		  preloader: false,
-		  closeOnBgClick:false,
-		  closeBtnInside:true
+		  closeOnBgClick:false,//点击背景关闭弹窗
+		  closeBtnInside:true//关闭按钮在窗口内
 	  });
   }
+  //关闭弹窗
+  function closePermission(){
+	  $('#permissionForm')[0].reset();
+	  $.magnificPopup.close();
+  }
+
 
   </script>
   <!-- END: PAGE SCRIPTS -->

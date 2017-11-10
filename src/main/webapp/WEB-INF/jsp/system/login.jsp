@@ -12,9 +12,21 @@
 <html>
 <head>
   <title>HMS 后台管理平台</title>
-  <%@ include file="../include/head.jsp" %>
-  <%@ include file="../include/css.jsp" %>
+  <meta charset="utf-8">
+  <meta name="keywords" content="HMS" />
+  <meta name="description" content="HMS - Hu's Management System">
+  <meta name="author" content="JackKuang">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <!-- Font CSS (Via CDN) -->
+  <!-- <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'> -->
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" type="text/css" href="<%=basePath %>/assets/skin/default_skin/css/theme.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="<%=basePath %>/assets/img/favicon.ico">
+
   <!-- Admin Forms CSS -->
   <link rel="stylesheet" type="text/css" href="<%=basePath %>/assets/admin-tools/admin-forms/css/admin-forms.css">
   
@@ -122,8 +134,14 @@
 
   <!-- BEGIN: PAGE SCRIPTS -->
 
-  <%@ include file="../include/js.jsp" %>
-  
+  <!-- jQuery -->
+  <script src="<%=basePath %>/vendor/jquery/jquery-1.11.1.min.js"></script>
+  <script src="<%=basePath %>/vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+    
+  <!-- Theme Javascript -->
+  <script src="<%=basePath %>/assets/js/utility/utility.js"></script>
+  <script src="<%=basePath %>/assets/js/demo/demo.js"></script>
+  <script src="<%=basePath %>/assets/js/main.js"></script>
   
   <!-- CanvasBG Plugin(creates mousehover effect) -->
   <script src="<%=basePath %>/vendor/plugins/canvasbg/canvasbg.js"></script>
