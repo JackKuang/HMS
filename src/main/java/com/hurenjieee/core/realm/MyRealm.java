@@ -7,15 +7,12 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 
-import com.hurenjieee.core.constant.WebConstant;
 import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemUserService;
 
@@ -44,9 +41,9 @@ public class MyRealm extends AuthorizingRealm {
         SystemUser systemUser = systemUserService.getUserByUserId(userId);
         if(systemUser != null) {
         	Subject subject = SecurityUtils.getSubject(); 
-        	Session session = subject.getSession();
-        	session.setAttribute(WebConstant.HTTP_SESSION_SYSTEM_USER,systemUser);
-        	AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(systemUser.getUserId(),systemUser.getUserPassword(), "myRealm");
+        	//Session session = subject.getSession();
+        	//session.setAttribute(WebConstant.HTTP_SESSION_SYSTEM_USER,systemUser);
+        	AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(systemUser.getUuid(),systemUser.getUserPassword(), "myRealm");
         	return authcInfo;
         } else {
         	return null;

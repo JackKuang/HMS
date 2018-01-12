@@ -6,14 +6,18 @@ import javax.persistence.*;
 import com.hurenjieee.core.entity.BaseEntity;
 
 @Table(name = "system_role")
-public class SystemRole implements BaseEntity {
+public class SystemRole extends BaseEntity{
     @Id
-    private Long id;
-
     private String uuid;
+
+    @Column(name = "create_user")
+    private String createUser;
 
     @Column(name = "create_date")
     private Date createDate;
+
+    @Column(name = "update_user")
+    private String updateUser;
 
     @Column(name = "update_date")
     private Date updateDate;
@@ -23,20 +27,6 @@ public class SystemRole implements BaseEntity {
 
     @Column(name = "role_code")
     private String roleCode;
-
-    /**
-     * @return id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * @return uuid
@@ -53,6 +43,20 @@ public class SystemRole implements BaseEntity {
     }
 
     /**
+     * @return create_user
+     */
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    /**
+     * @param createUser
+     */
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    /**
      * @return create_date
      */
     public Date getCreateDate() {
@@ -64,6 +68,20 @@ public class SystemRole implements BaseEntity {
      */
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    /**
+     * @return update_user
+     */
+    public String getUpdateUser() {
+        return updateUser;
+    }
+
+    /**
+     * @param updateUser
+     */
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser;
     }
 
     /**
@@ -97,7 +115,7 @@ public class SystemRole implements BaseEntity {
     /**
      * @return role_code
      */
-    public String getRoleCode() { 
+    public String getRoleCode() {
         return roleCode;
     }
 

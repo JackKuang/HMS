@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hurenjieee.core.constant.WebConstant;
 import com.hurenjieee.system.entity.SystemPermission;
 import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemPermissionService;
+import com.hurenjieee.system.util.AuthorizationUtil;
 import com.hurenjieee.util.MapUtil;
 
 @Controller("systemPermissionController")
@@ -37,8 +37,7 @@ public class SystemPermissionController {
     @RequestMapping(value="permissions",method=RequestMethod.GET)
     @ResponseBody
     public List list(HttpSession session) throws Exception {
-        SystemUser systemUser = (SystemUser) session.getAttribute(WebConstant.HTTP_SESSION_SYSTEM_USER);
-        List list = systemPermissionService.listPermissionsByUserId(systemUser.getUserId());
+        List list = systemPermissionService.listPermissionsByUserId(AuthorizationUtil.getLoginUserUuid());
         return list;
     }
     

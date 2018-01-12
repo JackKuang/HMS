@@ -6,14 +6,18 @@ import javax.persistence.*;
 import com.hurenjieee.core.entity.BaseEntity;
 
 @Table(name = "system_user")
-public class SystemUser implements BaseEntity {
+public class SystemUser extends BaseEntity{
     @Id
-    private Long id;
-
     private String uuid;
+
+    @Column(name = "create_user")
+    private String createUser;
 
     @Column(name = "create_date")
     private Date createDate;
+
+    @Column(name = "update_user")
+    private String updateUser;
 
     @Column(name = "update_date")
     private Date updateDate;
@@ -43,20 +47,6 @@ public class SystemUser implements BaseEntity {
     private Boolean userIsDefalutRole;
 
     /**
-     * @return id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
      * @return uuid
      */
     public String getUuid() {
@@ -71,6 +61,20 @@ public class SystemUser implements BaseEntity {
     }
 
     /**
+     * @return create_user
+     */
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    /**
+     * @param createUser
+     */
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    /**
      * @return create_date
      */
     public Date getCreateDate() {
@@ -82,6 +86,20 @@ public class SystemUser implements BaseEntity {
      */
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    /**
+     * @return update_user
+     */
+    public String getUpdateUser() {
+        return updateUser;
+    }
+
+    /**
+     * @param updateUser
+     */
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser;
     }
 
     /**

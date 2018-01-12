@@ -1,28 +1,35 @@
 package com.hurenjieee.system.entity;
 
 import java.util.Date;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.hurenjieee.core.entity.BaseEntity;
 
 @Table(name = "system_permission")
-public class SystemPermission implements BaseEntity{
+public class SystemPermission extends BaseEntity{
     @Id
-    private Long id;
-
     private String uuid;
+
+    @Column(name = "create_user")
+    private String createUser;
 
     @Column(name = "create_date")
     private Date createDate;
+
+    @Column(name = "update_user")
+    private String updateUser;
 
     @Column(name = "update_date")
     private Date updateDate;
 
     @Column(name = "permission_code")
     private String permissionCode;
-    
+
     @Column(name = "permission_style")
-    private Integer permissionStyle;
+    private String permissionStyle;
 
     @Column(name = "permission_name")
     private String permissionName;
@@ -41,20 +48,6 @@ public class SystemPermission implements BaseEntity{
 
     @Column(name = "permission_desc")
     private String permissionDesc;
-    
-    /**
-     * @return id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * @return uuid
@@ -71,6 +64,20 @@ public class SystemPermission implements BaseEntity{
     }
 
     /**
+     * @return create_user
+     */
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    /**
+     * @param createUser
+     */
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    /**
      * @return create_date
      */
     public Date getCreateDate() {
@@ -82,6 +89,20 @@ public class SystemPermission implements BaseEntity{
      */
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    /**
+     * @return update_user
+     */
+    public String getUpdateUser() {
+        return updateUser;
+    }
+
+    /**
+     * @param updateUser
+     */
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser;
     }
 
     /**
@@ -110,6 +131,20 @@ public class SystemPermission implements BaseEntity{
      */
     public void setPermissionCode(String permissionCode) {
         this.permissionCode = permissionCode;
+    }
+
+    /**
+     * @return permission_style
+     */
+    public String getPermissionStyle() {
+        return permissionStyle;
+    }
+
+    /**
+     * @param permissionStyle
+     */
+    public void setPermissionStyle(String permissionStyle) {
+        this.permissionStyle = permissionStyle;
     }
 
     /**
@@ -182,37 +217,17 @@ public class SystemPermission implements BaseEntity{
         this.permissionOrder = permissionOrder;
     }
 
-
-    /**
-     * @return permission_style
-     */
-    public Integer getPermissionStyle(){
-        return permissionStyle;
-    }
-
-    /**
-     * @param permissionStyle
-     */
-    public void setPermissionStyle(Integer permissionStyle){
-        this.permissionStyle = permissionStyle;
-    }
-    
-
     /**
      * @return permission_desc
-     */    
-    public String getPermissionDesc(){
+     */
+    public String getPermissionDesc() {
         return permissionDesc;
     }
 
     /**
      * @param permissionDesc
      */
-    public void setPermissionDesc(String permissionDesc){
+    public void setPermissionDesc(String permissionDesc) {
         this.permissionDesc = permissionDesc;
     }
-    
-    
-    
-    
 }
