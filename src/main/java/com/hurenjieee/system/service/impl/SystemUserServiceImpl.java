@@ -25,17 +25,17 @@ public class SystemUserServiceImpl extends BaseServiceImpl<SystemUser> implement
     
     @Override
     public SystemUser getUserByUserId(String userId){
-        return ((SystemUserDao)getMapper()).getUserByUserId(userId);
+        return systemUserDao.getUserByUserId(userId);
     }
 
     @Override
     public Set<String> listRolesCode(String userId){
-        return ((SystemUserDao)getMapper()).listRolesCode(userId);
+        return systemUserDao.listRolesCode(userId);
     }
 
     @Override
     public Set<String> listPermissionsCode(String userId){
-        return ((SystemUserDao)getMapper()).listPermissionsCode(userId);
+        return systemUserDao.listPermissionsCode(userId);
     }
     
 }

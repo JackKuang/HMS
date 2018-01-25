@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: 陈浩翔.
  * Date: 2017/3/4.
  * Time: 下午 1:21.
  * Explain:Java操作Redis测试

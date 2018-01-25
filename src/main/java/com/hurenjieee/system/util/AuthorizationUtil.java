@@ -7,7 +7,7 @@ import com.hurenjieee.system.entity.SystemUser;
 
 
 /**
- * @Description: 更具Shiro获取到用户信息
+ * @Description: 根据Shiro获取到用户信息
  * @Author: JackKuang
  * @Since: 2018年1月12日下午8:58:44  
  */
@@ -20,11 +20,13 @@ public class AuthorizationUtil {
      * @return
      */
     public static String getLoginUserUuid(){
-      /*Subject subject = SecurityUtils.getSubject();
-        String userUuid = subject.getPrincipal().toString();
-        */
-        String userUuid = "userId";
+        String userUuid = "";
+        try{
+            Subject subject = SecurityUtils.getSubject();
+            userUuid = subject.getPrincipal().toString();
+        }catch(Exception e){
+            userUuid = "ExceptionUser";
+        }
         return userUuid;
     }
-
 }

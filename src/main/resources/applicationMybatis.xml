@@ -31,6 +31,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<!-- <property name="configLocation" value="classpath:conf.xml" /> -->
 		<property name="typeAliasesPackage" value="com.hurenjieee.*.entity"></property>
+		<property name="typeAliasesSuperType" value="com.hurenjieee.core.entity.BaseEntity" />
 		<property name="plugins">
 			<array>
 				<bean class="com.github.pagehelper.PageInterceptor">

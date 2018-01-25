@@ -71,7 +71,6 @@ public class UpdateInterceptor implements Interceptor {
                             }
                         }
                     }
-                    
                 // (方法包含update)update，自动设置updatedate
                 } else if (methodNameModify.contains("UPDATE")) {
                     List<Field> list = Arrays.asList(parameter.getClass().getDeclaredFields());

@@ -69,7 +69,7 @@ public interface BaseService<T extends BaseEntity> {
      * @param id
      * @return
      */
-    public Integer deleteByKey(Long id);
+    public Integer deleteByKey(String id);
 
     /**
      * @Description: 根据实体属性作为条件进行删除，查询条件使用等号

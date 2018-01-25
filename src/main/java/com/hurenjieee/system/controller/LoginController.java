@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -18,16 +19,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemUserService;
 import com.hurenjieee.util.RSAUtil;
-import com.hurenjieee.util.StringUtil;
 
 @Controller("loginController")
 @Scope("prototype")
 @RequestMapping("/system")
 public class LoginController {
-    
+
     @Autowired
     SystemUserService systemUserService;
-    
+
     /**
      * @Description: 登录
      * @Author: JackKuang
@@ -41,14 +41,14 @@ public class LoginController {
     @RequestMapping("login")
     public String login(Model model,String username,String password,boolean remember,HttpSession session){
         try {
-            SystemUser s = new SystemUser();
-            //获取密钥
-            String privateKey = (String)session.getAttribute("privateKey");
+            // 获取密钥
+            String privateKey = (String) session.getAttribute("privateKey");
             String passwordHashed = RSAUtil.decrypt(privateKey,password);
             Subject subject = SecurityUtils.getSubject();
+            // 数据库保存SHA512加密后的数据，
             UsernamePasswordToken token = new UsernamePasswordToken(username,passwordHashed,remember);
             subject.login(token);
-            //登陆成功之后HttpSession中去除RSAkey
+            // 登陆成功之后HttpSession中去除RSAkey
             session.removeAttribute("privateKey");
             session.removeAttribute("publicKey");
             return "redirect:/system/index";
@@ -56,14 +56,14 @@ public class LoginController {
             // 这里将异常打印关闭是因为如果登录失败的话会自动抛异常
             e.printStackTrace();
             model.addAttribute("error","用户名或密码错误！");
-            //配置RSA公钥密钥
-            String publicKey = setSessuibAttribute(session);
+            // 配置RSA公钥密钥
+            String publicKey = setKeyAttribute(session);
             model.addAttribute("publicKey",publicKey);
             return "system/login";
         }
 
     }
-    
+
     /**
      * @Description: 预登录
      * @Author: JackKuang
@@ -77,13 +77,13 @@ public class LoginController {
     @RequestMapping("/preLogin")
     public ModelAndView preLogin(Model model,String username,String password,HttpSession session){
         ModelAndView mv = new ModelAndView("system/login");
-        //配置RSA公钥密钥
+        // 配置RSA公钥密钥
         Map<String, String> data = RSAUtil.generateKeyPair();
-        String publicKey = setSessuibAttribute(session);
+        String publicKey = setKeyAttribute(session);
         mv.addObject("publicKey",publicKey);
         return mv;
     }
-    
+
     /**
      * @Description: 把RSA公钥密钥放入session中，返回公钥publicKey
      * @Author: JackKuang
@@ -91,14 +91,13 @@ public class LoginController {
      * @param session
      * @return publicKey
      */
-    public String setSessuibAttribute(HttpSession session){
+    public String setKeyAttribute(HttpSession session){
         Map<String, String> data = RSAUtil.generateKeyPair();
-        String privateKey = StringUtil.getStringNoBlank(data.get("privateKey").trim());
-        String publicKey = StringUtil.getStringNoBlank(data.get("publicKey").trim());
+        String privateKey = data.get("privateKey");
+        String publicKey = data.get("publicKey");
         session.setAttribute("privateKey",privateKey);
         session.setAttribute("publicKey",publicKey);
         return publicKey;
     }
-    
 
 }

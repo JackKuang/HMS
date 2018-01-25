@@ -1,11 +1,9 @@
 package com.hurenjieee.system.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.junit.runner.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -16,75 +14,93 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hurenjieee.system.entity.SystemPermission;
-import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemPermissionService;
 import com.hurenjieee.system.util.AuthorizationUtil;
-import com.hurenjieee.util.MapUtil;
+import com.hurenjieee.util.AjaxMessage;
+import com.hurenjieee.util.AjaxMessageUtils;
 
 @Controller("systemPermissionController")
 @Scope("prototype")
 @RequestMapping("/system")
 public class SystemPermissionController {
-    
+
     @Autowired
     SystemPermissionService systemPermissionService;
-    
+
     @RequestMapping("permissionIndex")
     public String index(Model model,HttpSession session){
-        return "system/permission_index";
+        return "system/permission/index";
     }
-    
-    @RequestMapping(value="permissions",method=RequestMethod.GET)
+
+    @RequestMapping(value = "permissions",method = RequestMethod.GET)
     @ResponseBody
-    public List list(HttpSession session) throws Exception {
-        List list = systemPermissionService.listPermissionsByUserId(AuthorizationUtil.getLoginUserUuid());
+    public List list(HttpSession session) throws Exception{
+        List list = systemPermissionService.listPermissionsByUserUuid(AuthorizationUtil.getLoginUserUuid());
         return list;
     }
-    
-    @RequestMapping(value="permissions",method=RequestMethod.POST)
+
+    @RequestMapping(value = "permissions/{uuid}",method = RequestMethod.GET)
     @ResponseBody
-    public Map add(SystemPermission systemPermission){
+    public AjaxMessage list(@PathVariable String uuid) throws Exception{
         try {
-            Integer num = systemPermissionService.insertSelective(systemPermission);
-            if(num==1){
-                return MapUtil.getResult(true,"添加成功！");
-            }else {
-                return MapUtil.getResult(false,"添加失败！");
-            }
-        } catch (Exception e) {
-            return MapUtil.getResult(false,"系统出错！");
-        }
-    }
-    
-    @RequestMapping(value="permissions/${uuid}",method=RequestMethod.PUT)
-    @ResponseBody
-    public Map update(SystemPermission systemPermission,@PathVariable String uuid){
-        try {
+            SystemPermission systemPermission = new SystemPermission();
             systemPermission.setUuid(uuid);
-            Integer num = systemPermissionService.updateByKeySelective(systemPermission);
-            if(num==1){
-                return MapUtil.getResult(true,"修改成功！");
-            }else {
-                return MapUtil.getResult(false,"修改失败！");
-            }
+            systemPermission = systemPermissionService.selectByKey(systemPermission);
+            return AjaxMessageUtils.getSuccessObj(systemPermission);
         } catch (Exception e) {
-            return MapUtil.getResult(false,"系统出错！");
+            e.printStackTrace();
+            return AjaxMessageUtils.getExceptionMsg();
         }
     }
 
-   /* @RequestMapping(value="permissions/${uuid}",method=RequestMethod.DELETE)
+    @RequestMapping(value = "permissions",method = RequestMethod.POST)
     @ResponseBody
-    public Map delete(@PathVariable String uuid){
+    public AjaxMessage add(SystemPermission systemPermission){
         try {
-            Integer num = systemPermissionService.deleteByKey(uuid);
-            if(num==1){
-                return MapUtil.getResult(true,"删除成功！");
-            }else {
-                return MapUtil.getResult(false,"删除失败！");
+            Integer num = systemPermissionService.insertSelective(systemPermission);
+            if (num == 1) {
+                return AjaxMessageUtils.getSuccessMsg("新增成功");
+            } else {
+                return AjaxMessageUtils.getFailMsg("新增失败");
             }
         } catch (Exception e) {
-            return MapUtil.getResult(false,"系统出错！");
+            return new AjaxMessage(false,"WRONG","系统错误");
         }
     }
-*/
+
+    @RequestMapping(value = "permissions/{uuid}",method = RequestMethod.PUT)
+    @ResponseBody
+    public AjaxMessage update(SystemPermission systemPermission,@PathVariable String uuid){
+        try {
+            systemPermission.setUuid(uuid);
+            Integer num = systemPermissionService.updateByKeySelective(systemPermission);
+            if (num == 1) {
+                return AjaxMessageUtils.getSuccessMsg("修改成功");
+            } else {
+                return AjaxMessageUtils.getFailMsg("修改失败");
+            }
+        } catch (Exception e) {
+            return new AjaxMessage(false,"WRONG","系统错误");
+        }
+    }
+
+    @RequestMapping(value = "permissions/{uuid}",method = RequestMethod.DELETE)
+    @ResponseBody
+    public AjaxMessage delete(@PathVariable String uuid){
+        try {
+            Integer sonNum = systemPermissionService.selectSonNumByParUuid(uuid);
+            if (sonNum > 0) {
+                return AjaxMessageUtils.getFailMsg("当前节点存在子节点，无法删除");
+            }
+            Integer num = systemPermissionService.deleteByKey(uuid);
+            systemPermissionService.deleteRolePermissionByPermission(uuid);
+            if (num == 1) {
+                return AjaxMessageUtils.getSuccessMsg("删除成功");
+            } else {
+                return AjaxMessageUtils.getFailMsg("删除失败");
+            }
+        } catch (Exception e) {
+            return new AjaxMessage(false,"WRONG","系统错误");
+        }
+    }
 }

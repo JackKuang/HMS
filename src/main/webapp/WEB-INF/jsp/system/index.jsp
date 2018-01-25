@@ -269,12 +269,12 @@
 	              <c:forEach items="${item1.list }"  var="item2">
 		          	<c:if test="${item2.list == null }">
 		          	  <li>
-		          	    <a class="accordion-toggle" onclick="addTab('${item2.permissionCode }','${item2.permissionName }','${item1.permissionUrl }')" href="#">
+		          	    <a class="accordion-toggle" onclick="addTab('${item2.permissionCode }','${item2.permissionName }','${item2.permissionUrl }')" href="#">
 			              <span class="${item2.permissionStyle }"></span>
 			              ${item2.permissionName }
 			            </a>
 		          	  </li>
-		          	</c:if>
+		          	</c:if><%--  第三层暂时不显示
 		          	<c:if test="${item2.list != null }">
 			          <li>
 		          	    <a class="accordion-toggle" href="#">
@@ -286,8 +286,8 @@
 			              <!-- 三级菜单循环开始  -->
 			              <c:forEach items="${item2.list }"  var="item3">
 			          	    <li>
-			          	      <a class="accordion-toggle" onclick="addTab('${item3.permissionCode }','${item3.permissionName }','${item1.permissionUrl }')" href="#">
-				               <%--  <span class="${item3.permissionStyle }"></span> --%>
+			          	      <a class="accordion-toggle" onclick="addTab('${item3.permissionCode }','${item3.permissionName }','${item3.permissionUrl }')" href="#">
+				                <span class="${item3.permissionStyle }"></span>
 				                ${item3.permissionName }
 				              </a>
 			          	    </li>
@@ -295,7 +295,7 @@
 				          <!-- 三级菜单循环结束  -->
 			            </ul>
 		          	  </li>
-			        </c:if>
+			        </c:if> --%>
 		          </c:forEach>
 		          <!-- 二级菜单循环结束  -->
 	            </ul>
@@ -345,9 +345,9 @@
   <script src="<%=basePath %>/assets/js/main.js"></script>
 
   <script src="<%=basePath %>/vendor/plugins/addtabs/bootstrap.addtabs.js"></script>
+  <script src="<%=basePath %>/vendor/plugins/pnotify/pnotify.js"></script>
   
   <script type="text/javascript">
-
   jQuery(document).ready(function() {
 
     "use strict";
@@ -357,7 +357,7 @@
 
     // Init Demo JS  
     Demo.init();
-
+    
   });
 
   function addTab(id,title,url){

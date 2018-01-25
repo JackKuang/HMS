@@ -23,6 +23,8 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
+import org.apache.commons.lang3.StringUtils;
+
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -59,9 +61,9 @@ public class RSAUtil {
             // 私钥  
             PrivateKey privateKey = keyPair.getPrivate();  
             //得到公钥字符串  
-            String publicKeyString = getKeyString(publicKey);  
+            String publicKeyString = StringUtil.getStringNoBlank(getKeyString(publicKey)).trim();
             //得到私钥字符串  
-            String privateKeyString = getKeyString(privateKey);  
+            String privateKeyString = StringUtil.getStringNoBlank(getKeyString(privateKey)).trim();  
             //将密钥对写入到文件  
             /*FileWriter pubfw = new FileWriter(filePath + "/publicKey.keystore");  
             FileWriter prifw = new FileWriter(filePath + "/privateKey.keystore");  

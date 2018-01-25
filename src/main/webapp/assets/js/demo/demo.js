@@ -10,34 +10,6 @@ var Demo = function() {
   // Demo AdminForm Functions
   var runDemoForms = function() {
 
-    // Prevents directory response when submitting a demo form
-    $('.admin-form').on('submit', function(e) {
-
-      if ($('body.timeline-page').length || $('body.admin-validation-page').length) {
-        return;
-      }
-      //阻止元素发生默认的行为
-      //e.preventDefault;
-      //alert('Your form has submitted!');
-
-      //hash加密
-      var shaObj = new jsSHA("SHA-512", "TEXT");
-      var password = $("#password").val();
-      //salt
-//      alert(password)
-      shaObj.update(password);
-//      shaObj.update("HMS");
-      var hash = shaObj.getHash("HEX")
-      //RSA加密
-//      alert(hash)
-      var encrypt = new JSEncrypt();
-//      alert(publicKey)
-      encrypt.setPublicKey(publicKey);
-      var encrypted = encrypt.encrypt(hash);
-      $('#password').val(encrypted);
-      return true;
-    });
-
     // give file-upload preview onclick functionality
     var fileUpload = $('.fileupload-preview');
     if (fileUpload.length) {

@@ -725,6 +725,16 @@ var Core = function(options) {
          runFooter();
          runTrays();
          runFormElements();
+      },
+      showPNotify:function(title,text,type){
+  		new PNotify({
+  		    title: title,
+  		    text: text,
+  		    type: type,
+ 		        buttons: {
+ 		            sticker: false
+ 		        }
+  		});
       }
 
    }

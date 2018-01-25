@@ -3,25 +3,28 @@ package com.hurenjieee.system.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.hurenjieee.core.annotation.AutoInjection;
+import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
 
 @Table(name = "system_permission")
 public class SystemPermission extends BaseEntity{
-    @Id
-    private String uuid;
 
+    @AutoInjection(type = InjectionType.CREATE_USER)
     @Column(name = "create_user")
     private String createUser;
 
+    @AutoInjection(type = InjectionType.CREATE_DATE)
     @Column(name = "create_date")
     private Date createDate;
 
+    @AutoInjection(type = InjectionType.UPDATE_USER)
     @Column(name = "update_user")
     private String updateUser;
 
+    @AutoInjection(type = InjectionType.UPDATE_DATE)
     @Column(name = "update_date")
     private Date updateDate;
 
@@ -48,20 +51,6 @@ public class SystemPermission extends BaseEntity{
 
     @Column(name = "permission_desc")
     private String permissionDesc;
-
-    /**
-     * @return uuid
-     */
-    public String getUuid() {
-        return uuid;
-    }
-
-    /**
-     * @param uuid
-     */
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
 
     /**
      * @return create_user

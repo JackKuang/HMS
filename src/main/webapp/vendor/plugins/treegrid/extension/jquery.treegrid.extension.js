@@ -45,7 +45,6 @@
                     });
                     tbody.append(tr);
                     target.getChildNodes(data, item, nowParentIndex, tbody)
-                    
                 }
             });
         };
@@ -118,7 +117,7 @@
     $.fn.treegridData.methods = {
         getAllNodes: function (target, data) {
             return target.treegrid('getAllNodes');
-        },
+        }
         //组件的其他方法也可以进行类似封装........
     };
 

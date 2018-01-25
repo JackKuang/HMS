@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -10,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.hurenjieee.system.entity.SystemRole;
 import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemPermissionService;
+import com.hurenjieee.system.service.SystemRoleService;
 import com.hurenjieee.system.service.SystemUserService;
 import com.hurenjieee.test.entity.TestEntity;
 import com.hurenjieee.test.service.TestService;
@@ -26,18 +27,29 @@ public class MybatisTest {
     @Autowired
     SystemUserService systemUserService;
 
-
+    @Autowired
+    SystemRoleService systemRoleService;
+    
     @Autowired
     SystemPermissionService systemPermissionService;
     
     @Test
     public void insert(){
         for(int i = 1000; i<2000;i++){
+            SystemRole entity = new SystemRole();
+            System.out.println(i);
+            entity.setRoleName("role"+i);
+            systemRoleService.insertSelective(entity);
+        }
+    }
+    
+    @Test
+    public void insertOne(){
+        int i= 1;
             TestEntity testEntity = new TestEntity();
             System.out.println(i);
             testEntity.setName("zhang"+i);
             testService.insertSelective(testEntity);
-        }
     }
 
     @Test

@@ -92,7 +92,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity>  implements BaseServ
      * @return
      */
     @Override
-    public Integer deleteByKey(Long id){
+    public Integer deleteByKey(String id){
         return getMapper().deleteByPrimaryKey(id);
     }
 

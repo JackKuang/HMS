@@ -19,7 +19,7 @@
     <result column="permission_order" jdbcType="INTEGER" property="permissionOrder" />
   </resultMap>
   
-  <select id="listPermissionsByUserId" parameterType="String" resultType="map">
+  <select id="listPermissionsByUserUuid" parameterType="String" resultType="map">
   	SELECT
   		permission.uuid as permissionUuid,
   		permission.permission_code as permissionCode,
@@ -31,10 +31,35 @@
   		permission.permission_desc as permissionDesc
   	FROM system_user user
   	LEFT JOIN system_user_role user_role ON user_role.user_uuid = user.uuid
-  	LEFT JOIN system_role role ON role.uuid = user_role.role_uuid
-  	LEFT JOIN system_role_permission role_permission ON role_permission.role_uuid = role.uuid 
+  	LEFT JOIN system_role_permission role_permission ON role_permission.role_uuid = user_role.role_uuid
   	LEFT JOIN system_permission permission ON role_permission.permission_uuid = permission.uuid
-  	WHERE user_id = #{userId} AND permission_state = 1
+  	WHERE user.uuid = #{userUuid} AND permission_state = 1
     ORDER BY permission_order ASC
+  </select>
+  
+   <select id="listAllPermissions" resultType="map">
+  	SELECT
+  		permission.uuid as permissionUuid,
+  		permission.permission_code as permissionCode,
+  		permission.permission_style as permissionStyle,
+  		permission.permission_name as permissionName,
+		permission.permission_order AS permissionOrder,
+  		permission.permission_url as permissionUrl,
+  		permission.permission_par_code as permissionParCode,
+  		permission.permission_desc as permissionDesc
+  	FROM system_permission permission 
+    ORDER BY permission_order ASC
+  </select>
+  
+  <delete id="deleteRolePermissionByPermission" parameterType="String">
+  	DELETE FROM system_role_permission WHERE permission_uuid = #{uuid}
+  </delete>
+  
+  <select id="selectSonNumByParUuid" parameterType="String" resultType="Integer">
+  	SELECT
+  		IFNULL(COUNT(1),0)
+	FROM system_permission son
+	LEFT JOIN system_permission par ON par.permission_code = son.permission_par_code
+	WHERE par.uuid = #{uuid}
   </select>
 </mapper>

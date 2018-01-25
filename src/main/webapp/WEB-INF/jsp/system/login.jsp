@@ -150,7 +150,7 @@
   
   <!-- Page Javascript -->
   <script type="text/javascript">
-  var publicKey = "${publicKey }";
+  var publicKey = "${publicKey}";
   jQuery(document).ready(function() {
 
     "use strict";
@@ -161,6 +161,8 @@
     // Init Demo JS
     Demo.init();
 
+    initForm();
+    
     // Init CanvasBG and pass target starting location
     CanvasBG.init({
       Loc: {
@@ -168,7 +170,34 @@
         y: window.innerHeight / 3.3
       },
     });
+  
   });
+  function initForm(){
+	  //密码加密方案
+	    $('#login').on('submit', function(e) {
+	      //阻止元素发生默认的行为
+	      //e.preventDefault;
+	      //alert('Your form has submitted!');
+
+	      //hash加密
+	      var shaObj = new jsSHA("SHA-512", "TEXT");
+	      var password = $("#password").val();
+	      //salt
+//	      alert(password)
+	      shaObj.update(password);
+//	      shaObj.update("HMS");
+	      var hash = shaObj.getHash("HEX")
+	      //RSA加密
+//	      alert(hash)
+	      var encrypt = new JSEncrypt();
+//	      alert(publicKey)
+	      //公钥
+	      encrypt.setPublicKey(publicKey);
+	      var encrypted = encrypt.encrypt(hash);
+	      $('#password').val(encrypted);
+	      return true;
+	    });
+	  }
   
   </script>
 

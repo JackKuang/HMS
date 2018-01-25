@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class TreeUtil {
 
     public static List<Map> listToTree(List<Map> maps,String code,String parCode,String order){
@@ -23,7 +25,7 @@ public class TreeUtil {
         }
         //把子数据取出放入父级Map的List中
         for(Map m:maps){
-            if(m.get(parCode) != null){
+            if(StringUtils.isNotBlank((String)m.get(parCode))){
                 Map tempMap = (Map) map1.get((String)m.get(parCode));
                 if(tempMap.containsKey("list")){
                     List<Map> listMap = (List<Map>) tempMap.get("list");
@@ -40,12 +42,11 @@ public class TreeUtil {
         //取出所有父级Map中放入
         for(String key:map1.keySet()){
             Map tempMap = (Map) map1.get(key);
-            if(!tempMap.containsKey(parCode)){
+            if(!StringUtils.isNotBlank((String)tempMap.get(parCode))){
                 result.add(tempMap);
             }
         }
         Collections.sort(result,new Comparator<Map>() {
-
             @Override
             public int compare(Map o1,Map o2){
                 try {

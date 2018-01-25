@@ -49,7 +49,7 @@
 			<property name="enableSubPackages" value="true"/>  
 			</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="com.hurenjieee.system.dao"
+		<!-- <sqlMapGenerator targetPackage="com.hurenjieee.system.dao"
 			targetProject="src\main\java" >
 			<property name="enableSubPackages" value="true"/>  
 			</sqlMapGenerator>
@@ -58,7 +58,7 @@
 			targetProject="src\main\java" type="XMLMAPPER" >
 			<property name="enableSubPackages" value="true"/>			
 			</javaClientGenerator>
-
+ -->
 		<!-- 多表用 -->
 		<!-- <table tableName="test%" mapperName="{0}Dao">
 			<generatedKey column="id" sqlStatement="JDBC" />
@@ -75,6 +75,10 @@
 <!-- 		<table tableName="system_user" mapperName="SystemUserDao">
 		</table>
  -->
-		<table tableName="system_permission" mapperName="systemPermissionDao"></table>
+		<!-- <table tableName="system_permission" mapperName="systemPermissionDao"></table>
+		<table tableName="system_role" mapperName="systemRoleDao"></table>
+		<table tableName="system_user" mapperName="systemUserDao"></table>
+		 -->
+		<table tableName="test_entity" mapperName="TestEntity"></table>
 	</context>
 </generatorConfiguration>
