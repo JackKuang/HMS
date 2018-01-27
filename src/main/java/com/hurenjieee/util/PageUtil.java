@@ -7,8 +7,10 @@ public class PageUtil {
     
     public static PageResult generatePage(PageInfo pageInfo){
         PageResult pageResult = new PageResult();
-        pageResult.setRows(pageInfo.getList());
+        pageResult.setData(pageInfo.getList());
         pageResult.setTotal(pageInfo.getTotal());
+        pageResult.setCode(0);
+        pageResult.setMsg("");
         return pageResult;
     }
 

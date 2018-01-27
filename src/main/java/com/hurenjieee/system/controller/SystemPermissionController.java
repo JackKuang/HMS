@@ -55,8 +55,10 @@ public class SystemPermissionController {
 
     @RequestMapping(value = "permissions",method = RequestMethod.POST)
     @ResponseBody
-    public AjaxMessage add(SystemPermission systemPermission){
+    public AjaxMessage save(SystemPermission systemPermission){
         try {
+            if(systemPermission.getPermissionState() == null || systemPermission.getPermissionState() != 1)
+                systemPermission.setPermissionState(0);
             Integer num = systemPermissionService.insertSelective(systemPermission);
             if (num == 1) {
                 return AjaxMessageUtils.getSuccessMsg("新增成功");
@@ -64,6 +66,7 @@ public class SystemPermissionController {
                 return AjaxMessageUtils.getFailMsg("新增失败");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return new AjaxMessage(false,"WRONG","系统错误");
         }
     }
@@ -72,6 +75,8 @@ public class SystemPermissionController {
     @ResponseBody
     public AjaxMessage update(SystemPermission systemPermission,@PathVariable String uuid){
         try {
+            if(systemPermission.getPermissionState() == null || systemPermission.getPermissionState() != 1)
+                systemPermission.setPermissionState(0);
             systemPermission.setUuid(uuid);
             Integer num = systemPermissionService.updateByKeySelective(systemPermission);
             if (num == 1) {
@@ -80,6 +85,7 @@ public class SystemPermissionController {
                 return AjaxMessageUtils.getFailMsg("修改失败");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return new AjaxMessage(false,"WRONG","系统错误");
         }
     }

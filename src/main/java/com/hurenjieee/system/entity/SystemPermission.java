@@ -28,20 +28,14 @@ public class SystemPermission extends BaseEntity{
     @Column(name = "update_date")
     private Date updateDate;
 
-    @Column(name = "permission_code")
-    private String permissionCode;
-
-    @Column(name = "permission_style")
-    private String permissionStyle;
-
     @Column(name = "permission_name")
     private String permissionName;
 
     @Column(name = "permission_url")
     private String permissionUrl;
 
-    @Column(name = "permission_par_code")
-    private String permissionParCode;
+    @Column(name = "permission_par_uuid")
+    private String permissionParUuid;
 
     @Column(name = "permission_state")
     private Integer permissionState;
@@ -109,34 +103,6 @@ public class SystemPermission extends BaseEntity{
     }
 
     /**
-     * @return permission_code
-     */
-    public String getPermissionCode() {
-        return permissionCode;
-    }
-
-    /**
-     * @param permissionCode
-     */
-    public void setPermissionCode(String permissionCode) {
-        this.permissionCode = permissionCode;
-    }
-
-    /**
-     * @return permission_style
-     */
-    public String getPermissionStyle() {
-        return permissionStyle;
-    }
-
-    /**
-     * @param permissionStyle
-     */
-    public void setPermissionStyle(String permissionStyle) {
-        this.permissionStyle = permissionStyle;
-    }
-
-    /**
      * @return permission_name
      */
     public String getPermissionName() {
@@ -165,17 +131,17 @@ public class SystemPermission extends BaseEntity{
     }
 
     /**
-     * @return permission_par_code
+     * @return permission_par_uuid
      */
-    public String getPermissionParCode() {
-        return permissionParCode;
+    public String getPermissionParUuid() {
+        return permissionParUuid;
     }
 
     /**
-     * @param permissionParCode
+     * @param permissionParUuid
      */
-    public void setPermissionParCode(String permissionParCode) {
-        this.permissionParCode = permissionParCode;
+    public void setPermissionParUuid(String permissionParUuid) {
+        this.permissionParUuid = permissionParUuid;
     }
 
     /**

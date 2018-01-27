@@ -15,7 +15,7 @@ public interface SystemPermissionService extends BaseService<SystemPermission> {
      * @param userUuid
      * @return
      */
-    public List<Map> listPermissionsMenuByUserUuid(String userUuid);
+    public List<Map<String,Object>> listPermissionsMenuByUserUuid(String userUuid);
 
     /**
      * @Description: List类型（菜单列表）
@@ -24,7 +24,7 @@ public interface SystemPermissionService extends BaseService<SystemPermission> {
      * @param userUuid
      * @return
      */
-    public List<Map> listPermissionsByUserUuid(String userUuid);
+    public List<Map<String,Object>> listPermissionsByUserUuid(String userUuid);
 
     /**
      * @Description: 删除列表时需要删除角色权限关系

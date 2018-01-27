@@ -1,5 +1,6 @@
 package com.hurenjieee.system.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,18 +28,23 @@ public class SystemPermissionServiceImpl extends BaseServiceImpl<SystemPermissio
     }
 
     @Override
-    public List<Map> listPermissionsMenuByUserUuid(String userUuid){
-        List<Map> permissions = systemPermissionDao.listPermissionsByUserUuid(userUuid);
-        return TreeUtil.listToTree(permissions,"permissionCode","permissionParCode","permissionOrder");
+    public List<Map<String,Object>> listPermissionsMenuByUserUuid(String userUuid){
+        List<Map<String,Object>> permissions = systemPermissionDao.listPermissionsByUserUuid(userUuid);
+        return TreeUtil.listToTree(permissions,"permissionUuid","permissionParUuid","permissionOrder");
     }
 
     @Override
-    public List<Map> listPermissionsByUserUuid(String userUuid){
-        List<Map> permissions;
+    public List<Map<String,Object>> listPermissionsByUserUuid(String userUuid){
+        List<Map<String,Object>> permissions;
         if(userUuid != null && "admin".equals(userUuid))
             permissions = systemPermissionDao.listAllPermissions();
         else
             permissions = systemPermissionDao.listPermissionsByUserUuid(userUuid);
+        permissions = TreeUtil.listToTree(permissions,"permissionUuid","permissionParUuid","permissionOrder");
+        Map<String, String> para = new HashMap<>();
+        para.put("permissionName","name");
+        para.put("list","children");
+        permissions = TreeUtil.treeToNodes(permissions,para);
         return permissions;
     }
 

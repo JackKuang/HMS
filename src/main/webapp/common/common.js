@@ -1,0 +1,55 @@
+var alertModel = {
+	iconType:{
+		"success":1,
+		"fail":2,
+		"question":3,
+		"lock":4,
+		"smile":5,
+		"cry":6,
+		"mark":7
+	},
+	alertData: function(data){
+		if(data.success){
+			icon = alertModel.iconType["success"];
+		}else{
+			icon = alertModel.iconType["fail"];
+		}
+		layer.msg(data.msg, {
+			icon: icon,
+			time: 3000,
+			btn: ['确认']
+		});
+	},
+	alertMsg: function(iconType,msg){
+		var icon = alertModel.iconType[iconType];
+		layer.msg(msg, {
+			icon: icon,
+			//1成功，2问号，3错误，4锁，5笑脸，6苦脸，7感叹号
+			time: 3000, //20s后自动关闭
+			btn: ['确认']
+		});
+	}
+}
+
+var loadingModel = {
+	showLoading:function(){
+		layer.load();
+	},
+	hideLoading:function(){
+		layer.closeAll('loading');
+	}
+}
+
+var pageModel = {
+	request: {
+		pageName: 'pageNum',//页码的参数名称，默认：page
+		limitName: 'pageSize' //每页数据量的参数名，默认：limit
+	},
+	response: {
+		//statusName: 'pageNum', //数据状态的字段名称，默认：code
+		//statusCode: 200, //成功的状态码，默认：0
+		//msgName: 'pageSize', //状态信息的字段名称，默认：msg
+		countName: 'total', //数据总数的字段名称，默认：count
+		dataName: 'list' //数据列表的字段名称，默认：data
+	} 
+}

@@ -56,6 +56,8 @@
 
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
+		<url-pattern>/common/*</url-pattern>
+		<url-pattern>/layui/*</url-pattern>
 		<url-pattern>/assets/*</url-pattern>
 		<url-pattern>/email-templates/*</url-pattern>
 		<url-pattern>/landing-page/*</url-pattern>

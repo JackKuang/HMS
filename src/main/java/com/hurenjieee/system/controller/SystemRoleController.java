@@ -47,7 +47,7 @@ public class SystemRoleController {
 
     @RequestMapping(value = "roles",method = RequestMethod.POST)
     @ResponseBody
-    public AjaxMessage add(SystemRole systemRole){
+    public AjaxMessage save(SystemRole systemRole){
         try {
             Integer num = systemRoleService.insertSelective(systemRole);
             if (num == 1) {

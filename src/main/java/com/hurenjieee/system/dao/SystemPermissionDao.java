@@ -8,9 +8,9 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface SystemPermissionDao extends Mapper<SystemPermission> {
 
-    List<Map> listPermissionsByUserUuid(String userUuid);    
+    List<Map<String,Object>> listPermissionsByUserUuid(String userUuid);    
 
-    List<Map> listAllPermissions();
+    List<Map<String,Object>> listAllPermissions();
 
     void deleteRolePermissionByPermission(String uuid);
 

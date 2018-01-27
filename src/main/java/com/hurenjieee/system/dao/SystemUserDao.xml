@@ -40,6 +40,6 @@
   	LEFT JOIN system_role_permission role_permission ON role_permission.role_uuid = role.uuid 
   	LEFT JOIN system_permission permission ON role_permission.permission_uuid = permission.uuid
   	WHERE user_id = #{userId} AND permission_state = 1
-    ORDER BY permission_code,permission_order ASC
+    ORDER BY permission_order ASC
   </select>
 </mapper>
