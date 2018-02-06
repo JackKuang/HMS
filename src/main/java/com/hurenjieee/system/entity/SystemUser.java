@@ -3,22 +3,26 @@ package com.hurenjieee.system.entity;
 import java.util.Date;
 import javax.persistence.*;
 
+import com.hurenjieee.core.annotation.AutoInjection;
+import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
 
 @Table(name = "system_user")
 public class SystemUser extends BaseEntity{
-    @Id
-    private String uuid;
-
+    
+    @AutoInjection(type = InjectionType.CREATE_USER)
     @Column(name = "create_user")
     private String createUser;
 
+    @AutoInjection(type = InjectionType.CREATE_DATE)
     @Column(name = "create_date")
     private Date createDate;
 
+    @AutoInjection(type = InjectionType.UPDATE_USER)
     @Column(name = "update_user")
     private String updateUser;
 
+    @AutoInjection(type = InjectionType.UPDATE_DATE)
     @Column(name = "update_date")
     private Date updateDate;
 
@@ -40,26 +44,9 @@ public class SystemUser extends BaseEntity{
     @Column(name = "user_sex")
     private Integer userSex;
 
-    @Column(name = "user_role_uuid")
-    private String userRoleUuid;
-
-    @Column(name = "user_is_defalut_role")
-    private Boolean userIsDefalutRole;
-
-    /**
-     * @return uuid
-     */
-    public String getUuid() {
-        return uuid;
-    }
-
-    /**
-     * @param uuid
-     */
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
+    @Transient
+    private String userRoles;
+    
     /**
      * @return create_user
      */
@@ -200,31 +187,16 @@ public class SystemUser extends BaseEntity{
         this.userSex = userSex;
     }
 
-    /**
-     * @return user_role_uuid
-     */
-    public String getUserRoleUuid() {
-        return userRoleUuid;
+    
+    public String getUserRoles(){
+        return userRoles;
     }
 
-    /**
-     * @param userRoleUuid
-     */
-    public void setUserRoleUuid(String userRoleUuid) {
-        this.userRoleUuid = userRoleUuid;
+    
+    public void setUserRoles(String userRoles){
+        this.userRoles = userRoles;
     }
+    
+    
 
-    /**
-     * @return user_is_defalut_role
-     */
-    public Boolean getUserIsDefalutRole() {
-        return userIsDefalutRole;
-    }
-
-    /**
-     * @param userIsDefalutRole
-     */
-    public void setUserIsDefalutRole(Boolean userIsDefalutRole) {
-        this.userIsDefalutRole = userIsDefalutRole;
-    }
 }

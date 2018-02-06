@@ -38,6 +38,14 @@ public class SystemPermissionController {
         List list = systemPermissionService.listPermissionsByUserUuid(AuthorizationUtil.getLoginUserUuid());
         return list;
     }
+    
+
+    @RequestMapping(value = "rols_permissions",method = RequestMethod.GET)
+    @ResponseBody
+    public List listAllPermissionsByUserUuid(HttpSession session,String roleUuid) throws Exception{
+        List list = systemPermissionService.listAllPermissionsByUserUuid(roleUuid,AuthorizationUtil.getLoginUserUuid());
+        return list;
+    }
 
     @RequestMapping(value = "permissions/{uuid}",method = RequestMethod.GET)
     @ResponseBody
@@ -99,7 +107,6 @@ public class SystemPermissionController {
                 return AjaxMessageUtils.getFailMsg("当前节点存在子节点，无法删除");
             }
             Integer num = systemPermissionService.deleteByKey(uuid);
-            systemPermissionService.deleteRolePermissionByPermission(uuid);
             if (num == 1) {
                 return AjaxMessageUtils.getSuccessMsg("删除成功");
             } else {

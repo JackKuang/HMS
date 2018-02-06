@@ -17,7 +17,7 @@ public class PageResult<T> {
     private List<T> data;
 
     // 总数
-    private long total;
+    private long count;
     
     
     public Integer getCode(){
@@ -45,21 +45,16 @@ public class PageResult<T> {
         return data;
     }
 
-    
     public void setData(List<T> data){
         this.data = data;
     }
-
     
-    public long getTotal(){
-        return total;
+    public long getCount(){
+        return count;
     }
 
-    
-    public void setTotal(long total){
-        this.total = total;
+    public void setCount(long count){
+        this.count = count;
     }
-
-    
     
 }

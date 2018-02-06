@@ -1,8 +1,11 @@
 package com.hurenjieee.system.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +27,11 @@ public class SystemUserController {
     @Autowired
     SystemUserService systemUserService;
 
+    @RequestMapping("userIndex")
+    public String index(Model model,HttpSession session){
+        return "system/user/index";
+    }
+    
     @RequestMapping(value = "users",method = RequestMethod.GET)
     @ResponseBody
     public PageResult<SystemUser> list(SystemUser systemUser){
@@ -62,7 +70,7 @@ public class SystemUserController {
             if (systemUser != null) {
                 return new AjaxMessage(true,"SUCCESS",systemUser);
             } else {
-                return AjaxMessageUtils.getFailMsg("修改失败");
+                return AjaxMessageUtils.getFailMsg("查询失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,9 +101,9 @@ public class SystemUserController {
         try {
             Integer num = systemUserService.deleteByKey(uuid);
             if (num == 1) {
-                return AjaxMessageUtils.getSuccessMsg("修改成功");
+                return AjaxMessageUtils.getSuccessMsg("删除成功");
             } else {
-                return AjaxMessageUtils.getFailMsg("修改失败");
+                return AjaxMessageUtils.getFailMsg("删除失败");
             }
         } catch (Exception e) {
             e.printStackTrace();

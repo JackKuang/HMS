@@ -21,6 +21,11 @@ public class SystemConst {
     public static String HTTP_SESSION_SYSTEM_USER = "SYSTEM_USER";
     
     /** 
+     * @Fields: SYSTEM_ADMIN_UUID : admin账号数据库中的uuid
+     */ 
+    public static String SYSTEM_ADMIN_UUID = "admin";
+    
+    /** 
      * @Fields: HTTP_REQUEST_SUCCESS : 请求成功
      */ 
     public static String HTTP_RESPONSE_SUCCESS = "SUCCESS";

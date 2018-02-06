@@ -1,5 +1,8 @@
 package com.hurenjieee.system.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 import com.hurenjieee.system.entity.SystemRole;
-import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemRoleService;
 import com.hurenjieee.util.AjaxMessage;
 import com.hurenjieee.util.AjaxMessageUtils;
@@ -27,6 +29,45 @@ public class SystemRoleController {
 
     @Autowired
     SystemRoleService systemRoleService;
+    
+
+    //----------特殊接口开始----------
+    @RequestMapping(value = "rolesListAll",method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxMessage rolesListAll(){
+        try {
+            List<SystemRole> list = systemRoleService.select(null);
+            return AjaxMessageUtils.getSuccessObj(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new AjaxMessage(false,"WRONG","系统错误");
+        }
+    }
+    
+
+    /**
+     * @Description: 查找某个用户的角色
+     * @Author: JackKuang
+     * @Since: 2018年2月6日下午8:25:57
+     * @param userUuid
+     * @return
+     */
+    @RequestMapping(value = "rolesListOne",method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxMessage rolesListOne(String userUuid){
+        try {
+            List<Map> list = systemRoleService.selectRoleByUserUuid(userUuid);
+            return AjaxMessageUtils.getSuccessObj(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new AjaxMessage(false,"WRONG","系统错误");
+        }
+    }
+    
+    //----------特殊接口结束----------
+    
+
+    //----------通用接口开始----------
 
     @RequestMapping("roleIndex")
     public String index(Model model,HttpSession session){
@@ -56,11 +97,12 @@ public class SystemRoleController {
                 return AjaxMessageUtils.getFailMsg("新增失败");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return new AjaxMessage(false,"WRONG","系统错误");
         }
     }
 
-    @RequestMapping(value = "roles/{uuid}",method = RequestMethod.POST)
+    @RequestMapping(value = "roles/{uuid}",method = RequestMethod.PUT)
     @ResponseBody
     public AjaxMessage update(SystemRole systemRole,@PathVariable String uuid){
         try {
@@ -72,6 +114,7 @@ public class SystemRoleController {
                 return AjaxMessageUtils.getFailMsg("修改失败");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return new AjaxMessage(false,"WRONG","系统错误");
         }
     }
@@ -82,13 +125,15 @@ public class SystemRoleController {
         try {
             Integer num = systemRoleService.deleteByKey(uuid);
             if (num == 1) {
-                return AjaxMessageUtils.getSuccessMsg("修改成功");
+                return AjaxMessageUtils.getSuccessMsg("删除成功");
             } else {
-                return AjaxMessageUtils.getFailMsg("修改失败");
+                return AjaxMessageUtils.getFailMsg("删除失败");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return new AjaxMessage(false,"WRONG","系统错误");
         }
     }
 
+    //----------通用接口结束----------
 }

@@ -1,14 +1,11 @@
 package com.hurenjieee.core.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
-
-import org.apache.ibatis.annotations.Insert;
 
 /**
  * @Description: 基本类，所有子类继承此类
@@ -24,7 +21,7 @@ public class BaseEntity {
      */
     @Id
     @Column(length = 32,nullable = false)
-    @GeneratedValue(generator = "UUID") // 指定生成器名称
+    @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "select uuid()")
     private String uuid;
 
     /**

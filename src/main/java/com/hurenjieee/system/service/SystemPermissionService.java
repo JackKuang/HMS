@@ -25,6 +25,16 @@ public interface SystemPermissionService extends BaseService<SystemPermission> {
      * @return
      */
     public List<Map<String,Object>> listPermissionsByUserUuid(String userUuid);
+    
+
+    /**
+     * @Description: List类型（菜单列表）,adminUuid管理下userUuid的菜单
+     * @Author: JackKuang
+     * @Since: 2018年1月18日下午8:14:02
+     * @param userUuid
+     * @return
+     */
+    public List<Map<String,Object>> listAllPermissionsByUserUuid(String roleUuid,String adminUuid);
 
     /**
      * @Description: 删除列表时需要删除角色权限关系

@@ -53,3 +53,38 @@ var pageModel = {
 		dataName: 'list' //数据列表的字段名称，默认：data
 	} 
 }
+
+var formModel = {
+	initCheckbox:function(id,url,reqData,key,value,isMuti){
+		$.ajax({
+			type: 'get',
+			url: url,
+			data: reqData,
+			success: function(data) {
+				if(data.success){
+					$('#'+id).html('');
+					console.log(data);
+					var list = data.obj;
+					$('#'+id).append("");
+					var options = '';
+					options += '<option value=""></option>';
+					for(var i = 0 ; i < list.length ; i++){
+						var row = list[i];
+						if(row.selected){
+							options += '<option value="'+row[key]+'" selected >'+row[value]+'</option>';
+						}else{
+							options += '<option value="'+row[key]+'">'+row[value]+'</option>';
+						}
+					}
+					$('#'+id).html(options);
+					layui.selMeltiple($);
+					/*layui.use(['form', 'jquery'], function(){
+					    var form = layui.form;
+					    var $ = layui.jquery;
+					    layui.selMeltiple($);
+					});*/
+				}
+			}
+		});
+	}
+}

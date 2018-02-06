@@ -29,7 +29,7 @@
 <body class="layui-layout-body">
 	<div class="layui-row layui-col-space10">
 		<div class="layui-col-md4">
-			<ul id="demo"></ul>
+			<ul id="permissionTree"></ul>
 		</div>
 		<div class="layui-col-md4">
 			<form class="layui-form" id="permissionForm">
@@ -149,10 +149,10 @@
 			    async:true,    //或false,是否异步
 			    dataType:'json',
 			    success:function(data,textStatus,jqXHR){
-				    $('#demo').html('');
+				    $('#permissionTree').html('');
 			    	layui.use('tree', function(){
 				    	layui.tree({
-					    	elem: '#demo',//传入元素选择器
+					    	elem: '#permissionTree',//传入元素选择器
 				    		nodes: data,//数据内容
 				    		click: function(node){//点击事件
 				    			$('#operateName').html('节点修改');
@@ -172,18 +172,20 @@
 				    	});
 		    		});
 			    }
-		    });	
+		    });
 		}
 	}
 
 	var permissionOperate = {
 		saveRootPermission:function(){
+			$('#permissionForm')[0].reset();
 			$('#operateName').html('根节点添加');
 			permissionUuidGlobal = '';
 			$('#permissionParCode').val('');
 		},
 		savePermission:function(){
 			if(permissionUuidGlobal != ''){
+				$('#permissionForm')[0].reset();
 				$('#operateName').html('当前子节点添加');
 				$('#permissionParUuid').val(permissionUuidGlobal);
 				permissionUuidGlobal = "";
@@ -202,7 +204,8 @@
 						  success: function(data) {
 							  loadingModel.hideLoading();
 							  if(data.success){
-								  initModel.initPermissionTree()
+								  initModel.initPermissionTree();
+								  $('#permissionForm')[0].reset();
 							  }
 							  alertModel.alertData(data);
 						  }

@@ -54,12 +54,19 @@ public class TreeUtil {
         // 取出所有父级Map中放入
         for ( String key : map1.keySet() ) {
             Map<String, Object> tempMap = (Map<String, Object>) map1.get(key);
+            if (tempMap.containsKey("list")) {
+                tempMap.put("list",sort((List<Map<String, Object>>) tempMap.get("list"),order));
+            }
             if (!StringUtils.isNotBlank((String) tempMap.get(parCode))) {
                 result.add(tempMap);
             }
         }
+        System.out.println("排序执行了" + (System.currentTimeMillis() - startTime) + "ms;");
+        return sort(result,order);
+    }
+    
+    public static List<Map<String, Object>> sort(List<Map<String, Object>> result,String order){
         Collections.sort(result,new Comparator<Map<String, Object>>() {
-
             @Override
             public int compare(Map<String, Object> o1,Map<String, Object> o2){
                 try {
@@ -73,7 +80,6 @@ public class TreeUtil {
                 }
             }
         });
-        System.out.println("排序执行了" + (System.currentTimeMillis() - startTime) + "ms;");
         return result;
     }
 

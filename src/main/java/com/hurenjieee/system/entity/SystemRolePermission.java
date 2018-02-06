@@ -7,8 +7,8 @@ import com.hurenjieee.core.annotation.AutoInjection;
 import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
 
-@Table(name = "system_role")
-public class SystemRole extends BaseEntity {
+@Table(name = "system_role_permission")
+public class SystemRolePermission extends BaseEntity{
 
     @AutoInjection(type = InjectionType.CREATE_USER)
     @Column(name = "create_user")
@@ -16,7 +16,7 @@ public class SystemRole extends BaseEntity {
 
     @AutoInjection(type = InjectionType.CREATE_DATE)
     @Column(name = "create_date")
-    private Date   createDate;
+    private Date createDate;
 
     @AutoInjection(type = InjectionType.UPDATE_USER)
     @Column(name = "update_user")
@@ -24,110 +24,95 @@ public class SystemRole extends BaseEntity {
 
     @AutoInjection(type = InjectionType.UPDATE_DATE)
     @Column(name = "update_date")
-    private Date   updateDate;
+    private Date updateDate;
 
-    @Column(name = "role_name")
-    private String roleName;
+    @Column(name = "role_uuid")
+    private String roleUuid;
 
-    @Column(name = "role_code")
-    private String roleCode;
-
-    /** 
-     * @Fields: permissions : 传入权限String字符串","分割
-     */
-    @Transient
-    private String permissions;
+    @Column(name = "permission_uuid")
+    private String permissionUuid;
 
     /**
      * @return create_user
      */
-    public String getCreateUser(){
+    public String getCreateUser() {
         return createUser;
     }
 
     /**
      * @param createUser
      */
-    public void setCreateUser(String createUser){
+    public void setCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
     /**
      * @return create_date
      */
-    public Date getCreateDate(){
+    public Date getCreateDate() {
         return createDate;
     }
 
     /**
      * @param createDate
      */
-    public void setCreateDate(Date createDate){
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
     /**
      * @return update_user
      */
-    public String getUpdateUser(){
+    public String getUpdateUser() {
         return updateUser;
     }
 
     /**
      * @param updateUser
      */
-    public void setUpdateUser(String updateUser){
+    public void setUpdateUser(String updateUser) {
         this.updateUser = updateUser;
     }
 
     /**
      * @return update_date
      */
-    public Date getUpdateDate(){
+    public Date getUpdateDate() {
         return updateDate;
     }
 
     /**
      * @param updateDate
      */
-    public void setUpdateDate(Date updateDate){
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
     /**
-     * @return role_name
+     * @return role_uuid
      */
-    public String getRoleName(){
-        return roleName;
+    public String getRoleUuid() {
+        return roleUuid;
     }
 
     /**
-     * @param roleName
+     * @param roleUuid
      */
-    public void setRoleName(String roleName){
-        this.roleName = roleName;
+    public void setRoleUuid(String roleUuid) {
+        this.roleUuid = roleUuid;
     }
 
     /**
-     * @return role_code
+     * @return permission_uuid
      */
-    public String getRoleCode(){
-        return roleCode;
+    public String getPermissionUuid() {
+        return permissionUuid;
     }
 
     /**
-     * @param roleCode
+     * @param permissionUuid
      */
-    public void setRoleCode(String roleCode){
-        this.roleCode = roleCode;
+    public void setPermissionUuid(String permissionUuid) {
+        this.permissionUuid = permissionUuid;
     }
-
-    public String getPermissions(){
-        return permissions;
-    }
-
-    public void setPermissions(String permissions){
-        this.permissions = permissions;
-    }
-
 }

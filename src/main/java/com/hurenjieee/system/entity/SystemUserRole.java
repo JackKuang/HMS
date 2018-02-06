@@ -3,10 +3,10 @@ package com.hurenjieee.system.entity;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(name = "test_entity")
-public class TestEntity {
-    @Id
-    private String uuid;
+import com.hurenjieee.core.entity.BaseEntity;
+
+@Table(name = "system_user_role")
+public class SystemUserRole extends BaseEntity{
 
     @Column(name = "create_user")
     private String createUser;
@@ -20,23 +20,11 @@ public class TestEntity {
     @Column(name = "update_date")
     private Date updateDate;
 
-    private String name;
+    @Column(name = "user_uuid")
+    private String userUuid;
 
-    private Date date;
-
-    /**
-     * @return uuid
-     */
-    public String getUuid() {
-        return uuid;
-    }
-
-    /**
-     * @param uuid
-     */
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+    @Column(name = "role_uuid")
+    private String roleUuid;
 
     /**
      * @return create_user
@@ -95,30 +83,30 @@ public class TestEntity {
     }
 
     /**
-     * @return name
+     * @return user_uuid
      */
-    public String getName() {
-        return name;
+    public String getUserUuid() {
+        return userUuid;
     }
 
     /**
-     * @param name
+     * @param userUuid
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setUserUuid(String userUuid) {
+        this.userUuid = userUuid;
     }
 
     /**
-     * @return date
+     * @return role_uuid
      */
-    public Date getDate() {
-        return date;
+    public String getRoleUuid() {
+        return roleUuid;
     }
 
     /**
-     * @param date
+     * @param roleUuid
      */
-    public void setDate(Date date) {
-        this.date = date;
+    public void setRoleUuid(String roleUuid) {
+        this.roleUuid = roleUuid;
     }
 }
