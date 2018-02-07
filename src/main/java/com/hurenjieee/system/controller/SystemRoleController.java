@@ -29,9 +29,14 @@ public class SystemRoleController {
 
     @Autowired
     SystemRoleService systemRoleService;
-    
 
-    //----------特殊接口开始----------
+    // ----------特殊接口开始----------
+    /**
+     * @Description: 所有角色
+     * @Author: JackKuang
+     * @Since: 2018年2月7日上午11:10:01
+     * @return
+     */
     @RequestMapping(value = "rolesListAll",method = RequestMethod.GET)
     @ResponseBody
     public AjaxMessage rolesListAll(){
@@ -43,7 +48,6 @@ public class SystemRoleController {
             return new AjaxMessage(false,"WRONG","系统错误");
         }
     }
-    
 
     /**
      * @Description: 查找某个用户的角色
@@ -63,11 +67,10 @@ public class SystemRoleController {
             return new AjaxMessage(false,"WRONG","系统错误");
         }
     }
-    
-    //----------特殊接口结束----------
-    
 
-    //----------通用接口开始----------
+    // ----------特殊接口结束----------
+
+    // ----------通用接口开始----------
 
     @RequestMapping("roleIndex")
     public String index(Model model,HttpSession session){
@@ -135,5 +138,5 @@ public class SystemRoleController {
         }
     }
 
-    //----------通用接口结束----------
+    // ----------通用接口结束----------
 }

@@ -10,9 +10,9 @@ import com.hurenjieee.core.constant.SystemConst;
 public class AjaxMessage {
 
     private boolean success = false; // 处理结果
-    private String  code    = null;  // 消息码
-    private String  msg     = null;  // 消息提示
-    private Object  obj     = null;  // 返回的结果
+    private String code = null; // 消息码
+    private String msg = null; // 消息提示
+    private Object obj = null; // 返回的结果
 
     public AjaxMessage() {
         super();
@@ -42,7 +42,7 @@ public class AjaxMessage {
         this.code = code;
         this.msg = msg;
     }
-    
+
     public boolean isSuccess(){
         return success;
     }
@@ -74,5 +74,5 @@ public class AjaxMessage {
     public void setObj(Object obj){
         this.obj = obj;
     }
-    
+
 }

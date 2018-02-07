@@ -78,7 +78,6 @@ public class LoginController {
     public ModelAndView preLogin(Model model,String username,String password,HttpSession session){
         ModelAndView mv = new ModelAndView("system/login");
         // 配置RSA公钥密钥
-        Map<String, String> data = RSAUtil.generateKeyPair();
         String publicKey = setKeyAttribute(session);
         mv.addObject("publicKey",publicKey);
         return mv;
@@ -91,7 +90,7 @@ public class LoginController {
      * @param session
      * @return publicKey
      */
-    public String setKeyAttribute(HttpSession session){
+    private String setKeyAttribute(HttpSession session){
         Map<String, String> data = RSAUtil.generateKeyPair();
         String privateKey = data.get("privateKey");
         String publicKey = data.get("publicKey");

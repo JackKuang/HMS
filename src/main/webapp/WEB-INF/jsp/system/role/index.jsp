@@ -154,7 +154,7 @@
 	var initOperate = {
 		initPermissionTree:function(roleUuid){
 		    $.ajax({
-			    url:'<%=basePath %>/system/rols_permissions',
+			    url:'<%=basePath %>/system/rolsPermissions',
 			    type:'GET', //GET
 			    async:true,    //或false,是否异步
 			    data: {'roleUuid':roleUuid},

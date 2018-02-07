@@ -11,7 +11,6 @@ import java.util.TreeMap;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.weaver.ast.Var;
 
-@SuppressWarnings("unchecked")
 public class TreeUtil {
 
     /**
@@ -64,9 +63,18 @@ public class TreeUtil {
         System.out.println("排序执行了" + (System.currentTimeMillis() - startTime) + "ms;");
         return sort(result,order);
     }
-    
+
+    /**
+     * @Description: List排序
+     * @Author: JackKuang
+     * @Since: 2018年2月7日上午11:17:27
+     * @param result
+     * @param order
+     * @return
+     */
     public static List<Map<String, Object>> sort(List<Map<String, Object>> result,String order){
         Collections.sort(result,new Comparator<Map<String, Object>>() {
+
             @Override
             public int compare(Map<String, Object> o1,Map<String, Object> o2){
                 try {
@@ -98,9 +106,9 @@ public class TreeUtil {
                 String value = entry.getValue();
                 if (map.containsKey(key)) {
                     Object object = map.get(key);
-                    if(object instanceof List){
-                        map.put(value,treeToNodes((List<Map<String, Object>>)object,para));
-                    }else{
+                    if (object instanceof List) {
+                        map.put(value,treeToNodes((List<Map<String, Object>>) object,para));
+                    } else {
                         map.put(value,object);
                     }
                 }

@@ -32,16 +32,18 @@ public class UpdateInterceptor implements Interceptor {
     public Object intercept(Invocation arg0) throws Throwable{
         MappedStatement mappedStatement = (MappedStatement) arg0.getArgs()[0];
         String sqlId = mappedStatement.getId();
-        //String namespace = sqlId.substring(0,sqlId.indexOf('.'));
+        // String namespace = sqlId.substring(0,sqlId.indexOf('.'));
         String methodNameModify = sqlId.substring(sqlId.lastIndexOf(".") + 1,sqlId.length()).toUpperCase();
-        //Executor exe = (Executor) arg0.getTarget();
+        // Executor exe = (Executor) arg0.getTarget();
         String methodName = arg0.getMethod().getName();
-        String userUuid =AuthorizationUtil.getLoginUserUuid();
+        String userUuid = AuthorizationUtil.getLoginUserUuid();
         if (methodName.equals("update")) {
             Object parameter = arg0.getArgs()[1];
             if (parameter instanceof BaseEntity) {
                 // (方法包含insert或save)insert，自动设置UUID和createDate
-                if (methodNameModify.contains("INSERT") || methodNameModify.contains("SAVE")) {
+                boolean isSave = methodNameModify.contains("INSERT") || methodNameModify.contains("SAVE");
+                boolean isUpdate = methodNameModify.contains("UPDATE");
+                if (isSave) {
                     // entity.setUuid(UUID.randomUUID().toString().replaceAll("-","").toUpperCase());
                     List<Field> list = Arrays.asList(parameter.getClass().getDeclaredFields());
                     for ( int i = 0 ; i < list.size() ; i++ ) {
@@ -49,7 +51,8 @@ public class UpdateInterceptor implements Interceptor {
                         if (field.isAnnotationPresent(AutoInjection.class)) {// 是否使用AutoInjection注解
                             for ( Annotation anno : field.getDeclaredAnnotations() ) {// 获得所有的注解
                                 if (anno.annotationType().equals(AutoInjection.class)) {// 找到自己的注解
-                                    if (ReflectUtil.getGetMethod(parameter,field.getName()) == null) {// 当前非空时才会赋值
+                                    boolean isNull = ReflectUtil.getGetMethod(parameter,field.getName()) == null;
+                                    if (isNull) {// 当前为空时才会赋值
                                         switch (((AutoInjection) anno).type()) {
                                             case CREATE_USER:
                                                 ReflectUtil.setValue(parameter,parameter.getClass(),field.getName(),String.class,userUuid);
@@ -71,15 +74,16 @@ public class UpdateInterceptor implements Interceptor {
                             }
                         }
                     }
-                // (方法包含update)update，自动设置updatedate
-                } else if (methodNameModify.contains("UPDATE")) {
+                    // (方法包含update)update，自动设置updatedate
+                } else if (isUpdate) {
                     List<Field> list = Arrays.asList(parameter.getClass().getDeclaredFields());
                     for ( int i = 0 ; i < list.size() ; i++ ) {
                         Field field = list.get(i);
                         if (field.isAnnotationPresent(AutoInjection.class)) {// 是否使用AutoInjection注解
                             for ( Annotation anno : field.getDeclaredAnnotations() ) {// 获得所有的注解
                                 if (anno.annotationType().equals(AutoInjection.class)) {// 找到自己的注解
-                                    if (ReflectUtil.getGetMethod(parameter,field.getName()) == null) {
+                                    boolean isNull = ReflectUtil.getGetMethod(parameter,field.getName()) == null;
+                                    if (isNull) {
                                         switch (((AutoInjection) anno).type()) {
                                             case UPDATE_USER:
                                                 ReflectUtil.setValue(parameter,parameter.getClass(),field.getName(),String.class,userUuid);

@@ -62,51 +62,8 @@ public class BaseEntity {
     /**
      * @return uuid
      */
-    
     public String getUuid(){
         return uuid;
     }
-
-    public Integer getPageNum(){
-        return pageNum;
-    }
-
-    public void setPageNum(Integer pageNum){
-        this.pageNum = pageNum;
-    }
-
-    public Integer getPageSize(){
-        return pageSize;
-    }
-
-    public void setPageSize(Integer pageSize){
-        this.pageSize = pageSize;
-    }
-
-    public Integer getOffset(){
-        return offset;
-    }
-
-    public void setOffset(Integer offset){
-        this.offset = offset;
-        if(this.limit != null)
-            //分页偏移量
-            this.pageNum = offset/this.limit+1;
-    }
-
-    
-    public Integer getLimit(){
-        return limit;
-    }
-
-    
-    public void setLimit(Integer limit){
-        this.limit = limit;
-        this.pageSize = limit;
-        if(this.offset != null)
-            //分页偏移量
-            this.pageNum = offset/this.limit+1;
-    }
-    
 
 }

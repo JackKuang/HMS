@@ -19,7 +19,7 @@ public class AjaxMessageUtils {
     public static AjaxMessage getSuccessMsg(String msg){
         return new AjaxMessage(true,SystemConst.HTTP_RESPONSE_SUCCESS,msg);
     }
-    
+
     /**
      * @Description: 返回错误信息
      * @Author: JackKuang
@@ -52,7 +52,5 @@ public class AjaxMessageUtils {
     public static AjaxMessage getSuccessObj(Object obj){
         return new AjaxMessage(true,SystemConst.HTTP_RESPONSE_SUCCESS,obj);
     }
-    
-    
-    
+
 }

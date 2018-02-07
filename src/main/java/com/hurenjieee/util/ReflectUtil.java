@@ -15,7 +15,9 @@ public class ReflectUtil {
     public static Object getGetMethod(Object ob,String name) throws Exception{
         Method[] m = ob.getClass().getMethods();
         for ( int i = 0 ; i < m.length ; i++ ) {
-            if (("get" + name).toLowerCase().equals(m[i].getName().toLowerCase())) { return m[i].invoke(ob); }
+            if (("get" + name).toLowerCase().equals(m[i].getName().toLowerCase())) {
+                return m[i].invoke(ob);
+            }
         }
         return null;
     }
@@ -47,28 +49,44 @@ public class ReflectUtil {
      */
     private static Object getClassTypeValue(Class<?> typeClass,Object value){
         if (typeClass == int.class || value instanceof Integer) {
-            if (null == value) { return 0; }
+            if (null == value) {
+                return 0;
+            }
             return value;
         } else if (typeClass == short.class) {
-            if (null == value) { return 0; }
+            if (null == value) {
+                return 0;
+            }
             return value;
         } else if (typeClass == byte.class) {
-            if (null == value) { return 0; }
+            if (null == value) {
+                return 0;
+            }
             return value;
         } else if (typeClass == double.class) {
-            if (null == value) { return 0; }
+            if (null == value) {
+                return 0;
+            }
             return value;
         } else if (typeClass == long.class) {
-            if (null == value) { return 0; }
+            if (null == value) {
+                return 0;
+            }
             return value;
         } else if (typeClass == String.class) {
-            if (null == value) { return ""; }
+            if (null == value) {
+                return "";
+            }
             return value;
         } else if (typeClass == boolean.class) {
-            if (null == value) { return true; }
+            if (null == value) {
+                return true;
+            }
             return value;
         } else if (typeClass == BigDecimal.class) {
-            if (null == value) { return new BigDecimal(0); }
+            if (null == value) {
+                return new BigDecimal(0);
+            }
             return new BigDecimal(value + "");
         } else {
             return typeClass.cast(value);

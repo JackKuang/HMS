@@ -10,7 +10,6 @@ import org.apache.commons.lang.time.DateFormatUtils;
 
 import com.mysql.jdbc.Field;
 
-
 /**
  * @Description: 时间工具类
  * @Since: 2018年1月22日下午8:16:40  
@@ -20,22 +19,22 @@ public class DateUtils {
     /**
      * 日期和字符串之间的转换格式：年 yyyy
      */
-    public static final String PATTERN_YEAR       = "yyyy";
+    public static final String PATTERN_YEAR = "yyyy";
     /**
      * 日期和字符串之间的转换格式：年月 yyyy-MM
      */
-    public static final String PATTERN_YEARMONTH  = "yyyy-MM";
+    public static final String PATTERN_YEARMONTH = "yyyy-MM";
     /**
      * 日期和字符串之间的转换格式：年月日 yyyy-MM-dd
      */
-    public static final String PATTERN_DATE       = "yyyy-MM-dd";
+    public static final String PATTERN_DATE = "yyyy-MM-dd";
 
     /**格式 yyyy年MM月dd日*/
     public static final String PATTERN_CHINA_DATE = "yyyy年MM月dd日";
     /**
      * 日期和字符串之间的转换格式：年月日时分 yyyy-MM-dd HH:mm
      */
-    public static final String PATTERN_DATETIME   = "yyyy-MM-dd HH:mm";
+    public static final String PATTERN_DATETIME = "yyyy-MM-dd HH:mm";
     /**
      * 日期和字符串之间的转换格式：年月日时分秒 yyyy-MM-dd HH:mm:ss
      */
@@ -43,7 +42,7 @@ public class DateUtils {
     /**
      * 日期和字符串之间的转换格式：时分 HH:mm
      */
-    public static final String PATTERN_HHMM       = "HH:mm";
+    public static final String PATTERN_HHMM = "HH:mm";
 
     /**
      * 格式化日期为字符串，格式为年
@@ -620,35 +619,35 @@ public class DateUtils {
      */
     public static Integer intevalBetweenDate(Date date1,Date date2,int field){
         int result;
-        result = (int)((date1.getTime() - date2.getTime())/1000);
-        if(Calendar.SECOND == field){
+        result = (int) ((date1.getTime() - date2.getTime()) / 1000);
+        if (Calendar.SECOND == field) {
             return result;
         }
-        result = result/60;
-        if(Calendar.MINUTE == field){
+        result = result / 60;
+        if (Calendar.MINUTE == field) {
             return result;
         }
-        result = result/60;
-        if(Calendar.HOUR == field){
+        result = result / 60;
+        if (Calendar.HOUR == field) {
             return result;
         }
-        result = result/24;
-        if(Calendar.DAY_OF_YEAR == field){
+        result = result / 24;
+        if (Calendar.DAY_OF_YEAR == field) {
             return result;
         }
-        //年月计划不规律，使用Calendar类处理
+        // 年月计划不规律，使用Calendar类处理
         Calendar calendar1 = Calendar.getInstance();
         calendar1.setTime(date1);
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTime(date2);
         result = calendar1.get(Calendar.YEAR) - calendar2.get(Calendar.YEAR);
-        //年直接减
-        if(Calendar.YEAR == field){
+        // 年直接减
+        if (Calendar.YEAR == field) {
             return result;
         }
-        //月 = 年*12 + 月差额
-        result = 12*result + calendar1.get(Calendar.MONTH) - calendar2.get(Calendar.MONTH);
-        if(Calendar.MONTH == field){
+        // 月 = 年*12 + 月差额
+        result = 12 * result + calendar1.get(Calendar.MONTH) - calendar2.get(Calendar.MONTH);
+        if (Calendar.MONTH == field) {
             return result;
         }
         return null;

@@ -27,11 +27,12 @@ public class SystemUserController {
     @Autowired
     SystemUserService systemUserService;
 
+    // ----------通用接口开始----------
     @RequestMapping("userIndex")
     public String index(Model model,HttpSession session){
         return "system/user/index";
     }
-    
+
     @RequestMapping(value = "users",method = RequestMethod.GET)
     @ResponseBody
     public PageResult<SystemUser> list(SystemUser systemUser){
@@ -110,5 +111,6 @@ public class SystemUserController {
             return new AjaxMessage(false,"WRONG","系统错误");
         }
     }
+    // ----------通用接口结束----------
 
 }

@@ -27,6 +27,18 @@ public class SystemPermissionController {
     @Autowired
     SystemPermissionService systemPermissionService;
 
+    // ----------特殊接口开始----------
+
+    @RequestMapping(value = "rolsPermissions",method = RequestMethod.GET)
+    @ResponseBody
+    public List listAllPermissionsByUserUuid(HttpSession session,String roleUuid) throws Exception{
+        List list = systemPermissionService.listAllPermissionsByUserUuid(roleUuid,AuthorizationUtil.getLoginUserUuid());
+        return list;
+    }
+
+    // ----------特殊接口结束----------
+
+    // ----------通用接口开始----------
     @RequestMapping("permissionIndex")
     public String index(Model model,HttpSession session){
         return "system/permission/index";
@@ -36,14 +48,6 @@ public class SystemPermissionController {
     @ResponseBody
     public List list(HttpSession session) throws Exception{
         List list = systemPermissionService.listPermissionsByUserUuid(AuthorizationUtil.getLoginUserUuid());
-        return list;
-    }
-    
-
-    @RequestMapping(value = "rols_permissions",method = RequestMethod.GET)
-    @ResponseBody
-    public List listAllPermissionsByUserUuid(HttpSession session,String roleUuid) throws Exception{
-        List list = systemPermissionService.listAllPermissionsByUserUuid(roleUuid,AuthorizationUtil.getLoginUserUuid());
         return list;
     }
 
@@ -65,7 +69,7 @@ public class SystemPermissionController {
     @ResponseBody
     public AjaxMessage save(SystemPermission systemPermission){
         try {
-            if(systemPermission.getPermissionState() == null || systemPermission.getPermissionState() != 1)
+            if (systemPermission.getPermissionState() == null || systemPermission.getPermissionState() != 1)
                 systemPermission.setPermissionState(0);
             Integer num = systemPermissionService.insertSelective(systemPermission);
             if (num == 1) {
@@ -83,7 +87,7 @@ public class SystemPermissionController {
     @ResponseBody
     public AjaxMessage update(SystemPermission systemPermission,@PathVariable String uuid){
         try {
-            if(systemPermission.getPermissionState() == null || systemPermission.getPermissionState() != 1)
+            if (systemPermission.getPermissionState() == null || systemPermission.getPermissionState() != 1)
                 systemPermission.setPermissionState(0);
             systemPermission.setUuid(uuid);
             Integer num = systemPermissionService.updateByKeySelective(systemPermission);
@@ -116,4 +120,6 @@ public class SystemPermissionController {
             return new AjaxMessage(false,"WRONG","系统错误");
         }
     }
+
+    // ----------通用接口开始----------
 }

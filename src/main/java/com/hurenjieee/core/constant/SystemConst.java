@@ -25,6 +25,8 @@ public class SystemConst {
      */ 
     public static String SYSTEM_ADMIN_UUID = "admin";
     
+    //-----------登陆结果开始-----------
+    
     /** 
      * @Fields: HTTP_REQUEST_SUCCESS : 请求成功
      */ 
@@ -44,5 +46,8 @@ public class SystemConst {
      * @Fields: HTTP_RESPONSE_WRONG : 系统报错导致异常
      */ 
     public static final String HTTP_RESPONSE_WRONG = "WRONG";
+    
+
+    //-----------登陆结果结束-----------
        
 }

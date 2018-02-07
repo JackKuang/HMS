@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import com.github.pagehelper.PageInfo;
 import com.hurenjieee.core.entity.BaseEntity;
 
-
 /**
  * @Description: 通用Service接口
  * @Author: JackKuang
@@ -59,7 +58,7 @@ public interface BaseService<T extends BaseEntity> {
     public Integer updateByKey(T t);
 
     /****************更新结束**********************/
-    
+
     /****************删除开始**********************/
 
     /**

@@ -12,9 +12,6 @@ import com.github.pagehelper.PageInfo;
 import com.hurenjieee.core.entity.BaseEntity;
 import com.hurenjieee.core.service.BaseService;
 
-
-
-
 /**
  * @Description: 通用Service实现类
  * @Author: JackKuang
@@ -22,7 +19,7 @@ import com.hurenjieee.core.service.BaseService;
  * @param <T>
  * @param <M> 
  */
-public abstract class BaseServiceImpl<T extends BaseEntity>  implements BaseService<T>{
+public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
     public abstract Mapper<T> getMapper();
 
@@ -81,7 +78,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity>  implements BaseServ
     }
 
     /****************更新结束**********************/
-    
+
     /****************删除开始**********************/
 
     /**

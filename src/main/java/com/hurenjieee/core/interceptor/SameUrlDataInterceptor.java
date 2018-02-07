@@ -63,7 +63,9 @@ public class SameUrlDataInterceptor extends HandlerInterceptorAdapter {
         {
             //所有请求必须在3s内完成
             //3秒内无法重复提交
-            if (preUrlParams.toString().equals(nowUrlParams) && DateUtils.intevalBetweenDate(new Date(),date,Calendar.SECOND) < 3){
+            boolean isResubmit = preUrlParams.toString().equals(nowUrlParams)
+                    && DateUtils.intevalBetweenDate(new Date(),date,Calendar.SECOND) < 3 ;
+            if (isResubmit){
                 return true;
             } else {
                 // 如果上次 url+数据 和本次url加数据不同，则不是重复提交
