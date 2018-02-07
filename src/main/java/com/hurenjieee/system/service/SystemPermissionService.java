@@ -37,20 +37,13 @@ public interface SystemPermissionService extends BaseService<SystemPermission> {
     public List<Map<String,Object>> listAllPermissionsByUserUuid(String roleUuid,String adminUuid);
 
     /**
-     * @Description: 删除列表时需要删除角色权限关系
+     * @Description: 删除操作，删除前判断子节点存在否
      * @Author: JackKuang
-     * @Since: 2018年1月18日下午8:14:42
-     * @param uuid
-     */
-    public void deleteRolePermissionByPermission(String uuid);
-
-    /**
-     * @Description: 删除前判断是否存在子节点
-     * @Author: JackKuang
-     * @Since: 2018年1月18日下午8:15:15
+     * @Since: 2018年2月7日下午2:02:31
      * @param uuid
      * @return
+     * @throws Exception
      */
-    public Integer selectSonNumByParUuid(String uuid);
+    public Integer deletePermission(String uuid) throws Exception;
     
 }

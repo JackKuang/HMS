@@ -41,7 +41,6 @@
     ORDER BY permission_order ASC
   </select>
   
-  
   <select id="selectPage" parameterType="String" resultMap="BaseResultMap">
   	SELECT
 		user.* ,GROUP_CONCAT(role.role_name) AS userRoles
@@ -51,5 +50,11 @@
 	  	LEFT JOIN system_role role ON role.uuid = user_role.role_uuid
 	GROUP BY user.uuid
 	ORDER BY create_date ASC
+  </select>
+  
+  <select id="selectCountByUserId" parameterType="String" resultType="Integer">
+  	SELECT COUNT(*) AS COUNT
+  	FROM system_user
+  	WHERE user_id = #{userId}
   </select>
 </mapper>

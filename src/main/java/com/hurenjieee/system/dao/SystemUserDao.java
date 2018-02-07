@@ -15,5 +15,7 @@ public interface SystemUserDao extends Mapper<SystemUser> {
     public Set<String> listPermissionsCode(String userId);
 
     public List<SystemUser> selectPage(SystemUser systemUser);
+
+    public Integer selectCountByUserId(String userId);
     
 }

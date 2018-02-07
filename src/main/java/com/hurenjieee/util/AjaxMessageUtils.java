@@ -1,6 +1,7 @@
 package com.hurenjieee.util;
 
 import com.hurenjieee.core.constant.SystemConst;
+import com.hurenjieee.core.exception.ServiceException;
 
 /**
  * @Description: Json处理返回结果工具类
@@ -51,6 +52,10 @@ public class AjaxMessageUtils {
      */
     public static AjaxMessage getSuccessObj(Object obj){
         return new AjaxMessage(true,SystemConst.HTTP_RESPONSE_SUCCESS,obj);
+    }
+
+    public static AjaxMessage getFailMsgFromException(ServiceException e){
+        return new AjaxMessage(false,e.getCode(),e.getMsg());
     }
 
 }

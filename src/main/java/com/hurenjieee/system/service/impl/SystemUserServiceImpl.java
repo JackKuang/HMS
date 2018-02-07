@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
+import com.hurenjieee.core.constant.SystemConst;
+import com.hurenjieee.core.exception.ServiceException;
 import com.hurenjieee.core.service.impl.BaseServiceImpl;
 import com.hurenjieee.system.dao.SystemUserDao;
 import com.hurenjieee.system.dao.SystemUserRoleDao;
@@ -75,7 +77,11 @@ public class SystemUserServiceImpl extends BaseServiceImpl<SystemUser> implement
     }
 
     @Override
-    public Integer insertSelective(SystemUser systemUser){
+    public Integer insertUser(SystemUser systemUser) throws Exception{
+        Integer idCount = systemUserDao.selectCountByUserId(systemUser.getUserId());
+        if(idCount > 0){
+            throw new ServiceException(SystemConst.HTTP_RESPONSE_FAIL,"当前用户Id已存在，不可重复");
+        }
         Integer result = systemUserDao.insertSelective(systemUser);
         if(result > 0){
             //add

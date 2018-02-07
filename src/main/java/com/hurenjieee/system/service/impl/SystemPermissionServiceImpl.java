@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hurenjieee.core.constant.SystemConst;
+import com.hurenjieee.core.exception.ServiceException;
 import com.hurenjieee.core.service.impl.BaseServiceImpl;
 import com.hurenjieee.system.dao.SystemPermissionDao;
 import com.hurenjieee.system.entity.SystemPermission;
 import com.hurenjieee.system.service.SystemPermissionService;
+import com.hurenjieee.util.AjaxMessageUtils;
 import com.hurenjieee.util.TreeUtil;
 
 import tk.mybatis.mapper.common.Mapper;
@@ -69,23 +71,19 @@ public class SystemPermissionServiceImpl extends BaseServiceImpl<SystemPermissio
     }
 
     @Override
-    public void deleteRolePermissionByPermission(String uuid){
-        systemPermissionDao.deleteRolePermissionByPermission(uuid);
-    }
-
-    @Override
-    public Integer selectSonNumByParUuid(String uuid){
-        return systemPermissionDao.selectSonNumByParUuid(uuid);
-    }
-
-    @Override
-    public Integer deleteByKey(String id){
+    public Integer deletePermission(String id) throws Exception{
+        Integer sonNum = systemPermissionDao.selectSonNumByParUuid(id);
+        if (sonNum > 0) {
+            throw new ServiceException(SystemConst.HTTP_RESPONSE_FAIL,"当前节点存在子节点，无法删除");
+        }
         Integer result = systemPermissionDao.deleteByPrimaryKey(id);
         if(result > 0){
             systemPermissionDao.deleteRolePermissionByPermission(id);
         }
         return result;
     }
+    
+    
     
     
 

@@ -3,6 +3,7 @@ package com.hurenjieee.system.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hurenjieee.system.entity.SystemRole;
 import com.hurenjieee.system.service.SystemRoleService;
@@ -79,8 +81,9 @@ public class SystemRoleController {
 
     @RequestMapping(value = "roles",method = RequestMethod.GET)
     @ResponseBody
-    public PageResult<SystemRole> list(SystemRole systemRole){
+    public PageResult<SystemRole> list(SystemRole systemRole , HttpServletRequest request){
         try {
+            PageHelper.startPage(request);
             PageInfo<SystemRole> pageInfo = systemRoleService.selectPage(systemRole);
             return PageUtil.generatePage(pageInfo);
         } catch (Exception e) {

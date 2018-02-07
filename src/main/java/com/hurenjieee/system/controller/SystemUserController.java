@@ -1,5 +1,6 @@
 package com.hurenjieee.system.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hurenjieee.core.exception.ServiceException;
 import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemUserService;
 import com.hurenjieee.util.AjaxMessage;
@@ -35,8 +38,9 @@ public class SystemUserController {
 
     @RequestMapping(value = "users",method = RequestMethod.GET)
     @ResponseBody
-    public PageResult<SystemUser> list(SystemUser systemUser){
+    public PageResult<SystemUser> list(SystemUser systemUser,HttpServletRequest request){
         try {
+            PageHelper.startPage(request);
             PageInfo<SystemUser> pageInfo = systemUserService.selectPage(systemUser);
             return PageUtil.generatePage(pageInfo);
         } catch (Exception e) {
@@ -47,14 +51,16 @@ public class SystemUserController {
 
     @RequestMapping(value = "users",method = RequestMethod.POST)
     @ResponseBody
-    public AjaxMessage add(SystemUser systemUser){
+    public AjaxMessage insert(SystemUser systemUser){
         try {
-            Integer num = systemUserService.insertSelective(systemUser);
+            Integer num = systemUserService.insertUser(systemUser);
             if (num == 1) {
                 return AjaxMessageUtils.getSuccessMsg("新增成功");
             } else {
                 return AjaxMessageUtils.getFailMsg("新增失败");
             }
+        } catch (ServiceException se) {
+            return AjaxMessageUtils.getFailMsgFromException(se);
         } catch (Exception e) {
             e.printStackTrace();
             return new AjaxMessage(false,"WRONG","系统错误");

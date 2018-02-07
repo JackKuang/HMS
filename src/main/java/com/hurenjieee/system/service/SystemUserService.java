@@ -36,5 +36,15 @@ public interface SystemUserService extends BaseService<SystemUser>{
      * @return
      */
     public Set<String> listPermissionsCode(String userId);
+
+    /**
+     * @Description: 插入判断ID是否已经存在
+     * @Author: JackKuang
+     * @Since: 2018年2月7日下午2:09:28
+     * @param systemUser
+     * @return
+     * @throws Exception
+     */
+    public Integer insertUser(SystemUser systemUser) throws Exception;
     
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hurenjieee.core.exception.ServiceException;
 import com.hurenjieee.system.entity.SystemPermission;
 import com.hurenjieee.system.service.SystemPermissionService;
 import com.hurenjieee.system.util.AuthorizationUtil;
@@ -29,12 +30,37 @@ public class SystemPermissionController {
 
     // ----------特殊接口开始----------
 
+    /**
+     * @Description: List类型（菜单列表）,adminUuid管理下userUuid的菜单
+     * @Author: JackKuang
+     * @Since: 2018年2月7日下午1:42:11
+     * @param session
+     * @param roleUuid
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "rolsPermissions",method = RequestMethod.GET)
     @ResponseBody
     public List listAllPermissionsByUserUuid(HttpSession session,String roleUuid) throws Exception{
         List list = systemPermissionService.listAllPermissionsByUserUuid(roleUuid,AuthorizationUtil.getLoginUserUuid());
         return list;
     }
+
+    /**
+     * @Description: List类型（菜单列表）
+     * @Author: JackKuang
+     * @Since: 2018年2月7日下午1:42:06
+     * @param session
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "permissions",method = RequestMethod.GET)
+    @ResponseBody
+    public List list(HttpSession session) throws Exception{
+        List list = systemPermissionService.listPermissionsByUserUuid(AuthorizationUtil.getLoginUserUuid());
+        return list;
+    }
+
 
     // ----------特殊接口结束----------
 
@@ -43,14 +69,7 @@ public class SystemPermissionController {
     public String index(Model model,HttpSession session){
         return "system/permission/index";
     }
-
-    @RequestMapping(value = "permissions",method = RequestMethod.GET)
-    @ResponseBody
-    public List list(HttpSession session) throws Exception{
-        List list = systemPermissionService.listPermissionsByUserUuid(AuthorizationUtil.getLoginUserUuid());
-        return list;
-    }
-
+    
     @RequestMapping(value = "permissions/{uuid}",method = RequestMethod.GET)
     @ResponseBody
     public AjaxMessage list(@PathVariable String uuid) throws Exception{
@@ -106,16 +125,14 @@ public class SystemPermissionController {
     @ResponseBody
     public AjaxMessage delete(@PathVariable String uuid){
         try {
-            Integer sonNum = systemPermissionService.selectSonNumByParUuid(uuid);
-            if (sonNum > 0) {
-                return AjaxMessageUtils.getFailMsg("当前节点存在子节点，无法删除");
-            }
-            Integer num = systemPermissionService.deleteByKey(uuid);
+            Integer num = systemPermissionService.deletePermission(uuid);
             if (num == 1) {
                 return AjaxMessageUtils.getSuccessMsg("删除成功");
             } else {
                 return AjaxMessageUtils.getFailMsg("删除失败");
             }
+        } catch (ServiceException se) {
+            return AjaxMessageUtils.getFailMsgFromException(se);
         } catch (Exception e) {
             return new AjaxMessage(false,"WRONG","系统错误");
         }
