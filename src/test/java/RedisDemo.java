@@ -14,7 +14,7 @@ import java.util.Map;
  * Explain:Java操作Redis测试
  */
 public class RedisDemo {
-
+/*
     private Jedis jedis;
 
     @Before
@@ -25,9 +25,9 @@ public class RedisDemo {
         System.out.println("连接服务成功");
     }
 
-    /**
+    *//**
      * Redis操作字符串
-     */
+     *//*
     @Test
     public void testString() {
         //添加数据
@@ -80,9 +80,9 @@ public class RedisDemo {
 
     }
 
-    /**
+    *//**
      * jedis操作List
-     */
+     *//*
     @Test
     public void testList(){
         //移除javaFramwork所所有内容
@@ -102,9 +102,9 @@ public class RedisDemo {
         System.out.println(jedis.lrange("javaFramework",0,-1));
     }
 
-    /**
+    *//**
      * jedis操作Set
-     */
+     *//*
     @Test
     public void testSet(){
         //添加
@@ -126,9 +126,9 @@ public class RedisDemo {
         }
     }
 
-    /**
+    *//**
      * 排序
-     */
+     *//*
     @Test
     public void test(){
         jedis.del("number");//先删除数据，再进行测试
@@ -143,7 +143,7 @@ public class RedisDemo {
         System.out.println("排序:"+jedis.sort("number"));
         System.out.println(jedis.lrange("number",0,-1));//不改变原来的排序
         jedis.del("number");//测试完删除数据
-    }
+    }*/
 
 
 }

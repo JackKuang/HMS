@@ -17,9 +17,9 @@ import com.hurenjieee.system.service.SystemUserService;
 import com.hurenjieee.test.entity.TestEntity;
 import com.hurenjieee.test.service.TestService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/applicationContext.xml")
-public class MybatisTest {
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration("/applicationContext.xml")
+public class MybatisTest {/*
    
     @Resource
     TestService testService;
@@ -107,5 +107,5 @@ public class MybatisTest {
     @Test
     public void selectPermissionsTest(){
         //List list = systemPermissionService.getPermissionsMapByUserId("admin");
-    }
+    }*/
 }
