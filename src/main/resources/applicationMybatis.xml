@@ -29,7 +29,6 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 数据源 -->
 		<property name="dataSource" ref="dataSource" />
-		<!-- <property name="configLocation" value="classpath:conf.xml" /> -->
 		<property name="typeAliasesPackage" value="com.hurenjieee.*.entity"></property>
 		<property name="typeAliasesSuperType" value="com.hurenjieee.core.entity.BaseEntity" />
 		<property name="plugins">
@@ -69,7 +68,6 @@
 	<!-- 事物管理器 对mybatis操作数据库事物控制，spring使用Jdbc的事物控制类 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<!-- 数据源 dataSource在applicationContext-dao.xml中配置了 -->
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
@@ -81,9 +79,13 @@
 				MANDATORY：必须在有transaction状态下执行，如果当前没有transaction，则抛出异常IllegalTransactionStateException； 
 				REQUIRES_NEW：创建新的transaction并执行；如果当前已有transaction，则将当前transaction挂起； NOT_SUPPORTED：在无transaction状态下执行；如果当前已有transaction，则将当前transaction挂起； 
 				NEVER：在无transaction状态下执行；如果当前已有transaction，则抛出异常IllegalTransactionStateException。 -->
-			<tx:method name="insert*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
+			<!-- 事物回滚都在这里了，不需要在Service里面写，这里默认注解 -->
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false"   
+                       rollback-for="java.lang.Exception"/>
+			<tx:method name="update*" propagation="REQUIRED" read-only="false"   
+                       rollback-for="java.lang.Exception"/>
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false"   
+                       rollback-for="java.lang.Exception"/>
 			<tx:method name="select*" propagation="SUPPORTS" read-only="true" />
 			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
 			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
@@ -93,6 +95,6 @@
 	<!-- aop -->
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice"
-			pointcut="execution(* com.hurenjieee.service.*.*Impl.*(..))" />
+			pointcut="execution(* com.hurenjieee.*.service..*Impl.*(..))" />
 	</aop:config>
 </beans>

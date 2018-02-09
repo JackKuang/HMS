@@ -6,6 +6,7 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageInfo;
 import com.hurenjieee.core.constant.SystemConst;
@@ -98,7 +99,7 @@ public class SystemUserServiceImpl extends BaseServiceImpl<SystemUser> implement
         }
         return result;
     }
-
+    
     @Override
     public Integer updateByKeySelective(SystemUser systemUser){
         Integer result = systemUserDao.updateByPrimaryKeySelective(systemUser);

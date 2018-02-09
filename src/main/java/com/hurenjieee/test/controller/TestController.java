@@ -19,20 +19,21 @@ public class TestController {
 
     @Autowired
     TestService testService;
-    
-    @RequestMapping("index2.action") 
-    @ResponseBody 
-     public PageInfo<TestEntity> getlistChinese(Model model){
+
+    @RequestMapping("index2.action")
+    @ResponseBody
+    public PageInfo<TestEntity> getlistChinese(Model model){
         TestEntity testEntity = new TestEntity();
         PageHelper.startPage(2,100);
         PageInfo<TestEntity> page = testService.selectPage(testEntity);
         return null;
-     }
+    }
 
-    @RequestMapping("index.action") 
-     public String index(Model model){
+    @RequestMapping("index.action")
+    public String index(Model model){
         return "index";
-     }
+    }
+
     @RequestMapping("/test")
     public String test(){
         return "index";
