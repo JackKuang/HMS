@@ -43,6 +43,8 @@ public class LoginController {
         try {
             // 获取密钥
             String privateKey = (String) session.getAttribute("privateKey");
+            System.out.println("11111privateKey"+privateKey);
+            System.out.println("22222password"+password);
             String passwordHashed = RSAUtil.decrypt(privateKey,password);
             Subject subject = SecurityUtils.getSubject();
             // 数据库保存SHA512加密后的数据，
