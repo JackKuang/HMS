@@ -186,15 +186,16 @@
 //	      alert(password)
 	      shaObj.update(password);
 //	      shaObj.update("HMS");
-	      var hash = shaObj.getHash("HEX")
+	      var hash = shaObj.getHash("HEX");
+	      $('#password').val(hash);
 	      //RSA加密
 //	      alert(hash)
-	      var encrypt = new JSEncrypt();
+//	      var encrypt = new JSEncrypt();
 //	      alert(publicKey)
 	      //公钥
-	      encrypt.setPublicKey(publicKey);
-	      var encrypted = encrypt.encrypt(hash);
-	      $('#password').val(encrypted);
+//	      encrypt.setPublicKey(publicKey);
+//	      var encrypted = encrypt.encrypt(hash);
+//	      $('#password').val(encrypted);
 	      return true;
 	    });
 	  }
