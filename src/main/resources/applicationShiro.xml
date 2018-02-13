@@ -34,12 +34,17 @@
         <property name="filterChainDefinitions">  
             <value> 
             	<!-- 先配置，先生效 -->
-                /system/login=anon
-                /system/preLogin=anon
-                /system/**=user
+                /system/login = anon
+                /system/preLogin = anon
+                /system/** = user
+                /system/logout = logout
             </value>  	
         </property>
     </bean>  
+    
+    <bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+        <property name="redirectUrl" value="/system/logout" />
+    </bean>
 
     <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->  
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>  

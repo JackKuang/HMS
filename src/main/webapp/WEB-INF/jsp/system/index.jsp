@@ -51,7 +51,7 @@
 							<a href="">基本资料</a>
 						</dd>
 						<dd>
-							<a href="">安全退出</a>
+							<a href="<%=basePath %>/system/logout">安全退出</a>
 						</dd>
 					</dl></li>
 			</ul>

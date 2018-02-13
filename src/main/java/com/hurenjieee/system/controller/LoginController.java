@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemUserService;
+import com.hurenjieee.system.util.AuthorizationUtil;
 import com.hurenjieee.util.RSAUtil;
 
 @Controller("loginController")
@@ -81,6 +82,27 @@ public class LoginController {
         // 配置RSA公钥密钥
         String publicKey = setKeyAttribute(session);
         mv.addObject("publicKey",publicKey);
+        return mv;
+    }
+    
+    
+    /**
+     * @Description: 预登录
+     * @Author: JackKuang
+     * @Since: 2017年10月3日下午9:41:09
+     * @param model
+     * @param username
+     * @param password
+     * @param session
+     * @return
+     */
+    @RequestMapping("/logout")
+    public ModelAndView logout(Model model,String username,String password,HttpSession session){
+        if(StringUtils.isNotBlank(AuthorizationUtil.getLoginUserUuid())){
+            SecurityUtils.getSubject().logout();
+        }
+        ModelAndView mv = new ModelAndView("redirect:login");
+        // 配置RSA公钥密钥
         return mv;
     }
 
