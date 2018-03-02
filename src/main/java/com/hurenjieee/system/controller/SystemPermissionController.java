@@ -1,6 +1,7 @@
 package com.hurenjieee.system.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -60,7 +61,22 @@ public class SystemPermissionController {
         List list = systemPermissionService.listPermissionsByUserUuid(AuthorizationUtil.getLoginUserUuid());
         return list;
     }
+    
 
+    /**
+     * @Description: List类型（菜单列表）（适应三版首页）
+     * @Author: JackKuang
+     * @Since: 2018年2月7日下午1:42:06
+     * @param session
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "permissionsIndex",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> listIndex(HttpSession session) throws Exception{
+        Map<String,Object> map = systemPermissionService.listPermissionsForByUserUuid(AuthorizationUtil.getLoginUserUuid());
+        return map;
+    }
 
     // ----------特殊接口结束----------
 

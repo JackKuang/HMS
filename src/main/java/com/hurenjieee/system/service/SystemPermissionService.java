@@ -45,5 +45,14 @@ public interface SystemPermissionService extends BaseService<SystemPermission> {
      * @throws Exception
      */
     public Integer deletePermission(String uuid) throws Exception;
+
+    /**
+     * @Description: List类型（菜单列表）（适应三版首页）
+     * @Author: JackKuang
+     * @Since: 2018年3月1日下午7:57:40
+     * @param loginUserUuid
+     * @return
+     */
+    public Map<String, Object> listPermissionsForByUserUuid(String userUuid);
     
 }

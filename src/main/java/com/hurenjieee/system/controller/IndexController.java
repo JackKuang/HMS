@@ -39,9 +39,9 @@ public class IndexController {
          * }
          * List list = systemPermissionService.listPermissionsMenuByUserId(systemUser.getUserId());
          */
-        String userUuid = AuthorizationUtil.getLoginUserUuid();
+        /*String userUuid = AuthorizationUtil.getLoginUserUuid();
         List list = systemPermissionService.listPermissionsMenuByUserUuid(userUuid);
-        model.addAttribute("permissionList",list);
+        model.addAttribute("permissionList",list);*/
         return "system/index";
     }
 }

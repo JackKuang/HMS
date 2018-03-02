@@ -1,37 +1,11 @@
 <%@ page language="java" isThreadSafe="true" pageEncoding="utf-8"%>
 <%@ page contentType="text/html; charset=utf-8"%>
-<%
-	/* 项目使用绝对路径，basePath只在主JSP上定义，不再include里面定义，避免变量名定义冲突 */
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path;
-%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>HMS-后台管理系统</title>
-<meta name="renderer" content="webkit">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="format-detection" content="telephone=no">
-
-<link rel="stylesheet" type="text/css"
-	href="<%=basePath %>/layui/css/layui.css">
-	
-<link rel="stylesheet" type="text/css"
-	href="<%=basePath %>/common/common.css">
-	
-</head>
-<body class="layui-layout-body">
-
+<%@ include file="../../include/head.jsp" %>
+<body class="childrenBody">
 	<div class="layui-row layui-col-space10">
 		<div class="layui-col-md4">
 			<table id="roleTable" lay-filter="roleFilter"></table>
@@ -69,8 +43,8 @@
 			</form>
 		</div>
 	</div>
-	<script src="<%=basePath %>/layui/layui.js" charset="utf-8"></script>
-	<script src="<%=basePath %>/common/common.js"></script>
+	<script src="${ctx}/layui/layui.js" charset="utf-8"></script>
+	<script src="${ctx}/js/common/common.js"></script>
 	
 	<script>
 	//JavaScript代码区域
@@ -85,9 +59,9 @@
 	    table.render({
 		    id:'roleTable',
 	        elem: '#roleTable',
-	        url:"<%=basePath %>/system/roles",
+	        url:"${ctx}/system/roles",
 	        method: 'get', 
-	        height:500,
+	        height: "full-20",
 	        page:true,//分页
 	        limit:50,
 	        request:pageModel.request,
@@ -120,7 +94,7 @@
 			  if(roleUuidGlobal == ""){
 				  $.ajax({
 					  type: 'post',
-					  url: "<%=basePath %>/system/roles",
+					  url: "${ctx}/system/roles",
 					  data: data.field,
 					  success: function(data) {
 						  loadingModel.hideLoading();
@@ -134,7 +108,7 @@
 			  }else{
 				  $.ajax({
 					  type: 'put',
-					  url: "<%=basePath %>/system/roles/"+roleUuidGlobal,
+					  url: "${ctx}/system/roles/"+roleUuidGlobal,
 					  data: data.field,
 					  success: function(data) {
 						  loadingModel.hideLoading();
@@ -154,7 +128,7 @@
 	var initOperate = {
 		initPermissionTree:function(roleUuid){
 		    $.ajax({
-			    url:'<%=basePath %>/system/rolsPermissions',
+			    url:'${ctx}/system/rolsPermissions',
 			    type:'GET', //GET
 			    async:true,    //或false,是否异步
 			    data: {'roleUuid':roleUuid},
@@ -185,7 +159,7 @@
 					loadingModel.showLoading();
 					$.ajax({
 						  type: 'delete',
-						  url: "<%=basePath %>/system/roles/"+roleUuidGlobal,
+						  url: "${ctx}/system/roles/"+roleUuidGlobal,
 						  success: function(data) {
 							  loadingModel.hideLoading();
 							  if(data.success){

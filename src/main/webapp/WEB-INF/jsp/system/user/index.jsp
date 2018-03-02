@@ -1,37 +1,11 @@
 <%@ page language="java" isThreadSafe="true" pageEncoding="utf-8"%>
 <%@ page contentType="text/html; charset=utf-8"%>
-<%
-	/* 项目使用绝对路径，basePath只在主JSP上定义，不再include里面定义，避免变量名定义冲突 */
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path;
-%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>HMS-后台管理系统</title>
-<meta name="renderer" content="webkit">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="format-detection" content="telephone=no">
-
-<link rel="stylesheet" type="text/css"
-	href="<%=basePath %>/layui/css/layui.css">
-	
-<link rel="stylesheet" type="text/css"
-	href="<%=basePath %>/common/common.css">
-	
-</head>
-<body class="layui-layout-body">
-
+<%@ include file="../../include/head.jsp" %>
+<body class="childrenBody">
 	<div class="layui-row layui-col-space10">
 		<div class="layui-col-md12">
 			<button class="layui-btn layui-btn-normal" onclick="javascript:userOperate.addUser();" type="button">新增用户</button>
@@ -155,9 +129,9 @@
 		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 	</script>
 	
-	<script src="<%=basePath %>/layui/layui.js" charset="utf-8"></script>
-	<script src="<%=basePath %>/common/common.js"></script>
-	<script src="<%=basePath %>/common/layui-mz-min.js"></script>
+	<script src="${ctx}/layui/layui.js" charset="utf-8"></script>
+	<script src="${ctx}/js/common/common.js"></script>
+	<script src="${ctx}/js/common/layui-mz-min.js"></script>
 	
 	<script>
 	//JavaScript代码区域
@@ -173,10 +147,10 @@
 	    table.render({
 		    id:'userTable',
 	        elem: '#userTable',
-	        url:"<%=basePath %>/system/users",
+	        url:"${ctx}/system/users",
 	        method: 'get', 
-	        height:500,
 	        page:true,//分页
+	        height : "full-70",
 	        limit:50,
 	        request:pageModel.request,
 	        loading:true,
@@ -218,7 +192,7 @@
 				$('#userName').val(data.userName);
 				$('#userEmail').val(data.userEmail);
 				$('#userTelephone').val(data.userTelephone);
-				formModel.initCheckbox('userRoles','<%=basePath %>/system/rolesListOne',reqData,'uuid','roleName',false);
+				formModel.initCheckbox('userRoles','${ctx}/system/rolesListOne',reqData,'uuid','roleName',false);
 				layer.open({
 					type: 1,
 					title: '编辑用户',
@@ -236,7 +210,7 @@
 		  if(userUuidGlobal == ""){
 			  $.ajax({
 				  type: 'post',
-				  url: "<%=basePath %>/system/users",
+				  url: "${ctx}/system/users",
 				  data: data.field,
 				  success: function(data) {
 					  loadingModel.hideLoading();
@@ -251,7 +225,7 @@
 		  }else{
 			  $.ajax({
 				  type: 'put',
-				  url: "<%=basePath %>/system/users/"+userUuidGlobal,
+				  url: "${ctx}/system/users/"+userUuidGlobal,
 				  data: data.field,
 				  success: function(data) {
 					  loadingModel.hideLoading();
@@ -271,7 +245,7 @@
 	var userOperate = {
 		addUser: function(){
 			userUuidGlobal = '';
-			formModel.initCheckbox('userRoles','<%=basePath %>/system/rolesListAll',null,'uuid','roleName',false);
+			formModel.initCheckbox('userRoles','${ctx}/system/rolesListAll',null,'uuid','roleName',false);
 			//页面层
 			layer.open({
 				type: 1,
@@ -288,7 +262,7 @@
 					loadingModel.showLoading();
 					$.ajax({
 						  type: 'delete',
-						  url: "<%=basePath %>/system/users/"+userUuidGlobal,
+						  url: "${ctx}/system/users/"+userUuidGlobal,
 						  success: function(data) {
 							  loadingModel.hideLoading();
 							  if(data.success){

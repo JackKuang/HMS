@@ -101,7 +101,7 @@ public class LoginController {
         if(StringUtils.isNotBlank(AuthorizationUtil.getLoginUserUuid())){
             SecurityUtils.getSubject().logout();
         }
-        ModelAndView mv = new ModelAndView("redirect:login");
+        ModelAndView mv = new ModelAndView("redirect:/system/prLogin");
         // 配置RSA公钥密钥
         return mv;
     }

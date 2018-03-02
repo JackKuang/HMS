@@ -1,8 +1,10 @@
 package com.hurenjieee.system.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +82,22 @@ public class SystemPermissionServiceImpl extends BaseServiceImpl<SystemPermissio
         if(result > 0){
             systemPermissionDao.deleteRolePermissionByPermission(id);
         }
+        return result;
+    }
+
+    @Override
+    public Map<String, Object> listPermissionsForByUserUuid(String userUuid){
+        Map<String,Object> result = new TreeMap<>();
+        List<Map<String,Object>> permissions;
+        permissions = systemPermissionDao.listPermissionsByUserUuid(userUuid);
+        permissions = TreeUtil.listToTree(permissions,"permissionUuid","permissionParUuid","permissionOrder");
+        Map<String, String> para = new HashMap<>();
+        para.put("permissionName","title");
+        para.put("permissionStyle","icon");
+        para.put("permissionUrl","href");
+        para.put("list","children");
+        permissions = TreeUtil.treeToNodes(permissions,para);
+        result.put("contentManagement",permissions);
         return result;
     }
     

@@ -1,32 +1,11 @@
 <%@ page language="java" isThreadSafe="true" pageEncoding="utf-8"%>
 <%@ page contentType="text/html; charset=utf-8"%>
-<%
-	/* 项目使用绝对路径，basePath只在主JSP上定义，不再include里面定义，避免变量名定义冲突 */
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path;
-%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>HMS-后台管理系统</title>
-<meta name="renderer" content="webkit">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="format-detection" content="telephone=no">
-
-<link rel="stylesheet" type="text/css"
-	href="<%=basePath %>/layui/css/layui.css">
-</head>
-<body class="layui-layout-body">
+<%@ include file="../../include/head.jsp" %>
+<body class="childrenBody">
 	<div class="layui-row layui-col-space10">
 		<div class="layui-col-md4">
 			<ul id="permissionTree"></ul>
@@ -95,8 +74,8 @@
 			</form>
 		</div>
 	</div>
-	<script src="<%=basePath %>/layui/layui.js" charset="utf-8"></script>
-	<script src="<%=basePath %>/common/common.js"></script>
+	<script src="${ctx}/layui/layui.js" charset="utf-8"></script>
+	<script src="${ctx}/js/common/common.js"></script>
 	<script>
 	//JavaScript代码区域
 	var $;
@@ -111,7 +90,7 @@
 			  if(permissionUuidGlobal == ""){
 				  $.ajax({
 					  type: 'post',
-					  url: "<%=basePath %>/system/permissions",
+					  url: "${ctx}/system/permissions",
 					  data: data.field,
 					  success: function(data) {
 						  loadingModel.hideLoading();
@@ -125,7 +104,7 @@
 			  }else{
 				  $.ajax({
 					  type: 'put',
-					  url: "<%=basePath %>/system/permissions/"+permissionUuidGlobal,
+					  url: "${ctx}/system/permissions/"+permissionUuidGlobal,
 					  data: data.field,
 					  success: function(data) {
 						  loadingModel.hideLoading();
@@ -144,7 +123,7 @@
 	var initModel = {
 		initPermissionTree:function(){
 			$.ajax({
-			    url:'<%=basePath %>/system/permissions',
+			    url:'${ctx}/system/permissions',
 			    type:'GET', //GET
 			    async:true,    //或false,是否异步
 			    dataType:'json',
@@ -200,7 +179,7 @@
 					loadingModel.showLoading();
 					$.ajax({
 						  type: 'delete',
-						  url: "<%=basePath %>/system/permissions/"+permissionUuidGlobal,
+						  url: "${ctx}/system/permissions/"+permissionUuidGlobal,
 						  success: function(data) {
 							  loadingModel.hideLoading();
 							  if(data.success){

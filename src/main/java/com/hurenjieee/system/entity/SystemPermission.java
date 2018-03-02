@@ -45,6 +45,10 @@ public class SystemPermission extends BaseEntity{
 
     @Column(name = "permission_desc")
     private String permissionDesc;
+    
+    @Column(name = "permission_style")
+    private String permissionStyle;
+    
 
     /**
      * @return create_user
@@ -185,4 +189,13 @@ public class SystemPermission extends BaseEntity{
     public void setPermissionDesc(String permissionDesc) {
         this.permissionDesc = permissionDesc;
     }
+    
+    public String getPermissionStyle(){
+        return permissionStyle;
+    }
+    
+    public void setPermissionStyle(String permissionStyle){
+        this.permissionStyle = permissionStyle;
+    }
+    
 }
