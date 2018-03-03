@@ -82,18 +82,18 @@
 			</div> --%>
 			<div class="navBar layui-side-scroll" id="navBar">
 				<ul class="layui-nav layui-nav-tree">
-					<li class="layui-nav-item layui-this">
-						<a href="javascript:;" data-url="page/main.html"><i class="layui-icon" data-icon=""></i><cite>后台首页</cite></a>
-					</li>
+					<%-- <li class="layui-nav-item layui-this">
+						<a href="javascript:;" data-url="${ctx }/system/main"><i class="layui-icon" data-icon=""></i><cite>后台首页</cite></a>
+					</li> --%>
 				</ul>
 			</div>
 		</div>
 		<!-- 右侧内容 -->
 		<div class="layui-body layui-form">
 			<div class="layui-tab mag0" lay-filter="bodyTab" id="top_tabs_box">
-				<%-- <ul class="layui-tab-title top_tab" id="top_tabs">
+				<ul class="layui-tab-title top_tab" id="top_tabs">
 					<li class="layui-this" lay-id=""><i class="layui-icon">&#xe68e;</i> <cite>后台首页</cite></li>
-				</ul> --%>
+				</ul>
 				<ul class="layui-nav closeBox">
 				  <li class="layui-nav-item">
 				    <a href="javascript:;"><i class="layui-icon caozuo">&#xe643;</i> 页面操作</a>
@@ -106,7 +106,7 @@
 				</ul>
 				<div class="layui-tab-content clildFrame">
 					<div class="layui-tab-item layui-show">
-						<iframe src="${ctx}/page/main.html"></iframe>
+						<iframe src="${ctx }/system/main"></iframe>
 					</div>
 				</div>
 			</div>
@@ -121,9 +121,9 @@
 	<div class="site-tree-mobile"><i class="layui-icon">&#xe602;</i></div>
 	<div class="site-mobile-shade"></div>
 
-	<script type="text/javascript" src="${ctx}/js/common/common.js"></script>
+	<script type="text/javascript" src="${ctx}/js/common.js"></script>
 	<script type="text/javascript" src="${ctx}/layui/layui.js"></script>
-	<script type="text/javascript" src="${ctx}/js/index/index.js"></script>
-	<script type="text/javascript" src="${ctx}/js/common/cache.js"></script>
+	<script type="text/javascript" src="${ctx}/js/index.js"></script>
+	<script type="text/javascript" src="${ctx}/js/cache.js"></script>
 </body>
 </html>

@@ -40,16 +40,6 @@
         <property name="suffix" value=".jsp" />  
     </bean>
     
-    <!-- 拦截器 -->
-    <!--  <bean id="sameUrlDataInterceptor" class="com.hurenjieee.core.interceptor.SameUrlDataInterceptor"/>
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">  
-	    <property name="interceptors">
-	        <list>
-	        	<ref bean="sameUrlDataInterceptor"/>
-	        </list>  
-	    </property>  
-	</bean>  -->
-	
 	<!--配置拦截器, 多个拦截器,顺序执行 -->  
     <mvc:interceptors>    
         <mvc:interceptor>    

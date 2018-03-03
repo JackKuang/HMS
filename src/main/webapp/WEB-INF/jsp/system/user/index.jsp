@@ -130,8 +130,8 @@
 	</script>
 	
 	<script src="${ctx}/layui/layui.js" charset="utf-8"></script>
-	<script src="${ctx}/js/common/common.js"></script>
-	<script src="${ctx}/js/common/layui-mz-min.js"></script>
+	<script src="${ctx}/js/common.js"></script>
+	<script src="${ctx}/js/layui-mz-min.js"></script>
 	
 	<script>
 	//JavaScript代码区域

@@ -62,6 +62,7 @@
 		<url-pattern>/json/*</url-pattern>
 		<url-pattern>/layui/*</url-pattern>
 		<url-pattern>/page/*</url-pattern>
+		<url-pattern>/common/*</url-pattern>
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 
@@ -95,11 +96,11 @@
 	
 	<error-page>
 		<error-code>404</error-code>
-		<location>/page/page_404.html</location>
+		<location>/common/404.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/page/page_500.html</location>
+		<location>/page/500.html</location>
 	</error-page>
 	
 </web-app>

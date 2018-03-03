@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<script src="${ctx}/layui/layui.js" charset="utf-8"></script>
-	<script src="${ctx}/js/common/common.js"></script>
+	<script src="${ctx}/js/common.js"></script>
 	
 	<script>
 	//JavaScript代码区域

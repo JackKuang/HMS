@@ -53,6 +53,6 @@ public interface SystemPermissionService extends BaseService<SystemPermission> {
      * @param loginUserUuid
      * @return
      */
-    public Map<String, Object> listPermissionsForByUserUuid(String userUuid);
+    public List<Map<String,Object>> listPermissionsForByUserUuid(String userUuid);
     
 }

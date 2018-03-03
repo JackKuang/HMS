@@ -44,4 +44,10 @@ public class IndexController {
         model.addAttribute("permissionList",list);*/
         return "system/index";
     }
+    
+
+    @RequestMapping("main")
+    public String main(Model model,HttpSession session){
+        return "system/main";
+    }
 }

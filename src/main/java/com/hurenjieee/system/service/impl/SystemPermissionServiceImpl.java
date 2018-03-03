@@ -86,8 +86,7 @@ public class SystemPermissionServiceImpl extends BaseServiceImpl<SystemPermissio
     }
 
     @Override
-    public Map<String, Object> listPermissionsForByUserUuid(String userUuid){
-        Map<String,Object> result = new TreeMap<>();
+    public List<Map<String,Object>> listPermissionsForByUserUuid(String userUuid){
         List<Map<String,Object>> permissions;
         permissions = systemPermissionDao.listPermissionsByUserUuid(userUuid);
         permissions = TreeUtil.listToTree(permissions,"permissionUuid","permissionParUuid","permissionOrder");
@@ -97,8 +96,7 @@ public class SystemPermissionServiceImpl extends BaseServiceImpl<SystemPermissio
         para.put("permissionUrl","href");
         para.put("list","children");
         permissions = TreeUtil.treeToNodes(permissions,para);
-        result.put("contentManagement",permissions);
-        return result;
+        return permissions;
     }
     
     

@@ -73,9 +73,9 @@ public class SystemPermissionController {
      */
     @RequestMapping(value = "permissionsIndex",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> listIndex(HttpSession session) throws Exception{
-        Map<String,Object> map = systemPermissionService.listPermissionsForByUserUuid(AuthorizationUtil.getLoginUserUuid());
-        return map;
+    public List<Map<String,Object>> listIndex(HttpSession session) throws Exception{
+        List<Map<String,Object>> list = systemPermissionService.listPermissionsForByUserUuid(AuthorizationUtil.getLoginUserUuid());
+        return list;
     }
 
     // ----------特殊接口结束----------

@@ -24,8 +24,8 @@
 		</div>
 	</form>
 	<script type="text/javascript" src="${ctx}/layui/layui.js"></script>
-	<script type="text/javascript" src="${ctx}/js/login/login.js"></script>
-	<script type="text/javascript" src="${ctx}/js/common/cache.js"></script>
+	<script type="text/javascript" src="${ctx}/js/login.js"></script>
+	<script type="text/javascript" src="${ctx}/js/cache.js"></script>
 	<script type="text/javascript" src="${ctx}/js/plugins/sha/sha512.js"></script>
 	<script type="text/javascript" src="${ctx}/js/plugins/jsencrypt/jsencrypt.min.js"></script>
 </body>

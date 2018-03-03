@@ -39,6 +39,15 @@
 							lay-verify="required" class="layui-input">
 					</div>
 				</div>
+				
+				<div class="layui-form-item">
+					<label class="layui-form-label">菜单风格</label>
+					<div class="layui-input-block">
+						<input type="text" id="permissionStyle" name="permissionStyle"
+							placeholder="菜单风格" autocomplete="off"
+							lay-verify="required" class="layui-input">
+					</div>
+				</div>
 
 				<div class="layui-form-item">
 					<label class="layui-form-label">菜单排序</label>
@@ -75,7 +84,7 @@
 		</div>
 	</div>
 	<script src="${ctx}/layui/layui.js" charset="utf-8"></script>
-	<script src="${ctx}/js/common/common.js"></script>
+	<script src="${ctx}/js/common.js"></script>
 	<script>
 	//JavaScript代码区域
 	var $;
@@ -140,6 +149,7 @@
 								$("#permissionUrl").val(node.permissionUrl);
 								$("#permissionOrder").val(node.permissionOrder);
 								$("#permissionDesc").val(node.permissionDesc);
+								$("#permissionStyle").val(node.permissionStyle);
 								if(node.permissionState == "1"){
 									$('#permissionState').prop("checked",true);
 								}else{
