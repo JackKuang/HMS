@@ -12,9 +12,9 @@
 		</div>
 		<div class="layui-col-md4">
 			<form class="layui-form" id="roleForm">
-				<div class="layui-col-md12">
+				<blockquote class="layui-elem-quote">
 				    <button class="layui-btn layui-btn-normal" onclick="javascript:roleOperate.addRole();" type="button">新增角色</button>
-			    </div>
+			    </blockquote>
 				<div class="layui-col-md12">
 					<fieldset class="layui-elem-field layui-field-title site-title">
 				      <legend><a id="operateName">新增角色</a></legend>
@@ -43,8 +43,8 @@
 			</form>
 		</div>
 	</div>
-	<script src="${ctx}/layui/layui.js" charset="utf-8"></script>
-	<script src="${ctx}/js/common.js"></script>
+	<script type="text/javascript" src="${ctx}/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="${ctx}/js/common.js"></script>
 	
 	<script>
 	//JavaScript代码区域

@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="../WEB-INF/jsp/include/head.jsp" %>
-
 <body class="childrenBody">
 	<div class="noFind">
 		<div class="ufo">

@@ -83,7 +83,7 @@ public class SystemPermissionController {
     // ----------通用接口开始----------
     @RequestMapping("permissionIndex")
     public String index(Model model,HttpSession session){
-        return "system/permission/index";
+        return "system/permission/permissionIndex";
     }
     
     @RequestMapping(value = "permissions/{uuid}",method = RequestMethod.GET)

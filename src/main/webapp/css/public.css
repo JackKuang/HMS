@@ -34,7 +34,7 @@
 .panel_word span{ font-size:25px; display:block; height:34px; }
 .panel .loginTime{ font-size:15px; color:#1E9FFF; line-height:17px;}
 .panel em{ font-style:normal;}
-.history_box{ min-height:500px; height:500px; overflow-y:scroll; padding:10px !important;}
+.history_box{ min-height:500px; height:550px; overflow-y:scroll; padding:10px !important;}
 .history_box .layui-timeline .layui-timeline-item:last-child{ padding-bottom:0;}
 @media screen and (max-width:1200px) {
     .history_box { height: auto !important; overflow-y: inherit; }

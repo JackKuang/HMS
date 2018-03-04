@@ -7,9 +7,9 @@
 <%@ include file="../../include/head.jsp" %>
 <body class="childrenBody">
 	<div class="layui-row layui-col-space10">
-		<div class="layui-col-md12">
+		<blockquote class="layui-elem-quote">
 			<button class="layui-btn layui-btn-normal" onclick="javascript:userOperate.addUser();" type="button">新增用户</button>
-		</div>
+		</blockquote>
 		<div class="layui-col-md12">
 			<table id="userTable" lay-filter="userFilter"></table>
 		</div>
@@ -129,9 +129,9 @@
 		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 	</script>
 	
-	<script src="${ctx}/layui/layui.js" charset="utf-8"></script>
-	<script src="${ctx}/js/common.js"></script>
-	<script src="${ctx}/js/layui-mz-min.js"></script>
+	<script type="text/javascript" src="${ctx}/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="${ctx}/js/common.js"></script>
+	<script type="text/javascript" src="${ctx}/js/layui-mz-min.js"></script>
 	
 	<script>
 	//JavaScript代码区域
@@ -150,7 +150,7 @@
 	        url:"${ctx}/system/users",
 	        method: 'get', 
 	        page:true,//分页
-	        height : "full-70",
+	        height : "full-100",
 	        limit:50,
 	        request:pageModel.request,
 	        loading:true,

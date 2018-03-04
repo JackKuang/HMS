@@ -76,7 +76,7 @@ public class SystemRoleController {
 
     @RequestMapping("roleIndex")
     public String index(Model model,HttpSession session){
-        return "system/role/index";
+        return "system/role/roleIndex";
     }
 
     @RequestMapping(value = "roles",method = RequestMethod.GET)

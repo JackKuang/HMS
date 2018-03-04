@@ -12,10 +12,10 @@
 		</div>
 		<div class="layui-col-md4">
 			<form class="layui-form" id="permissionForm">
-				<div class="layui-col-md12">
+				<blockquote class="layui-elem-quote">
 					<button onclick="permissionOperate.saveRootPermission();" type="button" class="layui-btn layui-btn-normal">根节点添加</button>
 					<button onclick="permissionOperate.savePermission();" type="button" class="layui-btn layui-btn-normal">当前子节点节点添加</button>
-				</div>
+				</blockquote>
 				<div class="layui-col-md12">
 					<fieldset class="layui-elem-field layui-field-title site-title">
 				      <legend><a id="operateName">根节点添加</a></legend>
@@ -83,8 +83,8 @@
 			</form>
 		</div>
 	</div>
-	<script src="${ctx}/layui/layui.js" charset="utf-8"></script>
-	<script src="${ctx}/js/common.js"></script>
+	<script type="text/javascript" src="${ctx}/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="${ctx}/js/common.js"></script>
 	<script>
 	//JavaScript代码区域
 	var $;
@@ -119,7 +119,7 @@
 						  loadingModel.hideLoading();
 						  $('#permissionForm')[0].reset();
 						  if(data.success){
-							  initModel.initPermissionTree()
+							  initModel.initPermissionTree();
 						  }
 						  alertModel.alertData(data);
 					  }
@@ -131,6 +131,7 @@
 
 	var initModel = {
 		initPermissionTree:function(){
+			permissionUuidGlobal = '';
 			$.ajax({
 			    url:'${ctx}/system/permissions',
 			    type:'GET', //GET

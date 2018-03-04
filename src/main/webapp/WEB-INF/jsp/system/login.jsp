@@ -19,6 +19,10 @@
 			<input type="password" placeholder="请输入密码" autocomplete="off" id="password" class="layui-input" lay-verify="required">
 			<input type="hidden" id="passwordEncrypt" name="password">
 		</div>
+		<div class="layui-form-item input-item">
+	        <input type="checkbox" id="remember" name="remember"
+				      value="true" lay-skin="switch" lay-text="记住|关闭" checked>
+		</div>
 		<div class="layui-form-item">
 			<button class="layui-btn layui-block" lay-filter="login" lay-submit>登录</button>
 		</div>
