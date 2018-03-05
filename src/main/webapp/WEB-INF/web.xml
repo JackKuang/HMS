@@ -63,6 +63,7 @@
 		<url-pattern>/layui/*</url-pattern>
 		<url-pattern>/page/*</url-pattern>
 		<url-pattern>*.html</url-pattern>
+		<url-pattern>*.ico</url-pattern>
 	</servlet-mapping>
 
 	<!-- 编码过滤器 -->  
