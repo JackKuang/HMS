@@ -4,12 +4,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hurenjieee.core.constant.SystemConst;
 import com.hurenjieee.system.service.SystemPermissionService;
 import com.hurenjieee.system.service.SystemUserService;
 import com.hurenjieee.system.util.AuthorizationUtil;
@@ -42,6 +46,10 @@ public class IndexController {
         /*String userUuid = AuthorizationUtil.getLoginUserUuid();
         List list = systemPermissionService.listPermissionsMenuByUserUuid(userUuid);
         model.addAttribute("permissionList",list);*/
+        boolean isNull = session.getAttribute(SystemConst.USER_LAST_LOGIN_TIME) == null;
+        if(isNull){
+            session.setAttribute(SystemConst.USER_LAST_LOGIN_TIME,systemUserService.getLastLoginByUuid(AuthorizationUtil.getLoginUserUuid()));
+        }
         return "system/index";
     }
     

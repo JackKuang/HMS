@@ -11,12 +11,6 @@
 	<div class="layui-col-xs12 layui-col-sm6 layui-col-md6">
 		<input type="hidden" id="publicKey" value="${publicKey}">
 		<div class="layui-form-item">
-			<label class="layui-form-label">用户名</label>
-			<div class="layui-input-block">
-				<input type="text" value="用户XXX" disabled class="layui-input layui-disabled">
-			</div>
-		</div>
-		<div class="layui-form-item">
 			<label class="layui-form-label">旧密码</label>
 			<div class="layui-input-block">
 				<input type="password" value="" placeholder="请输入旧密码" lay-verify="required|oldPwd" id="oldPwd" class="layui-input pwd">
@@ -68,22 +62,31 @@ layui.use(['form','layer'],function(){
     //验证按钮
     form.on("submit(changePwd)",function(data){
         var shaObj = new jsSHA("SHA-512", "TEXT");
+        var shaObj2 = new jsSHA("SHA-512", "TEXT");
         var encrypt = new JSEncrypt();
+        var encrypt2 = new JSEncrypt();
         var publicKey = $('#publicKey').val();
         encrypt.setPublicKey(publicKey);
+        encrypt2.setPublicKey(publicKey);
         var encrypted,hash;
         var obj = {};
+        
         //oldPwd
         var oldPwd = $("#oldPwd").val();
         shaObj.update(oldPwd);
         hash = shaObj.getHash("HEX");
+        console.log(oldPwd);
+        console.log(hash);
         encrypted = encrypt.encrypt(hash);
         obj['oldPwd'] = encrypted;
+        
         //newPwd
         var newPwd = $("#newPwd").val();
-        shaObj.update(newPwd);
-        hash = shaObj.getHash("HEX");
-        encrypted = encrypt.encrypt(hash);
+        shaObj2.update(newPwd);
+        hash = shaObj2.getHash("HEX");
+        console.log(newPwd);
+        console.log(hash);
+        encrypted = encrypt2.encrypt(hash);
         obj['newPwd'] = encrypted;
 		$.ajax({
 			type: 'post',
@@ -92,14 +95,13 @@ layui.use(['form','layer'],function(){
 			success: function(data) {
 				loadingModel.hideLoading();
 				$('#updatePwdForm')[0].reset();
-				if(data.success){
-					initModel.initPermissionTree();
-				}else{
+				if(!data.success){
 			        $('#publicKey').val(data.obj);
 				}
 				alertModel.alertData(data);
 			}
 		});
+		return false;
     })
 
 });

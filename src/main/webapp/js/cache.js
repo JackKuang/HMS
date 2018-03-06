@@ -214,6 +214,16 @@ layui.use(['form','jquery',"layer"],function() {
         }
     }
     skins();
+
+    $(".updatePwd").click(function(){
+        layer.open({
+            title : "修改密码",
+            area : ["400px","300px"],
+            type : 2,
+            content: root+	'/system/updatePwd' //iframe的url，no代表不显示滚动条
+    	})
+    });
+    
     $(".changeSkin").click(function(){
         layer.open({
             title : "更换皮肤",
@@ -233,8 +243,8 @@ layui.use(['form','jquery',"layer"],function() {
                                     '</div>'+
                                 '</div>'+
                                 '<div class="layui-form-item skinBtn">'+
-                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-normal" lay-submit="" lay-filter="changeSkin">确定更换</a>'+
-                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-primary" lay-submit="" lay-filter="noChangeSkin">朕再想想</a>'+
+                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-normal" lay-submit="" lay-filter="changeSkin">确认</a>'+
+                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-primary" lay-submit="" lay-filter="noChangeSkin">取消</a>'+
                                 '</div>'+
                             '</form>'+
                         '</div>',

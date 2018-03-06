@@ -71,19 +71,18 @@ public class SystemUserController {
     @ResponseBody
     public AjaxMessage update(String oldPwd,String newPwd,HttpSession session){
         try {
-           /* String userUuid = AuthorizationUtil.getLoginUserUuid();
+            String userUuid = AuthorizationUtil.getLoginUserUuid();
             String privateKey = (String) session.getAttribute("privateKey");
             newPwd = RSAUtil.decrypt(privateKey,newPwd);
             oldPwd = RSAUtil.decrypt(privateKey,oldPwd);
-            systemUserService.updatePwd(userUuid,oldPwd,newPwd);
+            Integer result = systemUserService.updatePwd(userUuid,oldPwd,newPwd);
             return AjaxMessageUtils.getSuccessMsg("修改成功");
         } catch (ServiceException se) {
             se.printStackTrace();
             String publicKey = setKeyAttribute(session);
             AjaxMessage result = AjaxMessageUtils.getFailMsgFromException(se);
             result.setObj(publicKey);
-            return AjaxMessageUtils.getFailMsgFromException(se);*/
-            return null;
+            return result;
         } catch (Exception e) {
             return new AjaxMessage(false,"WRONG","系统错误");
         }

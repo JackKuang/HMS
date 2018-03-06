@@ -25,6 +25,11 @@ public class SystemConst {
      */ 
     public static String SYSTEM_ADMIN_UUID = "admin";
     
+    /** 
+     * @Fields: USER_LAST_LOGIN : 定义在Session中上一次登陆时间
+     */ 
+    public static String USER_LAST_LOGIN_TIME = "LAST_LOGIN_TIME";
+    
     //-----------登陆结果开始-----------
     
     /** 

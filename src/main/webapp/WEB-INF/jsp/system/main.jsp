@@ -1,6 +1,7 @@
 <%@ page language="java" isThreadSafe="true" pageEncoding="utf-8"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -27,8 +28,8 @@
 					<i class="layui-anim seraph icon-clock"></i>
 				</div>
 				<div class="panel_word">
-					<span class="loginTime"></span>
-					<cite>上次登录时间</cite>
+					<span class="loginTime"><fmt:formatDate value="${sessionScope.get('LAST_LOGIN_TIME')}" pattern="yyyy年MM月dd日 HH:mm:ss"/></span>
+					<cite>上次成功登录时间</cite>
 				</div>
 			</a>
 		</div>
@@ -47,6 +48,9 @@
 								<h3 class="layui-inline">HMS v0.1发布上线</h3>
 								<span class="layui-badge-rim">2018-03-04</span>
 								<ul>
+									<li>
+									整理了系统中多余的功能，准备功能模块开发。<span class="layui-badge-rim">2018-03-06</span>
+									</li>
 									<li class="layui-blue">
 									系统使用了传统SSM框架作为基础架构、Shrio作为权限管理、LayUI作为前端页面为基础，构建一个简单高效的后台管理平台。用于平时数据采集的显示工作。<span class="layui-badge-rim">2018-03-04</span>
 									</li>
@@ -133,7 +137,7 @@
 	</div>
 
 	<script type="text/javascript" src="${ctx }/layui/layui.js"></script>
-	<script type="text/javascript" src="${ctx}/js/common.js"></script>
+	<script type="text/javascript" src="${ctx }/js/common.js"></script>
 	<script type="text/javascript" src="${ctx }/js/main.js"></script>
 </body>
 </html>

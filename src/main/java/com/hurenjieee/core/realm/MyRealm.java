@@ -11,7 +11,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.Subject;
 
 import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemUserService;
@@ -37,10 +36,10 @@ public class MyRealm extends AuthorizingRealm {
         String userId = (String) token.getPrincipal(); // 获取用户名
         System.out.println(token.getCredentials());
         SystemUser systemUser = systemUserService.getUserByUserId(userId);
-        if (systemUser != null) {
+        if (systemUser != null) {/*
             Subject subject = SecurityUtils.getSubject();
-            // Session session = subject.getSession();
-            // session.setAttribute(WebConstant.HTTP_SESSION_SYSTEM_USER,systemUser);
+            Session session = subject.getSession();
+            session.setAttribute(SystemConst.USER_LAST_LOGIN_TIME,systemUserService.getLastLoginByUuid(systemUser.getUuid()));*/
             AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(systemUser.getUuid(),systemUser.getUserPassword(),"myRealm");
             return authcInfo;
         } else {

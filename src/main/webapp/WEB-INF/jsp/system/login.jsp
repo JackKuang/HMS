@@ -10,6 +10,11 @@
 	<form class="layui-form" action="${ctx }/system/login" method="post">
 		<input type="hidden" value="${publicKey}" id="publicKey"/>
 		<div class="login_face"><img src="${ctx}/images/face.jpg" class="userAvatar"></div>
+		<c:if test="${error != null }">
+			<div class="layui-form-item input-item">
+				${error }
+			</div>
+		</c:if>
 		<div class="layui-form-item input-item">
 			<label for="userName">用户名</label>
 			<input type="text" placeholder="请输入用户名" autocomplete="off" id="userName" name="username" class="layui-input" lay-verify="required">

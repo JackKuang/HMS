@@ -1,11 +1,11 @@
 package com.hurenjieee.system.service;
 
 
+import java.util.Date;
 import java.util.Set;
 
+import com.hurenjieee.core.exception.ServiceException;
 import com.hurenjieee.core.service.BaseService;
-import com.hurenjieee.system.entity.SystemPermission;
-import com.hurenjieee.system.entity.SystemRole;
 import com.hurenjieee.system.entity.SystemUser;
 
 public interface SystemUserService extends BaseService<SystemUser>{
@@ -46,5 +46,25 @@ public interface SystemUserService extends BaseService<SystemUser>{
      * @throws Exception
      */
     public Integer insertUser(SystemUser systemUser) throws Exception;
+
+    /**
+     * @Description: 更新密码
+     * @Author: JackKuang
+     * @Since: 2018年3月6日下午4:54:33
+     * @param userUuid 用户uuid
+     * @param oldPwd 老密码
+     * @param newPwd 新密码
+     * @return
+     */
+    public Integer updatePwd(String userUuid,String oldPwd,String newPwd) throws ServiceException;
+
+    /**
+     * @Description: 根据userUuid获取到上一次登陆时间
+     * @Author: JackKuang
+     * @Since: 2018年3月6日下午10:00:30
+     * @param userUuid
+     * @return
+     */
+    public Date getLastLoginByUuid(String userUuid);
     
 }

@@ -44,6 +44,12 @@ public class SystemUser extends BaseEntity{
     @Column(name = "user_sex")
     private Integer userSex;
 
+    /** 
+     * @Fields: userLastLogin : 最后登录时间
+     */ 
+    @Column(name = "user_last_login")
+    private Date userLastLogin;
+
     @Transient
     private String userRoles;
     
@@ -186,17 +192,21 @@ public class SystemUser extends BaseEntity{
     public void setUserSex(Integer userSex) {
         this.userSex = userSex;
     }
-
     
     public String getUserRoles(){
         return userRoles;
     }
-
     
     public void setUserRoles(String userRoles){
         this.userRoles = userRoles;
     }
     
-    
+    public Date getUserLastLogin(){
+        return userLastLogin;
+    }
+
+    public void setUserLastLogin(Date userLastLogin){
+        this.userLastLogin = userLastLogin;
+    }
 
 }

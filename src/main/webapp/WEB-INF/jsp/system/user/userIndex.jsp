@@ -158,7 +158,7 @@
 	        cols:[[ //表头
     	        {field: '',type:'numbers', title: '序号', width:'5%'},
     	        {field: 'userId', title: '用户ID', width:'10%'},
-    	        {field: 'userName', title: '用户名', width:'20%'},
+    	        {field: 'userName', title: '用户名', width:'15%'},
     	        {field: 'userEmail', title: '邮箱', width:'20%'},
     	        {field: 'userTelephone', title: '电话', width:'20%'},
     	        {field: 'userRoles', title: '用户角色', width:'20%'},

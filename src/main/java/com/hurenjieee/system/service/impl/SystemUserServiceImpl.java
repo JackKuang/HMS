@@ -1,12 +1,12 @@
 package com.hurenjieee.system.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageInfo;
 import com.hurenjieee.core.constant.SystemConst;
@@ -122,8 +122,36 @@ public class SystemUserServiceImpl extends BaseServiceImpl<SystemUser> implement
         }
         return result;
     }
-    
-    
-    
+
+    @Override
+    public Integer updatePwd(String userUuid,String oldPwd,String newPwd) throws ServiceException{
+        if(!StringUtils.isNotBlank(oldPwd)){
+            throw new ServiceException(SystemConst.HTTP_RESPONSE_FAIL,"原密码错误！");
+        }
+        if(!StringUtils.isNotEmpty(newPwd)){
+            throw new ServiceException(SystemConst.HTTP_RESPONSE_FAIL,"新密码不能为空！");
+        }
+        SystemUser record = new SystemUser();
+        record.setUuid(userUuid);
+        record.setUserPassword(oldPwd);
+        Integer count = systemUserDao.selectCount(record);
+        if(count == 0 ){
+            throw new ServiceException(SystemConst.HTTP_RESPONSE_FAIL,"原密码错误！");
+        }
+        record.setUserPassword(newPwd);
+        Integer result = systemUserDao.updateByPrimaryKeySelective(record);
+        return result;
+    }
+
+    @Override
+    public Date getLastLoginByUuid(String userUuid){
+        SystemUser systemUser = systemUserDao.selectByPrimaryKey(userUuid);
+        Date result = systemUser.getUserLastLogin();
+        SystemUser updateObject = new SystemUser();
+        updateObject.setUuid(userUuid);
+        updateObject.setUserLastLogin(new Date());
+        systemUserDao.updateByPrimaryKeySelective(updateObject);
+        return result;
+    }
     
 }
