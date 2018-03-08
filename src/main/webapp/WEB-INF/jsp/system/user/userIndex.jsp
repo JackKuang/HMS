@@ -186,12 +186,12 @@
 				userOperate.deleteUser();
 			} else if(obj.event === 'edit'){
 				userUuidGlobal = data.uuid;
-				var reqData = {};
-				reqData['userUuid'] = userUuidGlobal;
 				$('#userId').val(data.userId);
 				$('#userName').val(data.userName);
 				$('#userEmail').val(data.userEmail);
 				$('#userTelephone').val(data.userTelephone);
+				var reqData = {};
+				reqData['userUuid'] = userUuidGlobal;
 				formModel.initCheckbox('userRoles','${ctx}/system/rolesListOne',reqData,'uuid','roleName',false);
 				layer.open({
 					type: 1,

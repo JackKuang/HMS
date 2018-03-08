@@ -43,7 +43,6 @@
 			connectionURL="jdbc:mysql://127.0.0.1:3306/hms" userId="root" password="123456">
 		</jdbcConnection>
 		
-
 		<javaModelGenerator targetPackage="com.hurenjieee.system.entity"
 			targetProject="src\main\java" >
 			<property name="enableSubPackages" value="true"/>  
@@ -78,6 +77,7 @@
 		<table tableName="system_role" mapperName="systemRoleDao"></table>
 		<table tableName="system_user" mapperName="systemUserDao"></table>
 		 -->
-		<table tableName="system_user_role" mapperName="SystemUserRole"></table>
+		<table tableName="system_job" mapperName="SystemJob"></table>
+		<table tableName="system_job_log" mapperName="SystemJobLog"></table>
 	</context>
 </generatorConfiguration>

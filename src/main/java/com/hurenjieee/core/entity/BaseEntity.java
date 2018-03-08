@@ -1,5 +1,7 @@
 package com.hurenjieee.core.entity;
 
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,40 +26,15 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "select uuid()")
     private String uuid;
 
+    @Transient
+    private Map<String, String> strMap;
+
     /**
      * @param uuid
      */
     public void setUuid(String uuid){
         this.uuid = uuid;
     }
-
-    /** 
-     * @Fields: offset : 分页页码
-     */
-    @Transient
-    private Integer pageNum;
-
-    /** 
-     * @Fields: pageSize : 分页大小
-     */
-    @Transient
-    private Integer pageSize;
-    
-    /**
-     * @return uuid
-     */
-    
-    /** 
-     * @Fields: offset : 分页页码
-     */
-    @Transient
-    private Integer offset;
-
-    /** 
-     * @Fields: pageSize : 分页大小
-     */
-    @Transient
-    private Integer limit;
     
     /**
      * @return uuid
@@ -65,5 +42,13 @@ public class BaseEntity {
     public String getUuid(){
         return uuid;
     }
-
+    
+    public Map<String, String> getStrMap(){
+        return strMap;
+    }
+    
+    public void setStrMap(Map<String, String> strMap){
+        this.strMap = strMap;
+    }
+    
 }
