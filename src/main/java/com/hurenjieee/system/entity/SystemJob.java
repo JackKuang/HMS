@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.deser.Deserializers.Base;
 import com.hurenjieee.core.annotation.AutoInjection;
 import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
+import com.hurenjieee.core.quartz.ScheduleJob;
 
 @Table(name = "system_job")
 public class SystemJob extends BaseEntity{
@@ -58,13 +59,13 @@ public class SystemJob extends BaseEntity{
     private String jobMethod;
 
     @Column(name = "job_concurrent")
-    private Integer jobConcurrent;
+    private String jobConcurrent;
 
     /**
      * 任务状态
      */
     @Column(name = "job_status")
-    private Integer jobStatus;
+    private String jobStatus;
 
     /**
      * @return create_user
@@ -215,14 +216,14 @@ public class SystemJob extends BaseEntity{
     /**
      * @return job_concurrent
      */
-    public Integer getJobConcurrent() {
+    public String getJobConcurrent() {
         return jobConcurrent;
     }
 
     /**
      * @param jobConcurrent
      */
-    public void setJobConcurrent(Integer jobConcurrent) {
+    public void setJobConcurrent(String jobConcurrent) {
         this.jobConcurrent = jobConcurrent;
     }
 
@@ -231,7 +232,7 @@ public class SystemJob extends BaseEntity{
      *
      * @return job_status - 任务状态
      */
-    public Integer getJobStatus() {
+    public String getJobStatus() {
         return jobStatus;
     }
 
@@ -240,7 +241,19 @@ public class SystemJob extends BaseEntity{
      *
      * @param jobStatus 任务状态
      */
-    public void setJobStatus(Integer jobStatus) {
+    public void setJobStatus(String jobStatus) {
         this.jobStatus = jobStatus;
+    }
+    
+    public ScheduleJob generateScheduleJob(){
+        ScheduleJob scheduleJob = new ScheduleJob();
+        scheduleJob.setJobName(jobName);
+        scheduleJob.setDescription(jobDescription);
+        scheduleJob.setMethodName(jobMethod);
+        scheduleJob.setBeanClass(jobBeanClass);
+        scheduleJob.setCronExpression(jobCron);
+        scheduleJob.setIsConcurrent(jobConcurrent);
+        scheduleJob.setJobStatus(jobStatus);
+        return scheduleJob;
     }
 }

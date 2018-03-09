@@ -32,6 +32,4 @@ public class SystemJobLogServiceImpl extends BaseServiceImpl<SystemJobLog> imple
         return pageInfo;
     }
 
-    
-
 }

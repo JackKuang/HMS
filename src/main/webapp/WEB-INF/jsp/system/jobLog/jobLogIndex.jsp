@@ -1,3 +1,4 @@
+
 <%@ page language="java" isThreadSafe="true" pageEncoding="utf-8"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -29,11 +30,23 @@
 		</div>
 	</div>
 	
-	<script type="text/html" id="resultTemplet">
-		{{#  if(d.jobStatus === '1'){ }}
-			<span class="layui-badge layui-bg-blue">成功</span>
+	
+	
+	<script type="text/html" id="stateTemplet">
+		{{#  if(d.logState === '0'){ }}
+			<span class="layui-badge layui-bg-blue">运行中</span>
+		{{#  } else if(d.logState === '1'){ }}
+			<span class="layui-badge layui-bg-gray">运行结束</span>
   		{{#  } else { }}
+ 		{{#  } }}
+	</script>
+	
+	<script type="text/html" id="resultTemplet">
+		{{#  if(d.logResult === '成功'){ }}
+			<span class="layui-badge layui-bg-blue">成功</span>
+  		{{#  } else if(d.logResult === '失败'){ }}
 			<span class="layui-badge layui-bg-gray">失败</span>
+  		{{#  } else{ }}
  		{{#  } }}
 	</script>
 
@@ -75,10 +88,11 @@
 	        cols:[[ //表头
     	        {field: '',type:'numbers', title: '序号', width:'5%'},
     	        {field: 'logJobName', title: '任务名称', width:'10%'},
-    	        {field: 'logJobDescription', title: '任务描述', width:'15%'},
+    	        {field: 'logJobDescription', title: '任务描述', width:'25%'},
     	        {field: 'logStartDate', title: '开始时间', width:'10%'},
-    	        {field: 'logTime', title: '运行时间（ms）', width:'20%'},
-    	        {field: 'logResult', title: '运行结果', width:'10%',templet: '#resultTemplet'},
+    	        {field: 'logTime', title: '运行时间（ms）', width:'10%'},
+    	        {field: 'logState', title: '状态', width:'5%',templet: '#stateTemplet'},
+    	        {field: 'logResult', title: '结果', width:'5%',templet: '#resultTemplet'},
     	        {field: 'logMessage', title: '结果描述', width:'29%'}
             ]]
 	    })

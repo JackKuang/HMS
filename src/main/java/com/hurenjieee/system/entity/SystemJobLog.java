@@ -1,66 +1,63 @@
 package com.hurenjieee.system.entity;
 
 import java.util.Date;
-import javax.persistence.*;
 
-import com.hurenjieee.core.annotation.AutoInjection;
-import com.hurenjieee.core.annotation.InjectionType;
+import javax.persistence.Column;
+import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.hurenjieee.core.entity.BaseEntity;
 
 @Table(name = "system_job_log")
 public class SystemJobLog extends BaseEntity{
 
-    @AutoInjection(type = InjectionType.CREATE_USER)
     @Column(name = "create_user")
     private String createUser;
 
-    @AutoInjection(type = InjectionType.CREATE_DATE)
     @Column(name = "create_date")
     private Date createDate;
 
-    @AutoInjection(type = InjectionType.UPDATE_USER)
     @Column(name = "update_user")
     private String updateUser;
 
-    @AutoInjection(type = InjectionType.UPDATE_DATE)
     @Column(name = "update_date")
     private Date updateDate;
 
-    /** 
-     * @Fields: logJobUuid : jobUuid
-     */ 
     @Column(name = "log_job_uuid")
     private String logJobUuid;
 
-    /** 
-     * @Fields: logStartDate : 开始时间
-     */ 
+    /**
+     * 任务名称
+     */
+    @Column(name = "log_job_name")
+    private String logJobName;
+
+    /**
+     * 任务描述
+     */
+    @Column(name = "log_job_description")
+    private String logJobDescription;
+    
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "log_start_date")
     private Date logStartDate;
 
-    /** 
-     * @Fields: logEndDate : 结束时间
-     */ 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "log_end_date")
     private Date logEndDate;
 
-    /** 
-     * @Fields: logResult : 结果
-     */ 
+    @Column(name = "log_state")
+    private String logState;
+
     @Column(name = "log_result")
     private String logResult;
 
-    /** 
-     * @Fields: logMessage : 信息
-     */ 
     @Column(name = "log_message")
     private String logMessage;
 
-    /** 
-     * @Fields: logTime : 运行时间
-     */ 
     @Column(name = "log_time")
-    private Integer logTime;
+    private Long logTime;
 
     /**
      * @return create_user
@@ -133,6 +130,42 @@ public class SystemJobLog extends BaseEntity{
     }
 
     /**
+     * 获取任务名称
+     *
+     * @return log_job_name - 任务名称
+     */
+    public String getLogJobName() {
+        return logJobName;
+    }
+
+    /**
+     * 设置任务名称
+     *
+     * @param logJobName 任务名称
+     */
+    public void setLogJobName(String logJobName) {
+        this.logJobName = logJobName;
+    }
+
+    /**
+     * 获取任务描述
+     *
+     * @return log_job_description - 任务描述
+     */
+    public String getLogJobDescription() {
+        return logJobDescription;
+    }
+
+    /**
+     * 设置任务描述
+     *
+     * @param logJobDescription 任务描述
+     */
+    public void setLogJobDescription(String logJobDescription) {
+        this.logJobDescription = logJobDescription;
+    }
+
+    /**
      * @return log_start_date
      */
     public Date getLogStartDate() {
@@ -158,6 +191,20 @@ public class SystemJobLog extends BaseEntity{
      */
     public void setLogEndDate(Date logEndDate) {
         this.logEndDate = logEndDate;
+    }
+
+    /**
+     * @return log_state
+     */
+    public String getLogState() {
+        return logState;
+    }
+
+    /**
+     * @param logState
+     */
+    public void setLogState(String logState) {
+        this.logState = logState;
     }
 
     /**
@@ -191,14 +238,14 @@ public class SystemJobLog extends BaseEntity{
     /**
      * @return log_time
      */
-    public Integer getLogTime() {
+    public Long getLogTime() {
         return logTime;
     }
 
     /**
      * @param logTime
      */
-    public void setLogTime(Integer logTime) {
+    public void setLogTime(Long logTime) {
         this.logTime = logTime;
     }
 }

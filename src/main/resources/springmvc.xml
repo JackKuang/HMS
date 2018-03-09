@@ -13,6 +13,7 @@
 
     <!-- 扫描这个路径下的Controller -->
     <context:component-scan base-package="com.hurenjieee.*.controller" />
+    <mvc:annotation-driven />
     
     <!-- JSON传输 -->
     <bean id="mappingJacksonHttpMessageConverter"

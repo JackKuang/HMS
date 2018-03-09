@@ -3,6 +3,7 @@ package com.hurenjieee.system.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,76 @@ public class SystemJobController {
 
     @Autowired
     SystemJobService systemJobService;
+
+    // ----------特殊接口开始----------
+    /**
+     * @Description: 启用任务调度
+     * @Author: JackKuang
+     * @Since: 2018年3月9日下午3:05:53
+     * @param systemJob
+     * @return
+     */
+    @RequestMapping(value = "startJob",method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxMessage startJob(SystemJob systemJob){
+        try {
+            Integer num = systemJobService.startJob(systemJob);
+            if (num == 1) {
+                return AjaxMessageUtils.getSuccessMsg("启用成功");
+            } else {
+                return AjaxMessageUtils.getFailMsg("启用失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new AjaxMessage(false,"WRONG","系统错误");
+        }
+    }
+    
+    /**
+     * @Description: 禁用任务调度
+     * @Author: JackKuang
+     * @Since: 2018年3月9日下午3:05:41
+     * @param systemJob
+     * @return
+     */
+    @RequestMapping(value = "stopJob",method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxMessage stopJob(SystemJob systemJob){
+        try {
+            Integer num = systemJobService.stopJob(systemJob);
+            if (num == 1) {
+                return AjaxMessageUtils.getSuccessMsg("禁用成功");
+            } else {
+                return AjaxMessageUtils.getFailMsg("禁用失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new AjaxMessage(false,"WRONG","系统错误");
+        }
+    }
+
+    /**
+     * @Description: 立即启动一次任务调度
+     * @Author: JackKuang
+     * @Since: 2018年3月9日下午3:05:53
+     * @param systemJob
+     * @return
+     */
+    @RequestMapping(value = "startJobOnce",method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxMessage startJobNow(SystemJob systemJob){
+        try {
+            systemJobService.startJobOnce(systemJob);
+            return AjaxMessageUtils.getSuccessMsg("操作成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new AjaxMessage(false,"WRONG","系统错误");
+        }
+    }
+    
+    
+    
+    // ----------特殊接口结束----------
     
     // ----------通用接口开始----------
     @RequestMapping("jobIndex")
@@ -54,6 +125,9 @@ public class SystemJobController {
     @ResponseBody
     public AjaxMessage insert(SystemJob systemJob){
         try {
+            if(!StringUtils.isNotBlank(systemJob.getJobConcurrent())){
+                systemJob.setJobConcurrent("0");
+            }
             Integer num = systemJobService.insertSelective(systemJob);
             if (num == 1) {
                 return AjaxMessageUtils.getSuccessMsg("新增成功");
@@ -91,6 +165,9 @@ public class SystemJobController {
     public AjaxMessage update(SystemJob systemJob,@PathVariable String uuid){
         try {
             systemJob.setUuid(uuid);
+            if(!StringUtils.isNotBlank(systemJob.getJobConcurrent())){
+                systemJob.setJobConcurrent("0");
+            }
             Integer num = systemJobService.updateByKeySelective(systemJob);
             if (num == 1) {
                 return AjaxMessageUtils.getSuccessMsg("修改成功");
