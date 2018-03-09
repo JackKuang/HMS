@@ -1,9 +1,8 @@
 package com.hurenjieee.system.job;
 
-import org.junit.Test;
 
 public class TestA {
-    @Test
+    
     public void testA(){
         MyThead myThead = new MyThead();
         myThead.start();
