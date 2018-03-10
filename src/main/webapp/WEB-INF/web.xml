@@ -91,9 +91,9 @@
     </listener>
     
     <!-- 初始化加载 -->
-    <listener>  
+    <!-- <listener>  
         <listener-class>com.hurenjieee.core.listener.WebInitListener</listener-class>  
-    </listener>
+    </listener> -->
     
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
