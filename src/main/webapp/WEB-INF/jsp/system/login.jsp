@@ -28,6 +28,11 @@
 	        <input type="checkbox" id="remember" name="remember"
 				      value="true" lay-skin="switch" lay-text="记住|关闭" checked>
 		</div>
+		<div class="layui-form-item input-item">
+			<div class="layui-form-item input-item">
+				用户名:admin	  密码：123456
+			</div>
+		</div>
 		<div class="layui-form-item">
 			<button class="layui-btn layui-block" lay-filter="login" lay-submit>登录</button>
 		</div>
