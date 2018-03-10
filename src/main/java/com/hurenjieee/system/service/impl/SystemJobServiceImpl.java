@@ -1,11 +1,6 @@
 package com.hurenjieee.system.service.impl;
 
-import org.quartz.CronTrigger;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.TriggerKey;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
 
 import com.hurenjieee.core.quartz.QuartManager;
@@ -25,9 +20,6 @@ public class SystemJobServiceImpl extends BaseServiceImpl<SystemJob> implements 
 
     @Autowired
     SystemJobDao systemJobDao;
-
-    @Autowired
-    private SchedulerFactoryBean schedulerFactoryBean;
 
     @Override
     public Mapper<SystemJob> getMapper(){
