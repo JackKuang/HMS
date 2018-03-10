@@ -90,10 +90,10 @@
     	        {field: 'logJobName', title: '任务名称', width:'10%'},
     	        {field: 'logJobDescription', title: '任务描述', width:'25%'},
     	        {field: 'logStartDate', title: '开始时间', width:'10%'},
-    	        {field: 'logTime', title: '运行时间（ms）', width:'10%'},
-    	        {field: 'logState', title: '状态', width:'5%',templet: '#stateTemplet'},
+    	        {field: 'logTime', title: '运行时间', width:'10%'},
+    	        {field: 'logState', title: '状态', width:'6%',templet: '#stateTemplet'},
     	        {field: 'logResult', title: '结果', width:'5%',templet: '#resultTemplet'},
-    	        {field: 'logMessage', title: '结果描述', width:'29%'}
+    	        {field: 'logMessage', title: '结果描述', width:'28%'}
             ]]
 	    })
 	});
