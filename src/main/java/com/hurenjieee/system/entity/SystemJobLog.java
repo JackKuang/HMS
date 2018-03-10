@@ -7,6 +7,7 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hurenjieee.core.entity.BaseEntity;
 
 @Table(name = "system_job_log")
@@ -40,10 +41,12 @@ public class SystemJobLog extends BaseEntity{
     private String logJobDescription;
     
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "log_start_date")
     private Date logStartDate;
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "log_end_date")
     private Date logEndDate;
 

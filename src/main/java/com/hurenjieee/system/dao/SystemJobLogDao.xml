@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hurenjieee.system.dao.SystemJobLogDao">
+  <resultMap id="BaseResultMap" type="com.hurenjieee.system.entity.SystemJobLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="log_job_uuid" jdbcType="VARCHAR" property="logJobUuid" />
+    <result column="log_job_name" jdbcType="VARCHAR" property="logJobName" />
+    <result column="log_job_description" jdbcType="VARCHAR" property="logJobDescription" />
+    <result column="log_start_date" jdbcType="TIMESTAMP" property="logStartDate" />
+    <result column="log_end_date" jdbcType="TIMESTAMP" property="logEndDate" />
+    <result column="log_state" jdbcType="VARCHAR" property="logState" />
+    <result column="log_result" jdbcType="VARCHAR" property="logResult" />
+    <result column="log_message" jdbcType="VARCHAR" property="logMessage" />
+    <result column="log_time" jdbcType="INTEGER" property="logTime" />
+  </resultMap>
+  
+  <select id="selectPageByDate" parameterType="com.hurenjieee.system.entity.SystemJobLog" resultMap="BaseResultMap">
+  	SELECT *
+  	FROM system_job_log
+    <where>
+      <if test="strMap!=null and strMap.startDate != null and strMap.startDate != ''">
+      	AND log_start_date &gt;= #{strMap.startDate}
+      </if>
+      <if test="strMap!=null and strMap.endDate != null and strMap.endDate != ''">
+      	AND log_start_date &lt;= #{strMap.endDate}
+      </if>
+    </where>
+    ORDER BY log_start_date DESC
+  </select>
+  
+</mapper>
