@@ -14,7 +14,7 @@
     <import resource="applicationMybatis.xml" />
     <import resource="applicationShiro.xml" />
     <!-- <import resource="applicationRedis.xml" /> -->
-    
-    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" />  
+    <!-- 
+    <bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" />   -->
 
 	</beans>

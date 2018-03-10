@@ -119,13 +119,14 @@ public class QuartManager {
             e.printStackTrace();  
         }  
     }
+
     
     /**  
      * @Description:启动所有定时任务  
      * @author qgw  
      * @date 2016年1月29日 下午2:21:16 ^_^ 
      */
-    /*public static void startJobs(){
+    public static void startJobs(){
         try {
             Scheduler sched = gSchedulerFactory.getScheduler();
             sched.start();
@@ -133,12 +134,12 @@ public class QuartManager {
             throw new RuntimeException(e);
         }
     }
-
-    *//** 
+    
+    /** 
      * @Description 关闭所有定时任务  
      * @author qgw  
      * @date 2016年1月25日 下午2:26:54 ^_^ 
-     *//*
+     */
     public static void shutdownJobs(){
         try {
             Scheduler sched = gSchedulerFactory.getScheduler();
@@ -148,5 +149,5 @@ public class QuartManager {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }*/
+    }
 }
