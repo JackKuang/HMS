@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hurenjieee.system.dao.SystemDictionaryDao">
+  <resultMap id="BaseResultMap" type="com.hurenjieee.system.entity.SystemDictionary">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="dictionary_name" jdbcType="VARCHAR" property="dictionaryName" />
+    <result column="dictionary_key" jdbcType="VARCHAR" property="dictionaryKey" />
+    <result column="dictionary_value" jdbcType="VARCHAR" property="dictionaryValue" />
+    <result column="dictionary_par_uuid" jdbcType="VARCHAR" property="dictionaryParUuid" />
+    <result column="dictionary_order" jdbcType="INTEGER" property="dictionaryOrder" />
+    <result column="dictionary_state" jdbcType="INTEGER" property="dictionaryState" />
+  </resultMap>
+  
+  <select id="listDictionary" resultType="map">
+    SELECT
+    	uuid AS dictionaryUuid,
+    	dictionary_name AS dictionaryName,
+    	dictionary_par_uuid AS dictionaryParUuid,
+    	dictionary_value AS dictionaryValue,
+    	dictionary_order AS dictionaryOrder,
+    	dictionary_state AS dictionaryState
+    FROM
+    	system_dictionary
+    ORDER BY
+    	dictionary_order DESC
+  
+  </select>
+  
+</mapper>
