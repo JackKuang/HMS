@@ -56,6 +56,9 @@ public class SystemDictionaryController {
     @ResponseBody
     public AjaxMessage insert(SystemDictionary systemDictionary){
         try {
+            if(systemDictionary.getDictionaryState() == null ){
+                systemDictionary.setDictionaryState(0);
+            }
             Integer num = systemDictionaryService.insertSelective(systemDictionary);
             if (num == 1) {
                 return AjaxMessageUtils.getSuccessMsg("新增成功");
@@ -90,6 +93,9 @@ public class SystemDictionaryController {
     @ResponseBody
     public AjaxMessage update(SystemDictionary systemDictionary,@PathVariable String uuid){
         try {
+            if(systemDictionary.getDictionaryState() == null ){
+                systemDictionary.setDictionaryState(0);
+            }
             systemDictionary.setUuid(uuid);
             Integer num = systemDictionaryService.updateByKeySelective(systemDictionary);
             if (num == 1) {

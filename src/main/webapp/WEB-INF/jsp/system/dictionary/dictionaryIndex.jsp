@@ -60,7 +60,7 @@
 					<div class="layui-input-block">
 						<button class="layui-btn" lay-submit lay-filter="*">保存</button>
 						<!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
-						<button onclick="javascript:dictioaryOperate.deletePermission();" type="button" class="layui-btn layui-btn-danger">删除</button>
+						<button onclick="javascript:dictionaryOperate.deleteDictionary();" type="button" class="layui-btn layui-btn-danger">删除</button>
 					</div>
 				</div>
 				<!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
@@ -133,11 +133,12 @@
 								$("#dictionaryName").val(node.dictionaryName);
 								$("#dictionaryValue").val(node.dictionaryValue);
 								$("#dictionaryOrder").val(node.dictionaryOrder);
-								if(node.permissionState == 1){
+								if(node.dictionaryState == 1){
 									$('#dictionaryState').prop("checked",true);
 								}else{
 									$('#dictionaryState').prop("checked",false);
 								}
+								form.render();
 								$('#dictionaryParUuid').val(node.dictionaryParUuid);
 				    		}
 				    	});
@@ -152,7 +153,7 @@
 			$('#dictionaryForm')[0].reset();
 			$('#operateName').html('根节点添加');
 			dictionaryUuidGlobal = '';
-			$('#permissionParCode').val('');
+			$('#dictionaryParCode').val('');
 		},
 		saveDictionary:function(){
 			if(dictionaryUuidGlobal != ''){
@@ -174,7 +175,7 @@
 						  success: function(data) {
 							  loadingModel.hideLoading();
 							  if(data.success){
-								  initModel.initPermissionTree();
+								  initModel.initDictionaryTree();
 								  $('#dictionaryForm')[0].reset();
 							  }
 							  alertModel.alertData(data);
