@@ -151,7 +151,7 @@
 								$("#permissionOrder").val(node.permissionOrder);
 								$("#permissionDesc").val(node.permissionDesc);
 								$("#permissionStyle").val(node.permissionStyle);
-								if(node.permissionState == "1"){
+								if(node.permissionState == 1){
 									$('#permissionState').prop("checked",true);
 								}else{
 									$('#permissionState').prop("checked",false);

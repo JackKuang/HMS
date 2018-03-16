@@ -104,7 +104,7 @@ public class SystemPermissionController {
     @ResponseBody
     public AjaxMessage save(SystemPermission systemPermission){
         try {
-            if (systemPermission.getPermissionState() == null || systemPermission.getPermissionState() != 1)
+            if (systemPermission.getPermissionState() == null)
                 systemPermission.setPermissionState(0);
             Integer num = systemPermissionService.insertSelective(systemPermission);
             if (num == 1) {
@@ -122,7 +122,7 @@ public class SystemPermissionController {
     @ResponseBody
     public AjaxMessage update(SystemPermission systemPermission,@PathVariable String uuid){
         try {
-            if (systemPermission.getPermissionState() == null || systemPermission.getPermissionState() != 1)
+            if (systemPermission.getPermissionState() == null)
                 systemPermission.setPermissionState(0);
             systemPermission.setUuid(uuid);
             Integer num = systemPermissionService.updateByKeySelective(systemPermission);

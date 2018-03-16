@@ -62,10 +62,10 @@
 						</div>
 					</div>
 					<div class="layui-form-item">
-						<label class="layui-form-label">任务状态</label>
+						<label class="layui-form-label">是否允许并发</label>
 						<div class="layui-input-block">
 							<input type="checkbox" id="jobConcurrent" name="jobConcurrent"
-							value="1" lay-skin="switch" lay-text="有|无" checked>
+							value="1" lay-skin="switch" lay-text="是|否" checked>
 						</div>
 					</div>
 					<div class="layui-form-item">
@@ -81,7 +81,7 @@
 	
 	
 	<script type="text/html" id="statusTemplet">
-		{{#  if(d.jobStatus === '1'){ }}
+		{{#  if(d.jobStatus === 1){ }}
 			<span class="layui-badge layui-bg-blue">运行中</span>
   		{{#  } else { }}
 			<span class="layui-badge layui-bg-gray">未运行</span>
@@ -89,16 +89,16 @@
 	</script>
 	
 	<script type="text/html" id="concurrentTemplet">
-		{{#  if(d.jobConcurrent === '1'){ }}
-			有
+		{{#  if(d.jobConcurrent === 1){ }}
+			是
   		{{#  } else { }}
-			无
+			否
  		{{#  } }}
 	</script>
 	
 	<script type="text/html" id="operateBar">
 
-		{{#  if(d.jobStatus === '1'){ }}
+		{{#  if(d.jobStatus === 1){ }}
 			<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="stopJob">禁用</a>
   		{{#  } else { }}
 			<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="startJob">启用</a>
@@ -149,7 +149,7 @@
     	        {field: 'jobCron', title: 'Cron表达式', width:'10%'},
     	        {field: 'jobBeanClass', title: '包名+类名', width:'20%'},
     	        {field: 'jobMethod', title: '方法名', width:'10%'},
-    	        {field: 'jobConcurrent', title: '任务状态', width:'10%',templet: '#concurrentTemplet'},
+    	        {field: 'jobConcurrent', title: '是否并发', width:'10%',templet: '#concurrentTemplet'},
     	        {field: 'jobStatus', title: '状态', width:'5%',templet: '#statusTemplet'},
     	        {title: '操作',fixed: 'right', width:'20%', align:'center', toolbar: '#operateBar'}
     	        /* {title: '启用',fixed: 'right', width:'5%', align:'center', toolbar: '#statusBar'} */

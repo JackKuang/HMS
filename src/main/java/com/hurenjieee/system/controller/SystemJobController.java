@@ -125,8 +125,8 @@ public class SystemJobController {
     @ResponseBody
     public AjaxMessage insert(SystemJob systemJob){
         try {
-            if(!StringUtils.isNotBlank(systemJob.getJobConcurrent())){
-                systemJob.setJobConcurrent("0");
+            if(systemJob.getJobConcurrent() == null){
+                systemJob.setJobConcurrent(0);
             }
             Integer num = systemJobService.insertSelective(systemJob);
             if (num == 1) {
@@ -165,8 +165,8 @@ public class SystemJobController {
     public AjaxMessage update(SystemJob systemJob,@PathVariable String uuid){
         try {
             systemJob.setUuid(uuid);
-            if(!StringUtils.isNotBlank(systemJob.getJobConcurrent())){
-                systemJob.setJobConcurrent("0");
+            if(systemJob.getJobConcurrent() == null){
+                systemJob.setJobConcurrent(0);
             }
             Integer num = systemJobService.updateByKeySelective(systemJob);
             if (num == 1) {

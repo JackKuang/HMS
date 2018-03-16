@@ -59,13 +59,13 @@ public class SystemJob extends BaseEntity{
     private String jobMethod;
 
     @Column(name = "job_concurrent")
-    private String jobConcurrent;
+    private Integer jobConcurrent;
 
     /**
      * 任务状态
      */
     @Column(name = "job_status")
-    private String jobStatus;
+    private Integer jobStatus;
 
     /**
      * @return create_user
@@ -216,14 +216,14 @@ public class SystemJob extends BaseEntity{
     /**
      * @return job_concurrent
      */
-    public String getJobConcurrent() {
+    public Integer getJobConcurrent() {
         return jobConcurrent;
     }
 
     /**
      * @param jobConcurrent
      */
-    public void setJobConcurrent(String jobConcurrent) {
+    public void setJobConcurrent(Integer jobConcurrent) {
         this.jobConcurrent = jobConcurrent;
     }
 
@@ -232,7 +232,7 @@ public class SystemJob extends BaseEntity{
      *
      * @return job_status - 任务状态
      */
-    public String getJobStatus() {
+    public Integer getJobStatus() {
         return jobStatus;
     }
 
@@ -241,7 +241,7 @@ public class SystemJob extends BaseEntity{
      *
      * @param jobStatus 任务状态
      */
-    public void setJobStatus(String jobStatus) {
+    public void setJobStatus(Integer jobStatus) {
         this.jobStatus = jobStatus;
     }
     
@@ -252,8 +252,8 @@ public class SystemJob extends BaseEntity{
         scheduleJob.setMethodName(jobMethod);
         scheduleJob.setBeanClass(jobBeanClass);
         scheduleJob.setCronExpression(jobCron);
-        scheduleJob.setIsConcurrent(jobConcurrent);
-        scheduleJob.setJobStatus(jobStatus);
+        scheduleJob.setIsConcurrent(String.valueOf(jobConcurrent));
+        scheduleJob.setJobStatus(String.valueOf(jobStatus));
         return scheduleJob;
     }
 }

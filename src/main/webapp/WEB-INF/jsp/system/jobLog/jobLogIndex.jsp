@@ -33,9 +33,9 @@
 	
 	
 	<script type="text/html" id="stateTemplet">
-		{{#  if(d.logState === '0'){ }}
+		{{#  if(d.logState === 0){ }}
 			<span class="layui-badge layui-bg-blue">运行中</span>
-		{{#  } else if(d.logState === '1'){ }}
+		{{#  } else if(d.logState === 1){ }}
 			<span class="layui-badge layui-bg-gray">运行结束</span>
   		{{#  } else { }}
  		{{#  } }}

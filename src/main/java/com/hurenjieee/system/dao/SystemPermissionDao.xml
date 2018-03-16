@@ -96,7 +96,8 @@
   		TRUE AS spread
 	FROM
 		system_permission permission
-	LEFT JOIN system_role_permission role_permission2 ON role_permission2.permission_uuid = permission.uuid and role_permission2.role_uuid = #{roleUuid}
+	LEFT JOIN system_role_permission role_permission2 ON role_permission2.permission_uuid = permission.uuid
+	and role_permission2.role_uuid = #{roleUuid}
   	WHERE permission_state = 1
   </select>
 </mapper>

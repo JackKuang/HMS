@@ -15,7 +15,7 @@
     <result column="job_cron" jdbcType="VARCHAR" property="jobCron" />
     <result column="job_bean_class" jdbcType="VARCHAR" property="jobBeanClass" />
     <result column="job_method" jdbcType="VARCHAR" property="jobMethod" />
-    <result column="job_concurrent" jdbcType="VARCHAR" property="jobConcurrent" />
-    <result column="job_status" jdbcType="VARCHAR" property="jobStatus" />
+    <result column="job_concurrent" jdbcType="INTEGER" property="jobConcurrent" />
+    <result column="job_status" jdbcType="INTEGER" property="jobStatus" />
   </resultMap>
 </mapper>

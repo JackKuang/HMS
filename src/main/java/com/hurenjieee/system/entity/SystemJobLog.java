@@ -8,20 +8,26 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.hurenjieee.core.annotation.AutoInjection;
+import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
 
 @Table(name = "system_job_log")
 public class SystemJobLog extends BaseEntity{
 
+    @AutoInjection(type = InjectionType.CREATE_USER)
     @Column(name = "create_user")
     private String createUser;
 
+    @AutoInjection(type = InjectionType.CREATE_DATE)
     @Column(name = "create_date")
     private Date createDate;
 
+    @AutoInjection(type = InjectionType.UPDATE_USER)
     @Column(name = "update_user")
     private String updateUser;
 
+    @AutoInjection(type = InjectionType.UPDATE_DATE)
     @Column(name = "update_date")
     private Date updateDate;
 

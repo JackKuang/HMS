@@ -9,7 +9,7 @@ import org.quartz.JobExecutionException;
 
 /** 
  *  
- * @Description: 计划任务执行处 无状态 
+ * @Description: 计划任务允许并发 
  * @author snailxr 
  * @date 2014年4月24日 下午5:05:47 
  */  

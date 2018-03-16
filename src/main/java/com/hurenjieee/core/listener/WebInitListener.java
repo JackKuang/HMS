@@ -25,7 +25,7 @@ public class WebInitListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce){
         SystemJobService systemJobService = SpringContextUtil.getBean("systemJobService");
         SystemJob searchObj = new SystemJob();
-        searchObj.setJobStatus("1");
+        searchObj.setJobStatus(1);
         List<SystemJob> list = systemJobService.select(searchObj);
         for(SystemJob systemJob : list){
             Class cls;

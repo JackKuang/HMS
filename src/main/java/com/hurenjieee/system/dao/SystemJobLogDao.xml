@@ -15,7 +15,7 @@
     <result column="log_job_description" jdbcType="VARCHAR" property="logJobDescription" />
     <result column="log_start_date" jdbcType="TIMESTAMP" property="logStartDate" />
     <result column="log_end_date" jdbcType="TIMESTAMP" property="logEndDate" />
-    <result column="log_state" jdbcType="VARCHAR" property="logState" />
+    <result column="log_state" jdbcType="INTEGER" property="logState" />
     <result column="log_result" jdbcType="VARCHAR" property="logResult" />
     <result column="log_message" jdbcType="VARCHAR" property="logMessage" />
     <result column="log_time" jdbcType="INTEGER" property="logTime" />

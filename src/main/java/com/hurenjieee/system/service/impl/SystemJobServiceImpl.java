@@ -36,7 +36,7 @@ public class SystemJobServiceImpl extends BaseServiceImpl<SystemJob> implements 
             cls = QuartzJobFactoryDisallowConcurrentExecution.class;
         }
         QuartManager.addJob(systemJob.getJobName(),cls,systemJob.getJobCron(),systemJob.generateScheduleJob());
-        systemJob.setJobStatus("1");
+        systemJob.setJobStatus(1);
         return systemJobDao.updateByPrimaryKeySelective(systemJob);
     }
 
@@ -44,7 +44,7 @@ public class SystemJobServiceImpl extends BaseServiceImpl<SystemJob> implements 
     public Integer stopJob(SystemJob systemJob){
         systemJob = systemJobDao.selectByPrimaryKey(systemJob.getUuid());
         QuartManager.removeJob(systemJob.getJobName());
-        systemJob.setJobStatus("0");
+        systemJob.setJobStatus(0);
         return systemJobDao.updateByPrimaryKeySelective(systemJob);
     }
 
@@ -54,4 +54,13 @@ public class SystemJobServiceImpl extends BaseServiceImpl<SystemJob> implements 
         TaskUtils.invokMethod(systemJob.generateScheduleJob());
     }
 
+    @Override
+    public void updateTran(){
+        SystemJob searchObj = new SystemJob();
+        searchObj.setUuid("c0ef5ee3-22bc-11e8-9db2-a0c5892edc62");
+        SystemJob systemJob = systemJobDao.selectOne(searchObj);
+        systemJob.setJobDescription("测试一下");
+        systemJobDao.updateByPrimaryKey(systemJob);
+        int i = 1/0;
+    }
 }

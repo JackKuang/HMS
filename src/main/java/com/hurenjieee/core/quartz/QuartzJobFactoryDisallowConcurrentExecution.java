@@ -12,7 +12,7 @@ import org.quartz.JobExecutionException;
  * @author chenjianlin
  * @date 2014年4月24日 下午5:05:47
  */
-@DisallowConcurrentExecution // 禁止并发执行多个相同定义的JobDetail
+@DisallowConcurrentExecution // 不允许并发
 public class QuartzJobFactoryDisallowConcurrentExecution implements Job {
 
     public final Logger log = Logger.getLogger(this.getClass());

@@ -31,5 +31,13 @@ public interface SystemJobService extends BaseService<SystemJob>{
      * @return
      */
     void startJobOnce(SystemJob systemJob);
+    
+    
+    /**
+     * @Description: 测试回滚
+     * @Author: JackKuang
+     * @Since: 2018年3月10日下午2:36:44
+     */
+    void updateTran();
 
 }
