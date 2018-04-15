@@ -1,5 +1,6 @@
 package com.hurenjieee.system.service.impl;
 
+import org.quartz.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,12 @@ import com.hurenjieee.system.service.SystemJobService;
 
 import tk.mybatis.mapper.common.Mapper;
 
+
+/**
+ * @Description: 定时任务
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:48:27  
+ */
 @Service("systemJobService")
 public class SystemJobServiceImpl extends BaseServiceImpl<SystemJob> implements SystemJobService {
 
@@ -29,7 +36,7 @@ public class SystemJobServiceImpl extends BaseServiceImpl<SystemJob> implements 
     @Override
     public Integer startJob(SystemJob systemJob){
         systemJob = systemJobDao.selectByPrimaryKey(systemJob.getUuid());
-        Class cls;
+        Class<? extends Job> cls;
         if (ScheduleJob.CONCURRENT_IS.equals(systemJob.getJobConcurrent())) {
             cls = QuartzJobFactory.class;
         } else {
@@ -62,5 +69,6 @@ public class SystemJobServiceImpl extends BaseServiceImpl<SystemJob> implements 
         systemJob.setJobDescription("测试一下");
         systemJobDao.updateByPrimaryKey(systemJob);
         int i = 1/0;
+        System.out.println(i);
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
-import com.hurenjieee.core.constant.SystemConst;
+import com.hurenjieee.core.constant.HttpConst;
 import com.hurenjieee.core.exception.ServiceException;
 import com.hurenjieee.core.service.impl.BaseServiceImpl;
 import com.hurenjieee.system.dao.SystemUserDao;
@@ -20,8 +20,16 @@ import com.hurenjieee.system.service.SystemUserService;
 
 import tk.mybatis.mapper.common.Mapper;
 
+
+/**
+ * @Description: 用户
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:53:23  
+ */
 @Service("systemUserService")
 public class SystemUserServiceImpl extends BaseServiceImpl<SystemUser> implements SystemUserService{
+
+    private static String SPLITE_FLAG = ",";
     
     @Autowired
     SystemUserDao systemUserDao;
@@ -81,14 +89,14 @@ public class SystemUserServiceImpl extends BaseServiceImpl<SystemUser> implement
     public Integer insertUser(SystemUser systemUser) throws Exception{
         Integer idCount = systemUserDao.selectCountByUserId(systemUser.getUserId());
         if(idCount > 0){
-            throw new ServiceException(SystemConst.HTTP_RESPONSE_FAIL,"当前用户Id已存在，不可重复");
+            throw new ServiceException(HttpConst.HTTP_RESPONSE_FAIL,"当前用户Id已存在，不可重复");
         }
         Integer result = systemUserDao.insertSelective(systemUser);
         if(result > 0){
             //add
             String userUuid = systemUser.getUuid();
             String userRoles = systemUser.getUserRoles();
-            for(String roleUuid : userRoles.split(",")){
+            for(String roleUuid : userRoles.split(SPLITE_FLAG)){
                 if(StringUtils.isNotBlank(roleUuid)){
                     SystemUserRole systemUserRole = new SystemUserRole();
                     systemUserRole.setUserUuid(userUuid);
@@ -111,7 +119,7 @@ public class SystemUserServiceImpl extends BaseServiceImpl<SystemUser> implement
             systemUserRoleDao.delete(deleteObject);
             //add
             String userRoles = systemUser.getUserRoles();
-            for(String roleUuid : userRoles.split(",")){
+            for(String roleUuid : userRoles.split(SPLITE_FLAG)){
                 if(StringUtils.isNotBlank(roleUuid)){
                     SystemUserRole systemUserRole = new SystemUserRole();
                     systemUserRole.setUserUuid(userUuid);
@@ -126,17 +134,17 @@ public class SystemUserServiceImpl extends BaseServiceImpl<SystemUser> implement
     @Override
     public Integer updatePwd(String userUuid,String oldPwd,String newPwd) throws ServiceException{
         if(!StringUtils.isNotBlank(oldPwd)){
-            throw new ServiceException(SystemConst.HTTP_RESPONSE_FAIL,"原密码错误！");
+            throw new ServiceException(HttpConst.HTTP_RESPONSE_FAIL,"原密码错误！");
         }
         if(!StringUtils.isNotEmpty(newPwd)){
-            throw new ServiceException(SystemConst.HTTP_RESPONSE_FAIL,"新密码不能为空！");
+            throw new ServiceException(HttpConst.HTTP_RESPONSE_FAIL,"新密码不能为空！");
         }
         SystemUser record = new SystemUser();
         record.setUuid(userUuid);
         record.setUserPassword(oldPwd);
         Integer count = systemUserDao.selectCount(record);
         if(count == 0 ){
-            throw new ServiceException(SystemConst.HTTP_RESPONSE_FAIL,"原密码错误！");
+            throw new ServiceException(HttpConst.HTTP_RESPONSE_FAIL,"原密码错误！");
         }
         record.setUserPassword(newPwd);
         Integer result = systemUserDao.updateByPrimaryKeySelective(record);

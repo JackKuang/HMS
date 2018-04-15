@@ -1,11 +1,11 @@
 package com.hurenjieee.system.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,17 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.hurenjieee.system.entity.SystemDictionary;
-import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemDictionaryService;
-import com.hurenjieee.system.util.AuthorizationUtil;
 import com.hurenjieee.util.AjaxMessage;
 import com.hurenjieee.util.AjaxMessageUtils;
-import com.hurenjieee.util.PageResult;
-import com.hurenjieee.util.PageUtil;
 
+/**
+ * @Description: 数据字典Controller
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:19:12  
+ */
 @Controller("systemDictionaryController")
 @Scope("prototype")
 @RequestMapping("/system")
@@ -35,6 +34,7 @@ public class SystemDictionaryController {
     SystemDictionaryService systemDictionaryService;
 
     // ----------通用接口开始----------
+
     @RequestMapping("dictionaryIndex")
     public String index(Model model,HttpSession session){
         return "system/dictionary/dictionaryIndex";
@@ -42,9 +42,10 @@ public class SystemDictionaryController {
 
     @RequestMapping(value = "dictionarys",method = RequestMethod.GET)
     @ResponseBody
-    public List list(HttpServletRequest request){
+
+    public List<Map<String, Object>> list(HttpServletRequest request){
         try {
-            List list = systemDictionaryService.listDictionary();
+            List<Map<String, Object>> list = systemDictionaryService.listDictionary();
             return list;
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,7 +57,7 @@ public class SystemDictionaryController {
     @ResponseBody
     public AjaxMessage insert(SystemDictionary systemDictionary){
         try {
-            if(systemDictionary.getDictionaryState() == null ){
+            if (systemDictionary.getDictionaryState() == null) {
                 systemDictionary.setDictionaryState(0);
             }
             Integer num = systemDictionaryService.insertSelective(systemDictionary);
@@ -93,7 +94,7 @@ public class SystemDictionaryController {
     @ResponseBody
     public AjaxMessage update(SystemDictionary systemDictionary,@PathVariable String uuid){
         try {
-            if(systemDictionary.getDictionaryState() == null ){
+            if (systemDictionary.getDictionaryState() == null) {
                 systemDictionary.setDictionaryState(0);
             }
             systemDictionary.setUuid(uuid);

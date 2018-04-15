@@ -14,8 +14,7 @@ import javax.persistence.Transient;
  * @Author: JackKuang
  * @Since: 2017年8月18日上午11:17:43  
  */
-
-@MappedSuperclass // JPA 基类的标识，继承此类会同时生成这几个字段
+@MappedSuperclass
 public class BaseEntity {
 
     /** 

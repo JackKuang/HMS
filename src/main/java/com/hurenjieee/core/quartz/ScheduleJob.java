@@ -2,6 +2,12 @@ package com.hurenjieee.core.quartz;
 
 import java.util.Date;
 
+
+/**
+ * @Description: 定时任务转换为该实体类
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:07:43  
+ */
 public class ScheduleJob {  
     
     public static final String STATUS_RUNNING = "1";  

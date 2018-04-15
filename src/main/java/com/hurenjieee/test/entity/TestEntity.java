@@ -3,13 +3,18 @@ package com.hurenjieee.test.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.hurenjieee.core.annotation.AutoInjection;
 import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
 
+
+/**
+ * @Description: 测试
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:20:11  
+ */
 @Table(name = "test_entity")
 public class TestEntity extends BaseEntity{
 

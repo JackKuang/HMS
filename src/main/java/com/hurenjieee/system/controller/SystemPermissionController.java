@@ -21,6 +21,12 @@ import com.hurenjieee.system.util.AuthorizationUtil;
 import com.hurenjieee.util.AjaxMessage;
 import com.hurenjieee.util.AjaxMessageUtils;
 
+
+/**
+ * @Description: 权限控制类
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午3:42:29  
+ */
 @Controller("systemPermissionController")
 @Scope("prototype")
 @RequestMapping("/system")
@@ -42,8 +48,8 @@ public class SystemPermissionController {
      */
     @RequestMapping(value = "rolsPermissions",method = RequestMethod.GET)
     @ResponseBody
-    public List listAllPermissionsByUserUuid(HttpSession session,String roleUuid) throws Exception{
-        List list = systemPermissionService.listAllPermissionsByUserUuid(roleUuid,AuthorizationUtil.getLoginUserUuid());
+    public List<Map<String,Object>> listAllPermissionsByUserUuid(HttpSession session,String roleUuid) throws Exception{
+        List<Map<String,Object>> list = systemPermissionService.listAllPermissionsByUserUuid(roleUuid,AuthorizationUtil.getLoginUserUuid());
         return list;
     }
 
@@ -57,11 +63,10 @@ public class SystemPermissionController {
      */
     @RequestMapping(value = "permissions",method = RequestMethod.GET)
     @ResponseBody
-    public List list(HttpSession session) throws Exception{
-        List list = systemPermissionService.listPermissionsByUserUuid(AuthorizationUtil.getLoginUserUuid());
+    public List<Map<String,Object>> list(HttpSession session) throws Exception{
+        List<Map<String,Object>> list = systemPermissionService.listPermissionsByUserUuid(AuthorizationUtil.getLoginUserUuid());
         return list;
     }
-    
 
     /**
      * @Description: List类型（菜单列表）（适应三版首页）
@@ -73,19 +78,20 @@ public class SystemPermissionController {
      */
     @RequestMapping(value = "permissionsIndex",method = RequestMethod.GET)
     @ResponseBody
-    public List<Map<String,Object>> listIndex(HttpSession session) throws Exception{
-        List<Map<String,Object>> list = systemPermissionService.listPermissionsForByUserUuid(AuthorizationUtil.getLoginUserUuid());
+    public List<Map<String, Object>> listIndex(HttpSession session) throws Exception{
+        List<Map<String, Object>> list = systemPermissionService.listPermissionsForByUserUuid(AuthorizationUtil.getLoginUserUuid());
         return list;
     }
 
     // ----------特殊接口结束----------
 
     // ----------通用接口开始----------
+    
     @RequestMapping("permissionIndex")
-    public String index(Model model,HttpSession session){
+    public String permissionIndex(Model model,HttpSession session){
         return "system/permission/permissionIndex";
     }
-    
+
     @RequestMapping(value = "permissions/{uuid}",method = RequestMethod.GET)
     @ResponseBody
     public AjaxMessage list(@PathVariable String uuid) throws Exception{
@@ -104,8 +110,9 @@ public class SystemPermissionController {
     @ResponseBody
     public AjaxMessage save(SystemPermission systemPermission){
         try {
-            if (systemPermission.getPermissionState() == null)
+            if (systemPermission.getPermissionState() == null) {
                 systemPermission.setPermissionState(0);
+            }
             Integer num = systemPermissionService.insertSelective(systemPermission);
             if (num == 1) {
                 return AjaxMessageUtils.getSuccessMsg("新增成功");
@@ -122,8 +129,9 @@ public class SystemPermissionController {
     @ResponseBody
     public AjaxMessage update(SystemPermission systemPermission,@PathVariable String uuid){
         try {
-            if (systemPermission.getPermissionState() == null)
+            if (systemPermission.getPermissionState() == null) {
                 systemPermission.setPermissionState(0);
+            }
             systemPermission.setUuid(uuid);
             Integer num = systemPermissionService.updateByKeySelective(systemPermission);
             if (num == 1) {

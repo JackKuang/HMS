@@ -1,6 +1,5 @@
 package com.hurenjieee.util;
 
-import com.hurenjieee.core.constant.SystemConst;
 
 /**
  * @Description: Json处理返回结果
@@ -8,11 +7,23 @@ import com.hurenjieee.core.constant.SystemConst;
  * @Since: 2018年1月13日上午10:15:44  
  */
 public class AjaxMessage {
-
-    private boolean success = false; // 处理结果
-    private String code = null; // 消息码
-    private String msg = null; // 消息提示
-    private Object obj = null; // 返回的结果
+    
+    /** 
+     * @Fields: success : 处理结果
+     */ 
+    private boolean success = false;
+    /** 
+     * @Fields: code : 消息码
+     */ 
+    private String code = null;
+    /** 
+     * @Fields: msg : 消息提示
+     */ 
+    private String msg = null;
+    /** 
+     * @Fields: obj : 返回的结果
+     */ 
+    private Object obj = null;
 
     public AjaxMessage() {
         super();

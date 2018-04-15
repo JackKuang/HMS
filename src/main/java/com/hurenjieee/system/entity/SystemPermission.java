@@ -9,6 +9,12 @@ import com.hurenjieee.core.annotation.AutoInjection;
 import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
 
+
+/**
+ * @Description: 权限
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:28:14  
+ */
 @Table(name = "system_permission")
 public class SystemPermission extends BaseEntity{
 

@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -17,9 +18,15 @@ import com.hurenjieee.system.service.SystemUserService;
 import com.hurenjieee.test.entity.TestEntity;
 import com.hurenjieee.test.service.TestService;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration("/applicationContext.xml")
-public class MybatisTest {/*
+
+/**
+ * @Description: MybatisTest测试
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:34:33  
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("/applicationContext.xml")
+public class MybatisTest {
    
     @Resource
     TestService testService;
@@ -32,6 +39,10 @@ public class MybatisTest {/*
     
     @Autowired
     SystemPermissionService systemPermissionService;
+
+    @Resource
+    private RedisTemplate<String, String> redisTemplate;
+
     
     @Test
     public void insert(){
@@ -107,5 +118,11 @@ public class MybatisTest {/*
     @Test
     public void selectPermissionsTest(){
         //List list = systemPermissionService.getPermissionsMapByUserId("admin");
-    }*/
+    }
+    
+    @Test
+    public void testRedis(){
+        redisTemplate.opsForValue().set("key","test");
+        System.out.println(redisTemplate.opsForValue().get("key"));
+    }
 }

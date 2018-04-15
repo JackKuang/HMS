@@ -2,10 +2,6 @@ package com.hurenjieee.core.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import tk.mybatis.mapper.common.Mapper;
 
 import com.github.pagehelper.PageInfo;
@@ -21,6 +17,13 @@ import com.hurenjieee.core.service.BaseService;
  */
 public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
+    /**
+     * 配置默认Dao层，主要用于Service默认方法调用
+     * @Description:配置默认Dao层，主要用于Service默认方法调用
+     * @Author: JackKuang
+     * @Since: 2018年4月15日下午4:11:28
+     * @return
+     */
     public abstract Mapper<T> getMapper();
 
     /****************增加开始**********************/

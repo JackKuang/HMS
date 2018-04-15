@@ -12,6 +12,12 @@ import com.hurenjieee.core.annotation.AutoInjection;
 import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
 
+
+/**
+ * @Description: 定时任务日志
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:28:07  
+ */
 @Table(name = "system_job_log")
 public class SystemJobLog extends BaseEntity{
 

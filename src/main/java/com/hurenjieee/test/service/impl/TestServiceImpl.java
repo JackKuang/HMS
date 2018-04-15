@@ -10,6 +10,12 @@ import com.hurenjieee.test.service.TestService;
 
 import tk.mybatis.mapper.common.Mapper;
 
+
+/**
+ * @Description: 测试
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:15:13  
+ */
 @Service("testService")
 public class TestServiceImpl extends BaseServiceImpl<TestEntity> implements TestService{
 

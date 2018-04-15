@@ -6,6 +6,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @Description: Cookie工具类
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:17:14  
+ */
 public class CookieTool {
 
     /**
@@ -36,7 +41,7 @@ public class CookieTool {
      * @return
      */
     public static Cookie getCookieByName(HttpServletRequest request,String name){
-        Map<String, Cookie> cookieMap = ReadCookieMap(request);
+        Map<String, Cookie> cookieMap = readCookieMap(request);
         if (cookieMap.containsKey(name)) {
             Cookie cookie = (Cookie) cookieMap.get(name);
             return cookie;
@@ -52,7 +57,7 @@ public class CookieTool {
      * @param request
      * @return
      */
-    private static Map<String, Cookie> ReadCookieMap(HttpServletRequest request){
+    private static Map<String, Cookie> readCookieMap(HttpServletRequest request){
         Map<String, Cookie> cookieMap = new HashMap<String, Cookie>();
         Cookie[] cookies = request.getCookies();
         if (null != cookies) {
@@ -72,7 +77,7 @@ public class CookieTool {
      * @return
      */
     public static String getValueByName(HttpServletRequest request,String name){
-        Map<String, Cookie> cookieMap = ReadCookieMap(request);
+        Map<String, Cookie> cookieMap = readCookieMap(request);
         if (cookieMap.containsKey(name)) {
             Cookie cookie = (Cookie) cookieMap.get(name);
             return cookie.getValue();

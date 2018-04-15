@@ -24,6 +24,12 @@ import com.hurenjieee.util.AjaxMessageUtils;
 import com.hurenjieee.util.PageResult;
 import com.hurenjieee.util.PageUtil;
 
+
+/**
+ * @Description: 角色Controller
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:40:23  
+ */
 @Controller("systemRoleController")
 @Scope("prototype")
 @RequestMapping("/system")
@@ -62,7 +68,7 @@ public class SystemRoleController {
     @ResponseBody
     public AjaxMessage rolesListOne(String userUuid){
         try {
-            List<Map> list = systemRoleService.selectRoleByUserUuid(userUuid);
+            List<Map<String,Object>> list = systemRoleService.selectRoleByUserUuid(userUuid);
             return AjaxMessageUtils.getSuccessObj(list);
         } catch (Exception e) {
             e.printStackTrace();

@@ -14,6 +14,12 @@ import com.hurenjieee.system.service.SystemJobLogService;
 import tk.mybatis.mapper.common.Mapper;
 
 
+
+/**
+ * @Description: 定时任务日志
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:47:28  
+ */
 @Service("systemJobLogService")
 public class SystemJobLogServiceImpl extends BaseServiceImpl<SystemJobLog> implements SystemJobLogService {
 

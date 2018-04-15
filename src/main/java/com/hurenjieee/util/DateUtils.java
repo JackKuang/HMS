@@ -8,11 +8,10 @@ import java.util.Date;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 
-import com.mysql.jdbc.Field;
-
 /**
  * @Description: 时间工具类
- * @Since: 2018年1月22日下午8:16:40  
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:18:33  
  */
 public class DateUtils {
 
@@ -366,8 +365,10 @@ public class DateUtils {
         if (date != null) {
             cal.setTime(date);
         }
-        int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);// 获取date当月的最大天数
-        if (max == cal.get(Calendar.DAY_OF_MONTH)) {// 表示date是月底时间
+        // 获取date当月的最大天数
+        int max = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        // 表示date是月底时间
+        if (max == cal.get(Calendar.DAY_OF_MONTH)) {
             cal.add(Calendar.MONTH,month);
             cal.set(Calendar.DATE,cal.getActualMaximum(Calendar.DAY_OF_MONTH));
         } else {
@@ -444,7 +445,8 @@ public class DateUtils {
             int cMonth = currentDate.getMonth();
             int bDate = birthday.getDate();
             int cDate = currentDate.getDate();
-            if ((bMonth > cMonth) || (bMonth == cMonth && bDate > cDate)) {
+            boolean isPase = (bMonth > cMonth) || (bMonth == cMonth && bDate > cDate);
+            if (isPase) {
                 age = age - 1;
             }
         }
@@ -538,14 +540,15 @@ public class DateUtils {
         Calendar can = Calendar.getInstance();
         int currentMon = can.get(Calendar.MONTH) + 1;
         String now = null;
-        if (currentMon >= 1 && currentMon <= 3)
+        if (currentMon >= 1 && currentMon <= 3) {
             can.set(Calendar.MONTH,0);
-        else if (currentMon >= 4 && currentMon <= 6)
+        } else if (currentMon >= 4 && currentMon <= 6) {
             can.set(Calendar.MONTH,3);
-        else if (currentMon >= 7 && currentMon <= 9)
+        } else if (currentMon >= 7 && currentMon <= 9) {
             can.set(Calendar.MONTH,4);
-        else if (currentMon >= 10 && currentMon <= 12)
+        } else if (currentMon >= 10 && currentMon <= 12) {
             can.set(Calendar.MONTH,9);
+        }
         can.set(Calendar.DATE,1);
         now = DateFormatUtils.format(can.getTime(),PATTERN_DATE);
 
@@ -583,10 +586,8 @@ public class DateUtils {
      * @return
      */
     public static boolean isLeapYear(int year){
-        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
-            return true;
-        }
-        return false;
+        boolean isLeapYear = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+        return isLeapYear;
     }
 
     /**

@@ -3,9 +3,6 @@ package com.hurenjieee.system.util;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
-import com.hurenjieee.system.entity.SystemUser;
-
-
 /**
  * @Description: 根据Shiro获取到用户信息
  * @Author: JackKuang

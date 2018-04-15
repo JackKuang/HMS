@@ -1,14 +1,21 @@
 package com.hurenjieee.system.entity;
 
 import java.util.Date;
-import javax.persistence.*;
 
-import com.fasterxml.jackson.databind.deser.Deserializers.Base;
+import javax.persistence.Column;
+import javax.persistence.Table;
+
 import com.hurenjieee.core.annotation.AutoInjection;
 import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
 import com.hurenjieee.core.quartz.ScheduleJob;
 
+
+/**
+ * @Description: 定时任务
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:43:21  
+ */
 @Table(name = "system_job")
 public class SystemJob extends BaseEntity{
 

@@ -1,6 +1,5 @@
 package com.hurenjieee.system.controller;
 
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,15 +15,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hurenjieee.core.exception.ServiceException;
 import com.hurenjieee.system.entity.SystemJobLog;
-import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemJobLogService;
 import com.hurenjieee.util.AjaxMessage;
 import com.hurenjieee.util.AjaxMessageUtils;
 import com.hurenjieee.util.PageResult;
 import com.hurenjieee.util.PageUtil;
 
+
+/**
+ * @Description: 定时任务日志Controller
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:39:48  
+ */
 @Controller("systemJobLogController")
 @Scope("prototype")
 @RequestMapping("/system")
@@ -34,6 +37,7 @@ public class SystemJobLogController {
     SystemJobLogService systemJobLogService;
     
     // ----------通用接口开始----------
+    
     @RequestMapping("jobLogIndex")
     public String index(Model model,HttpSession session){
         return "system/jobLog/jobLogIndex";
@@ -41,11 +45,12 @@ public class SystemJobLogController {
 
     @RequestMapping(value = "jobLogs",method = RequestMethod.GET)
     @ResponseBody
-    public PageResult<SystemUser> list(SystemJobLog systemJobLog,HttpServletRequest request){
+    public PageResult<SystemJobLog> list(SystemJobLog systemJobLog,HttpServletRequest request){
         try {
             PageHelper.startPage(request);
             PageInfo<SystemJobLog> pageInfo = systemJobLogService.selectPage(systemJobLog);
-            return PageUtil.generatePage(pageInfo);
+            PageResult<SystemJobLog> result = PageUtil.generatePage(pageInfo);
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

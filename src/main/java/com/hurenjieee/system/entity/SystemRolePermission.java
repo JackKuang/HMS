@@ -7,6 +7,12 @@ import com.hurenjieee.core.annotation.AutoInjection;
 import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
 
+
+/**
+ * @Description: 角色权限关联
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:28:29  
+ */
 @Table(name = "system_role_permission")
 public class SystemRolePermission extends BaseEntity{
 

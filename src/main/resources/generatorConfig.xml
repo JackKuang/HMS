@@ -55,8 +55,9 @@
 
 		<javaClientGenerator targetPackage="com.hurenjieee.system.dao"
 			targetProject="src\main\java" type="XMLMAPPER">
-			<property name="enableSubPackages" value="true"/>			
+			<property name="enableSubPackages" value="true"/>		
 		</javaClientGenerator>
+		
 		<!-- 多表用 -->
 		<!-- <table tableName="test%" mapperName="{0}Dao">
 			<generatedKey column="id" sqlStatement="JDBC" />
@@ -77,7 +78,9 @@
 		<table tableName="system_role" mapperName="systemRoleDao"></table>
 		<table tableName="system_user" mapperName="systemUserDao"></table>
 		 -->
-		<!-- <table tableName="system_job" mapperName="SystemJob"></table> -->
-		<table tableName="system_job_log" mapperName="SystemJobLog"></table>
+		<!-- <table tableName="system_job" mapperName="SystemJob"></table> --><!-- 
+		<table tableName="system_job_log" mapperName="SystemJobLog"></table> --><!-- 
+		<table tableName="system_dictionary" mapperName="SystemDictionary"></table> -->
+		<table tableName="test_entity" mapperName="testEntity"></table>
 	</context>
 </generatorConfiguration>

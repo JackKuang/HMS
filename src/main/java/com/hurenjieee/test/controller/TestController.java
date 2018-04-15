@@ -12,6 +12,12 @@ import com.github.pagehelper.PageInfo;
 import com.hurenjieee.test.entity.TestEntity;
 import com.hurenjieee.test.service.TestService;
 
+
+/**
+ * @Description: 测试Controller
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:06:45  
+ */
 @Controller("testController")
 @Scope("prototype")
 @RequestMapping("/test")
@@ -26,7 +32,7 @@ public class TestController {
         TestEntity testEntity = new TestEntity();
         PageHelper.startPage(2,100);
         PageInfo<TestEntity> page = testService.selectPage(testEntity);
-        return null;
+        return page;
     }
 
     @RequestMapping("index.action")

@@ -7,6 +7,12 @@ import com.hurenjieee.core.annotation.AutoInjection;
 import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
 
+
+/**
+ * @Description: 角色
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:28:21  
+ */
 @Table(name = "system_role")
 public class SystemRole extends BaseEntity {
 

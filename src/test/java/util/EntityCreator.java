@@ -14,6 +14,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * @Description: 实体类创建工具
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:42:25  
+ */
 public class EntityCreator {
 
     public static void main(String[] args){

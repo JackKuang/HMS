@@ -11,6 +11,12 @@ import com.hurenjieee.core.util.SpringContextUtil;
 import com.hurenjieee.system.entity.SystemJobLog;
 import com.hurenjieee.system.service.SystemJobLogService;
 
+
+/**
+ * @Description: 定时任务管理器
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:08:10  
+ */
 public class TaskUtils {
 
     public final static Logger log = Logger.getLogger(TaskUtils.class);
@@ -24,7 +30,7 @@ public class TaskUtils {
      */
     public static void invokMethod(ScheduleJob scheduleJob){
         Object object = null;
-        Class clazz = null;
+        Class<?> clazz = null;
 
         Long startTime;
         Long stopTime;

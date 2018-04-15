@@ -1,6 +1,6 @@
 package com.hurenjieee.util;
 
-import com.hurenjieee.core.constant.SystemConst;
+import com.hurenjieee.core.constant.HttpConst;
 import com.hurenjieee.core.exception.ServiceException;
 
 /**
@@ -18,7 +18,7 @@ public class AjaxMessageUtils {
      * @return
      */
     public static AjaxMessage getSuccessMsg(String msg){
-        return new AjaxMessage(true,SystemConst.HTTP_RESPONSE_SUCCESS,msg);
+        return new AjaxMessage(true,HttpConst.HTTP_RESPONSE_SUCCESS,msg);
     }
 
     /**
@@ -29,7 +29,7 @@ public class AjaxMessageUtils {
      * @return
      */
     public static AjaxMessage getFailMsg(String msg){
-        return new AjaxMessage(true,SystemConst.HTTP_RESPONSE_FAIL,msg);
+        return new AjaxMessage(true,HttpConst.HTTP_RESPONSE_FAIL,msg);
     }
 
     /**
@@ -40,7 +40,7 @@ public class AjaxMessageUtils {
      * @return
      */
     public static AjaxMessage getExceptionMsg(){
-        return new AjaxMessage(true,SystemConst.HTTP_RESPONSE_WRONG,"系统出错，联系管理员");
+        return new AjaxMessage(true,HttpConst.HTTP_RESPONSE_WRONG,"系统出错，联系管理员");
     }
 
     /**
@@ -51,7 +51,7 @@ public class AjaxMessageUtils {
      * @return
      */
     public static AjaxMessage getSuccessObj(Object obj){
-        return new AjaxMessage(true,SystemConst.HTTP_RESPONSE_SUCCESS,obj);
+        return new AjaxMessage(true,HttpConst.HTTP_RESPONSE_SUCCESS,obj);
     }
 
     public static AjaxMessage getFailMsgFromException(ServiceException e){

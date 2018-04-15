@@ -25,8 +25,13 @@ import com.hurenjieee.util.AjaxMessage;
 import com.hurenjieee.util.AjaxMessageUtils;
 import com.hurenjieee.util.PageResult;
 import com.hurenjieee.util.PageUtil;
-import com.hurenjieee.util.RSAUtil;
+import com.hurenjieee.util.RsaUtil;
 
+/**
+ * @Description: 用户Controller
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:41:49  
+ */
 @Controller("systemUserController")
 @Scope("prototype")
 @RequestMapping("/system")
@@ -35,7 +40,7 @@ public class SystemUserController {
     @Autowired
     SystemUserService systemUserService;
     // ----------特殊接口开始----------
-    
+
     /**
      * @Description: 个人信息页面
      * @Author: JackKuang
@@ -48,8 +53,7 @@ public class SystemUserController {
     public String userInfo(Model model,HttpSession session){
         return "system/user/userInfo";
     }
-    
-    
+
     /**
      * @Description: 更新用户名密码页面
      * @Author: JackKuang
@@ -73,10 +77,14 @@ public class SystemUserController {
         try {
             String userUuid = AuthorizationUtil.getLoginUserUuid();
             String privateKey = (String) session.getAttribute("privateKey");
-            newPwd = RSAUtil.decrypt(privateKey,newPwd);
-            oldPwd = RSAUtil.decrypt(privateKey,oldPwd);
+            newPwd = RsaUtil.decrypt(privateKey,newPwd);
+            oldPwd = RsaUtil.decrypt(privateKey,oldPwd);
             Integer result = systemUserService.updatePwd(userUuid,oldPwd,newPwd);
-            return AjaxMessageUtils.getSuccessMsg("修改成功");
+            if (result > 0) {
+                return AjaxMessageUtils.getSuccessMsg("修改成功");
+            } else {
+                return AjaxMessageUtils.getFailMsg("修改失败");
+            }
         } catch (ServiceException se) {
             se.printStackTrace();
             String publicKey = setKeyAttribute(session);
@@ -96,7 +104,7 @@ public class SystemUserController {
      * @return publicKey
      */
     private String setKeyAttribute(HttpSession session){
-        Map<String, String> data = RSAUtil.generateKeyPair();
+        Map<String, String> data = RsaUtil.generateKeyPair();
         String privateKey = data.get("privateKey");
         String publicKey = data.get("publicKey");
         session.setAttribute("privateKey",privateKey);
@@ -104,10 +112,10 @@ public class SystemUserController {
         return publicKey;
     }
 
-    
     // ----------特殊接口结束----------
-    
+
     // ----------通用接口开始----------
+    
     @RequestMapping("userIndex")
     public String index(Model model,HttpSession session){
         return "system/user/userIndex";

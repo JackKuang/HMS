@@ -7,12 +7,6 @@ package com.hurenjieee.core.constant;
  * @Author: JackKuang
  * @Since: 2018年1月12日下午8:42:05  
  */
-
-/**
- * @Description: TODO
- * @Author: JackKuang
- * @Since: 2018年1月22日下午6:47:49  
- */
 public class SystemConst {
 
     /** 
@@ -29,30 +23,7 @@ public class SystemConst {
      * @Fields: USER_LAST_LOGIN : 定义在Session中上一次登陆时间
      */ 
     public static String USER_LAST_LOGIN_TIME = "LAST_LOGIN_TIME";
-    
-    //-----------登陆结果开始-----------
-    
-    /** 
-     * @Fields: HTTP_REQUEST_SUCCESS : 请求成功
-     */ 
-    public static String HTTP_RESPONSE_SUCCESS = "SUCCESS";
 
-    /** 
-     * @Fields: HTTP_RESPONSE_FAIL : 请求失败
-     */ 
-    public static String HTTP_RESPONSE_FAIL = "FAIL";
-    
-    /** 
-     * @Fields: HTTP_RESPONSE_RESUBMIT : 重复请求
-     */ 
-    public static String HTTP_RESPONSE_RESUBMIT = "RESUBMIT";
-    
-    /** 
-     * @Fields: HTTP_RESPONSE_WRONG : 系统报错导致异常
-     */ 
-    public static final String HTTP_RESPONSE_WRONG = "WRONG";
-    
-
-    //-----------登陆结果结束-----------
+  
        
 }

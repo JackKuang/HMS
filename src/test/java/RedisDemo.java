@@ -1,17 +1,9 @@
 
-import org.junit.Before;
-import org.junit.Test;
-import redis.clients.jedis.Jedis;
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
- * Date: 2017/3/4.
- * Time: 下午 1:21.
- * Explain:Java操作Redis测试
+ * @Description: RedisDemo
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:34:43  
  */
 public class RedisDemo {
 /*

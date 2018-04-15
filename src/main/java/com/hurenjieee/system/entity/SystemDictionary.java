@@ -7,6 +7,12 @@ import com.hurenjieee.core.annotation.AutoInjection;
 import com.hurenjieee.core.annotation.InjectionType;
 import com.hurenjieee.core.entity.BaseEntity;
 
+
+/**
+ * @Description: 数据字典
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:27:55  
+ */
 @Table(name = "system_dictionary")
 public class SystemDictionary extends BaseEntity {
 

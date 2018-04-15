@@ -3,7 +3,6 @@ package com.hurenjieee.system.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,15 +14,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.hurenjieee.core.exception.ServiceException;
 import com.hurenjieee.system.entity.SystemJob;
-import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemJobService;
 import com.hurenjieee.util.AjaxMessage;
 import com.hurenjieee.util.AjaxMessageUtils;
 import com.hurenjieee.util.PageResult;
 import com.hurenjieee.util.PageUtil;
 
+
+/**
+ * @Description: 定时任务Controller
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:20:27  
+ */
 @Controller("systemJobController")
 @Scope("prototype")
 @RequestMapping("/system")
@@ -103,6 +106,7 @@ public class SystemJobController {
     // ----------特殊接口结束----------
     
     // ----------通用接口开始----------
+    
     @RequestMapping("jobIndex")
     public String index(Model model,HttpSession session){
         return "system/job/jobIndex";
@@ -110,11 +114,12 @@ public class SystemJobController {
 
     @RequestMapping(value = "jobs",method = RequestMethod.GET)
     @ResponseBody
-    public PageResult<SystemUser> list(SystemJob systemJob,HttpServletRequest request){
+    public PageResult<SystemJob> list(SystemJob systemJob,HttpServletRequest request){
         try {
             PageHelper.startPage(request);
             PageInfo<SystemJob> pageInfo = systemJobService.selectPage(systemJob);
-            return PageUtil.generatePage(pageInfo);
+            PageResult<SystemJob> result = PageUtil.generatePage(pageInfo);
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

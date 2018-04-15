@@ -1,12 +1,7 @@
 package com.hurenjieee.system.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -18,6 +13,12 @@ import com.hurenjieee.system.service.SystemPermissionService;
 import com.hurenjieee.system.service.SystemUserService;
 import com.hurenjieee.system.util.AuthorizationUtil;
 
+
+/**
+ * @Description: 首页Controller
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:18:38  
+ */
 @Controller("indexController")
 @Scope("prototype")
 @RequestMapping("/system")

@@ -3,8 +3,6 @@ package com.hurenjieee.core.interceptor;
 import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.hurenjieee.core.constant.HttpConst;
 import com.hurenjieee.util.AjaxMessage;
 import com.hurenjieee.util.DateUtils;
 
@@ -27,18 +26,19 @@ public class SameUrlDataInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request,HttpServletResponse response,Object handler) throws Exception{
-        //非GET请求判断是否存在重复表单提交。
-        if (!"GET".equalsIgnoreCase(request.getMethod()) && repeatDataValidator(request)){// 如果重复相同数据
+        // 非GET请求判断是否存在重复表单提交。
+        // 如果重复相同数据
+        boolean isAllow = !HttpConst.HTTP_REQUEST_GET.equalsIgnoreCase(request.getMethod()) && repeatDataValidator(request);
+        if (isAllow) {
             response.setContentType("application/json;charset=UTF-8");
             PrintWriter writer = response.getWriter();
-            writer.write(JSONObject.fromObject(new AjaxMessage(false,"RESUBMIT","重复提交")).toString());
+            writer.write(JSONObject.fromObject(new AjaxMessage(false,HttpConst.HTTP_RESPONSE_RESUBMIT,"重复提交")).toString());
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
-    
+
     /** 
      * 验证同一个url数据是否相同提交  ,相同返回true 
      * @param httpServletRequest 
@@ -48,24 +48,21 @@ public class SameUrlDataInterceptor extends HandlerInterceptorAdapter {
     public boolean repeatDataValidator(HttpServletRequest httpServletRequest) throws JsonProcessingException{
         String params = JSONObject.fromObject(httpServletRequest.getParameterMap()).toString();
         String url = httpServletRequest.getRequestURI();
-        Map<String, String> map = new HashMap<String, String>();
-        map.put(url,params);
-        String nowUrlParams = map.toString();//
+        String nowUrlParams = url + ":" + params;
 
-        Object preUrlParams = httpServletRequest.getSession().getAttribute("repeatData");
-        Date date = (Date)httpServletRequest.getSession().getAttribute("repeatTime");
-        if (preUrlParams == null)// 如果上一个数据为null,表示还没有访问页面
-        {
+        String preUrlParams = (String) httpServletRequest.getSession().getAttribute("repeatData");
+        Date date = (Date) httpServletRequest.getSession().getAttribute("repeatTime");
+        // 如果上一个数据为null,表示还没有访问页面
+        if (preUrlParams == null) {
             httpServletRequest.getSession().setAttribute("repeatData",nowUrlParams);
             httpServletRequest.getSession().setAttribute("repeatTime",new Date());
             return false;
-        } else// 否则，已经访问过页面
-        {
-            //所有请求必须在3s内完成
-            //3秒内无法重复提交
-            boolean isResubmit = preUrlParams.toString().equals(nowUrlParams)
-                    && DateUtils.intevalBetweenDate(new Date(),date,Calendar.SECOND) < 3 ;
-            if (isResubmit){
+        } else {
+            // 否则，已经访问过页面
+            // 所有请求必须在3s内完成
+            // 3秒内无法重复提交
+            boolean isResubmit = preUrlParams.equals(nowUrlParams) && DateUtils.intevalBetweenDate(new Date(),date,Calendar.SECOND) < 3;
+            if (isResubmit) {
                 return true;
             } else {
                 // 如果上次 url+数据 和本次url加数据不同，则不是重复提交

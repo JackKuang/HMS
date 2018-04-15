@@ -13,20 +13,25 @@
         http://www.springframework.org/schema/cache/spring-cache-4.2.xsd ">
        
     <!-- 加载配置文件 -->
-    <context:property-placeholder location="classpath:db.properties" />
+    <context:property-placeholder location="classpath:redis.properties" ignore-unresolvable="true"/>
 
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxIdle" value="${redis.maxIdle}" />
-        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+        <property name="maxIdle" value="${redis.maxIdle}" />  
+        <property name="maxTotal" value="${redis.maxTotal}" />  
+<!--         <property name="maxActive" value="${redis.maxActive}" />   -->
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />  
     </bean>
+    
+    <!-- 启用缓存注解功能，这个是必须的，否则注解不会生效，另外，该注解一定要声明在spring主配置文件中才会生效 -->    
+    <cache:annotation-driven cache-manager="cacheManager" />    
 
     <bean id="connectionFactory"
         class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
         <property name="poolConfig" ref="poolConfig" />
         <property name="port" value="${redis.port}" />
-        <property name="hostName" value="${redis.hostname}" />
-        <!-- <property name="password" value="${redis.password}" /> -->
-        <!-- <property name="timeout" value="${redis.timeout}" /> -->
+        <property name="hostName" value="${redis.host}" />
+        <property name="password" value="${redis.password}" />
+        <property name="timeout" value="${redis.timeout}" />
     </bean>
     
     <!-- 序列化key和value  -->

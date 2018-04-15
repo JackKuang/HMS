@@ -5,6 +5,12 @@ import javax.persistence.*;
 
 import com.hurenjieee.core.entity.BaseEntity;
 
+
+/**
+ * @Description: 用户角色关联
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:28:44  
+ */
 @Table(name = "system_user_role")
 public class SystemUserRole extends BaseEntity{
 

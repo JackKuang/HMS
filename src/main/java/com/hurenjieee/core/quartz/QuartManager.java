@@ -2,6 +2,7 @@ package com.hurenjieee.core.quartz;
 
 import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
+import org.quartz.Job;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.JobKey;
@@ -13,10 +14,17 @@ import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
 import org.quartz.impl.StdSchedulerFactory;
 
+/**
+ * @Description: 定时任务管理器
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:04:47  
+ */
 public class QuartManager {
 
     private static SchedulerFactory gSchedulerFactory = new StdSchedulerFactory();
+
     private static String JOB_GROUP_NAME = "MY_JOBGROUP_NAME";
+
     private static String TRIGGER_GROUP_NAME = "MY_TRIGGERGROUP_NAME";
 
     /**
@@ -28,8 +36,7 @@ public class QuartManager {
      * @param time
      * @param scheduleJob
      */
-    @SuppressWarnings("unchecked")
-    public static void addJob(String jobName,Class cls,String time,ScheduleJob scheduleJob){
+    public static void addJob(String jobName,Class<? extends Job> cls,String time,ScheduleJob scheduleJob){
         try {
             Scheduler sched = gSchedulerFactory.getScheduler();
             JobDetail job = JobBuilder.newJob(cls).withIdentity(jobName,JOB_GROUP_NAME).build();
@@ -57,7 +64,6 @@ public class QuartManager {
      * @param jobName
      * @param time
      */
-    @SuppressWarnings("unchecked")
     public static void modifyJobTime(String jobName,String time){
         TriggerKey triggerKey = TriggerKey.triggerKey(jobName,TRIGGER_GROUP_NAME);
 
@@ -95,32 +101,33 @@ public class QuartManager {
             if (trigger == null) {
                 return;
             }
+            // 停止触发器
             sched.pauseTrigger(triggerKey);
-            ;// 停止触发器
-            sched.unscheduleJob(triggerKey);// 移除触发器
-            sched.deleteJob(jobKey);// 删除任务
+            // 移除触发器
+            sched.unscheduleJob(triggerKey);
+            // 删除任务
+            sched.deleteJob(jobKey);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-    
+
     /**
      * @Description: 暂停一个任务(使用默认组名) 
      * @Author: JackKuang
      * @Since: 2018年3月9日上午11:17:07
      * @param jobName 任务名称
      */
-    public static void pauseJob(String jobName) {  
-        JobKey jobKey =JobKey.jobKey(jobName, JOB_GROUP_NAME);  
-        try {  
-            Scheduler sched = gSchedulerFactory.getScheduler();  
-            sched.pauseJob(jobKey);  
-        } catch (SchedulerException e) {  
-            e.printStackTrace();  
-        }  
+    public static void pauseJob(String jobName){
+        JobKey jobKey = JobKey.jobKey(jobName,JOB_GROUP_NAME);
+        try {
+            Scheduler sched = gSchedulerFactory.getScheduler();
+            sched.pauseJob(jobKey);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
     }
 
-    
     /**  
      * @Description:启动所有定时任务  
      * @author qgw  
@@ -134,7 +141,7 @@ public class QuartManager {
             throw new RuntimeException(e);
         }
     }
-    
+
     /** 
      * @Description 关闭所有定时任务  
      * @author qgw  

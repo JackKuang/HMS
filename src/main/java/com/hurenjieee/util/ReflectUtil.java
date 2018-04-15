@@ -3,6 +3,12 @@ package com.hurenjieee.util;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 
+
+/**
+ * @Description: 映射工具类
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:34:14  
+ */
 public class ReflectUtil {
 
     /** 

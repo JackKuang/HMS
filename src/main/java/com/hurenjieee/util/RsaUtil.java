@@ -1,9 +1,7 @@
 package com.hurenjieee.util;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -23,15 +21,17 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import org.apache.commons.lang3.StringUtils;
-
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-/** 
- * RSA算法，实现数据的加密解密。 
+
+/**
+ * @Description: RSA算法，实现数据的加密解密。
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午5:22:58  
  */
-public class RSAUtil {
+@SuppressWarnings("restriction")
+public class RsaUtil {
 
     private static Cipher cipher;
 
@@ -67,7 +67,7 @@ public class RSAUtil {
             String privateKeyString = StringUtil.getStringNoBlank(getKeyString(privateKey)).trim();
             // 将密钥对写入到文件
             /*
-             * FileWriter pubfw = new FileWriter(filePath + "/publicKey.keystore");
+             * FileWriter pubfw = new FileWriter(filePath + "/publicKey.keystore"); 
              * FileWriter prifw = new FileWriter(filePath + "/privateKey.keystore");
              * BufferedWriter pubbw = new BufferedWriter(pubfw);
              * BufferedWriter pribw = new BufferedWriter(prifw);
@@ -81,7 +81,7 @@ public class RSAUtil {
              * prifw.close();
              */
             // 将生成的密钥对返回
-            Map<String, String> map = new HashMap<String, String>();
+            Map<String, String> map = new HashMap<String, String>(2);
             map.put("publicKey",publicKeyString);
             map.put("privateKey",privateKeyString);
             return map;
@@ -311,9 +311,9 @@ public class RSAUtil {
         System.err.println("公钥加密——私钥解密");
         String source = "高可用架构对于互联网服务基本是标配。";
         System.out.println("\r加密前文字：\r\n" + source);
-        String aData = RSAUtil.encrypt(publicKey,source);
+        String aData = RsaUtil.encrypt(publicKey,source);
         System.out.println("加密后文字：\r\n" + aData);
-        String dData = RSAUtil.decrypt(privateKey,aData);
+        String dData = RsaUtil.decrypt(privateKey,aData);
         System.out.println("解密后文字: \r\n" + dData);
     }
 }

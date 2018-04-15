@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.jdbc.Null;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
@@ -21,11 +20,22 @@ import com.hurenjieee.core.entity.BaseEntity;
 import com.hurenjieee.system.util.AuthorizationUtil;
 import com.hurenjieee.util.ReflectUtil;
 
-// Mybatis 只有update和query
-
+/**
+ * @Description: 拦截器，注入更新人更新时间，新增人新增时间，
+ * Mybatis 只有update和query
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午3:58:41  
+ */
 @Intercepts({ @Signature(type = Executor.class,method = "update",args = { MappedStatement.class, Object.class }) })
 public class UpdateInterceptor implements Interceptor {
+    
+    private static String INSERT_TYPE = "INSERT";
+    
+    private static String SAVE_TYPE = "SAVE";
+    
+    private static String UPDATE_TYPE = "UPDATE";
 
+    @SuppressWarnings("unused")
     private Properties properties;
 
     @Override
@@ -37,22 +47,26 @@ public class UpdateInterceptor implements Interceptor {
         // Executor exe = (Executor) arg0.getTarget();
         String methodName = arg0.getMethod().getName();
         String userUuid = AuthorizationUtil.getLoginUserUuid();
-        if (methodName.equals("update")) {
+        if (UPDATE_TYPE.equalsIgnoreCase(methodName)) {
             Object parameter = arg0.getArgs()[1];
             if (parameter instanceof BaseEntity) {
                 // (方法包含insert或save)insert，自动设置UUID和createDate
-                boolean isSave = methodNameModify.contains("INSERT") || methodNameModify.contains("SAVE");
-                boolean isUpdate = methodNameModify.contains("UPDATE");
+                boolean isSave = methodNameModify.contains(INSERT_TYPE) || methodNameModify.contains(SAVE_TYPE);
+                boolean isUpdate = methodNameModify.contains(UPDATE_TYPE);
                 if (isSave) {
                     // entity.setUuid(UUID.randomUUID().toString().replaceAll("-","").toUpperCase());
                     List<Field> list = Arrays.asList(parameter.getClass().getDeclaredFields());
                     for ( int i = 0 ; i < list.size() ; i++ ) {
                         Field field = list.get(i);
-                        if (field.isAnnotationPresent(AutoInjection.class)) {// 是否使用AutoInjection注解
-                            for ( Annotation anno : field.getDeclaredAnnotations() ) {// 获得所有的注解
-                                if (anno.annotationType().equals(AutoInjection.class)) {// 找到自己的注解
+                        if (field.isAnnotationPresent(AutoInjection.class)) {
+                            // 是否使用AutoInjection注解
+                            // 获得所有的注解
+                            for ( Annotation anno : field.getDeclaredAnnotations() ) {
+                                if (anno.annotationType().equals(AutoInjection.class)) {
+                                    // 找到自己的注解
                                     boolean isNull = ReflectUtil.getGetMethod(parameter,field.getName()) == null;
-                                    if (isNull) {// 当前为空时才会赋值
+                                    if (isNull) {
+                                     // 当前为空时才会赋值
                                         switch (((AutoInjection) anno).type()) {
                                             case CREATE_USER:
                                                 ReflectUtil.setValue(parameter,parameter.getClass(),field.getName(),String.class,userUuid);
@@ -74,14 +88,17 @@ public class UpdateInterceptor implements Interceptor {
                             }
                         }
                     }
-                    // (方法包含update)update，自动设置updatedate
                 } else if (isUpdate) {
+                    // (方法包含update)update，自动设置updatedate
                     List<Field> list = Arrays.asList(parameter.getClass().getDeclaredFields());
                     for ( int i = 0 ; i < list.size() ; i++ ) {
                         Field field = list.get(i);
-                        if (field.isAnnotationPresent(AutoInjection.class)) {// 是否使用AutoInjection注解
-                            for ( Annotation anno : field.getDeclaredAnnotations() ) {// 获得所有的注解
-                                if (anno.annotationType().equals(AutoInjection.class)) {// 找到自己的注解
+                        if (field.isAnnotationPresent(AutoInjection.class)) {
+                            // 是否使用AutoInjection注解
+                            // 获得所有的注解
+                            for ( Annotation anno : field.getDeclaredAnnotations() ) {
+                                if (anno.annotationType().equals(AutoInjection.class)) {
+                                    //// 找到自己的注解
                                     boolean isNull = ReflectUtil.getGetMethod(parameter,field.getName()) == null;
                                     if (isNull) {
                                         switch (((AutoInjection) anno).type()) {

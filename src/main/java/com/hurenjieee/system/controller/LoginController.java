@@ -1,7 +1,6 @@
 
 package com.hurenjieee.system.controller;
 
-import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -17,11 +16,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hurenjieee.system.entity.SystemUser;
 import com.hurenjieee.system.service.SystemUserService;
 import com.hurenjieee.system.util.AuthorizationUtil;
-import com.hurenjieee.util.RSAUtil;
+import com.hurenjieee.util.RsaUtil;
 
+
+/**
+ * @Description: 登陆Controller
+ * @Author: JackKuang
+ * @Since: 2018年4月15日下午4:19:01  
+ */
 @Controller("loginController")
 @Scope("prototype")
 @RequestMapping("/system")
@@ -45,7 +49,7 @@ public class LoginController {
         try {
             // 获取密钥
             String privateKey = (String) session.getAttribute("privateKey");
-            password = RSAUtil.decrypt(privateKey,password);
+            password = RsaUtil.decrypt(privateKey,password);
             String passwordHashed = password;
             Subject subject = SecurityUtils.getSubject();
             // 数据库保存SHA512加密后的数据，
@@ -115,7 +119,7 @@ public class LoginController {
      * @return publicKey
      */
     private String setKeyAttribute(HttpSession session){
-        Map<String, String> data = RSAUtil.generateKeyPair();
+        Map<String, String> data = RsaUtil.generateKeyPair();
         String privateKey = data.get("privateKey");
         String publicKey = data.get("publicKey");
         session.setAttribute("privateKey",privateKey);

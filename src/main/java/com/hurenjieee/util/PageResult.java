@@ -13,10 +13,15 @@ public class PageResult<T> {
     private Integer code;
 
     private String msg;
-    // 结果集
+    
+    /** 
+     * @Fields: data : 结果集
+     */ 
     private List<T> data;
 
-    // 总数
+    /** 
+     * @Fields: count : 总数
+     */ 
     private long count;
 
     public Integer getCode(){
