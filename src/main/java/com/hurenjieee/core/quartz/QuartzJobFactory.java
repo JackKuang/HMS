@@ -18,7 +18,5 @@ public class QuartzJobFactory implements Job {
     public void execute(JobExecutionContext context) throws JobExecutionException{
         ScheduleJob scheduleJob = (ScheduleJob) context.getMergedJobDataMap().get("scheduleJob");
         TaskUtils.invokMethod(scheduleJob);
-        // 保存记录到数据库
-        System.out.println("QuartzJobFactory");
     }
 }

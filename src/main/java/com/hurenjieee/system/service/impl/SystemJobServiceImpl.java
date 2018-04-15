@@ -16,7 +16,6 @@ import com.hurenjieee.system.service.SystemJobService;
 
 import tk.mybatis.mapper.common.Mapper;
 
-
 /**
  * @Description: 定时任务
  * @Author: JackKuang
@@ -37,7 +36,7 @@ public class SystemJobServiceImpl extends BaseServiceImpl<SystemJob> implements 
     public Integer startJob(SystemJob systemJob){
         systemJob = systemJobDao.selectByPrimaryKey(systemJob.getUuid());
         Class<? extends Job> cls;
-        if (ScheduleJob.CONCURRENT_IS.equals(systemJob.getJobConcurrent())) {
+        if (ScheduleJob.CONCURRENT_IS == systemJob.getJobConcurrent()) {
             cls = QuartzJobFactory.class;
         } else {
             cls = QuartzJobFactoryDisallowConcurrentExecution.class;
@@ -68,7 +67,7 @@ public class SystemJobServiceImpl extends BaseServiceImpl<SystemJob> implements 
         SystemJob systemJob = systemJobDao.selectOne(searchObj);
         systemJob.setJobDescription("测试一下");
         systemJobDao.updateByPrimaryKey(systemJob);
-        int i = 1/0;
+        int i = 1 / 0;
         System.out.println(i);
     }
 }

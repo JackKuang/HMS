@@ -10,10 +10,10 @@ import java.util.Date;
  */
 public class ScheduleJob {  
     
-    public static final String STATUS_RUNNING = "1";  
-    public static final String STATUS_NOT_RUNNING = "0";  
-    public static final String CONCURRENT_IS = "1";  
-    public static final String CONCURRENT_NOT = "0";  
+    public static final Integer STATUS_RUNNING = 1;  
+    public static final Integer STATUS_NOT_RUNNING = 0;  
+    public static final Integer CONCURRENT_IS = 1;  
+    public static final Integer CONCURRENT_NOT = 0;  
     
     private Long jobId;  
   

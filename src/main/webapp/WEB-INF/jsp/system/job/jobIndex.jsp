@@ -158,7 +158,7 @@
 	    table.on('tool(jobFilter)', function(obj){
 			var data = obj.data;
 			if(obj.event === 'del'){
-				if( data.jobStatus === "1" ){
+				if( data.jobStatus == 1 ){
 					alertModel.alertMsg("question", "请先禁用任务");
 					return;
 				}
@@ -175,7 +175,7 @@
 				$('#jobCron').val(data.jobCron);
 				$('#jobBeanClass').val(data.jobBeanClass);
 				$('#jobMethod').val(data.jobMethod);
-				if(data.jobConcurrent === '1'){
+				if(data.jobConcurrent == 1){
 					$('#jobConcurrent').prop("checked",true);
 				}else{
 					$('#jobConcurrent').prop("checked",false);
